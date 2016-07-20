@@ -6,34 +6,21 @@
 
 
 	<object id="topology" scope="singleton" class="router.Topology">
-		<property name="routers">
+		<property name="network_components">
 			<list>
-			    	<ref object="Router1"/>
-				<ref object="Router2"/>
-				<ref object="PG1"/>
-				<ref object="PS1"/>
+			    	<ref object="R1"/>
+				<ref object="R2"/>
+				<ref object="R3"/>
+				<ref object="R4"/>
+				<ref object="S1"/>
+				<ref object="S2"/>
+				<ref object="G1"/>
+				<ref object="G2"/>
 			</list>
    		</property>
 
 		
-		<property name="links">
-			<list>
-				<object scope="singleton" class="router.Link">
-					<constructor-arg name="Rx"><ref object="PG_Serial1"/></constructor-arg>
-    					<constructor-arg name="Tx"><ref object="Router1_Serial1"/></constructor-arg>
-				</object>
-			    	
-				<object scope="singleton" class="router.Link">
-					<constructor-arg name="Rx"><ref object="Router1_Serial1"/></constructor-arg>
-    					<constructor-arg name="Tx"><ref object="Router2_Serial1"/></constructor-arg>
-				</object>
-				
-				<object scope="singleton" class="router.Link">
-					<constructor-arg name="Rx"><ref object="Router2_Serial1"/></constructor-arg>
-    					<constructor-arg name="Tx"><ref object="PS_Serial1"/></constructor-arg>
-				</object>
-			</list>
-   		</property>
+		
 	</object>
 
 </objects>

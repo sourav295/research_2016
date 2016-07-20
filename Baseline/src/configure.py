@@ -8,13 +8,10 @@ class GlobalConfiguration(object):
     
     simpyEnv = simpy.Environment()
     
-
-    def configure(self, configs):
+    @staticmethod
+    def configure(configs):
         
         context = ApplicationContext(configs)
         topology = context.get_object("topology")
-        
-        topology.drawRoughGraph()
         topology.wireComponents()
         
-        GlobalConfiguration.simpyEnv.run(until=int(200))

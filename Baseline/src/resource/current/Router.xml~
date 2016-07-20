@@ -3,79 +3,137 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
 	http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
-<!-- PS 1 -->
-	<object id="PS1" scope="singleton" class="router.Sink">
-		<constructor-arg name="hostname">	<value>PS1</value>		</constructor-arg>
-		<constructor-arg name="interfaces">
-			<list>
-				<ref object="PS_Serial1"/>
-			</list>
-		</constructor-arg>
-	</object>
 
-	<object id="PS_Serial1" scope="singleton" class="router.Interface">
+
+	<object id="Standart_Intf" scope="singleton" class="router.Interface" abstract="True" lazy-init="True">
 		<constructor-arg name="name">		<value>Serial1</value>		</constructor-arg>
-    		<constructor-arg name="bandwidth">	<value>45000000</value>		</constructor-arg>
+    		<constructor-arg name="bandwidth">	<value>10</value>		</constructor-arg>
     		<constructor-arg name="port">		<value>2001</value>		</constructor-arg>
     		<constructor-arg name="address">	<value>10.46.231.100</value>	</constructor-arg>
     		<constructor-arg name="netmask">	<value>255.255.128.0</value>	</constructor-arg>
 	</object>
-<!-- PG 1 -->
-	<object id="PG1" scope="singleton" class="router.Host">
-		<constructor-arg name="hostname">	<value>PG1</value>		</constructor-arg>
-		<constructor-arg name="mean_arrv_time">	<value>5</value>		</constructor-arg>
+
+<!-- S1 -->
+	<object id="S1" scope="singleton" class="router.Sink">
+		<constructor-arg name="hostname">	<value>S1</value>		</constructor-arg>
+	</object>
+<!-- S1 -->
+	<object id="S2" scope="singleton" class="router.Sink">
+		<constructor-arg name="hostname">	<value>S2</value>		</constructor-arg>
+	</object>
+<!-- G1 -->
+	<object id="G1" scope="singleton" class="router.Host">
+		<constructor-arg name="hostname">	<value>G1</value>		</constructor-arg>
+		<constructor-arg name="mean_arrv_time">	<value>50</value>		</constructor-arg>
 		<constructor-arg name="mean_pkt_size">	<value>100</value>		</constructor-arg>
-    		<constructor-arg name="interfaces">
+	</object>
+<!-- G2 -->
+	<object id="G2" scope="singleton" class="router.Host">
+		<constructor-arg name="hostname">	<value>G2</value>		</constructor-arg>
+		<constructor-arg name="mean_arrv_time">	<value>500</value>		</constructor-arg>
+		<constructor-arg name="mean_pkt_size">	<value>100</value>		</constructor-arg>
+	</object>
+
+<!-- R1 -->
+	<object id="R1" scope="singleton" class="router.Router">
+		<constructor-arg name="hostname">	<value>R1</value>		</constructor-arg>
+    		<constructor-arg name="links">
 			<list>
-				<ref object="PG_Serial1"/>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R1_R2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R2_R1" />		</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R1_R3"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R3_R1" />		</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R1_G1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="G1" />	</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R1_S1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="S1" />	</constructor-arg>
+				</object>
 			</list>
 		</constructor-arg>
-	</object>
-
-	<object id="PG_Serial1" scope="singleton" class="router.Interface">
-		<constructor-arg name="name">		<value>Serial1</value>		</constructor-arg>
-    		<constructor-arg name="bandwidth">	<value>4500</value>		</constructor-arg>
-    		<constructor-arg name="port">		<value>2001</value>		</constructor-arg>
-    		<constructor-arg name="address">	<value>10.46.231.100</value>	</constructor-arg>
-    		<constructor-arg name="netmask">	<value>255.255.128.0</value>	</constructor-arg>
-	</object>
-
-<!-- Router 1 -->
-	<object id="Router1" scope="singleton" class="router.Router">
-		<constructor-arg name="hostname">	<value>Router1</value>		</constructor-arg>
-    		<constructor-arg name="interfaces">
-			<list>
-				<ref object="Router1_Serial1"/>
-			</list>
-		</constructor-arg>
-	</object>
-
-	<object id="Router1_Serial1" scope="singleton" class="router.Interface">
-		<constructor-arg name="name">		<value>Serial1</value>		</constructor-arg>
-    		<constructor-arg name="bandwidth">	<value>45000000</value>		</constructor-arg>
-    		<constructor-arg name="port">		<value>2001</value>		</constructor-arg>
-    		<constructor-arg name="address">	<value>10.46.231.100</value>	</constructor-arg>
-    		<constructor-arg name="netmask">	<value>255.255.128.0</value>	</constructor-arg>
-	</object>
-
-<!-- Router 2 -->
-	<object id="Router2" scope="singleton" class="router.Router">
-		<constructor-arg name="hostname">	<value>Router2</value>		</constructor-arg>
-    		<constructor-arg name="interfaces">
-			<list>
-				<ref object="Router2_Serial1"/>
-			</list>
-		</constructor-arg>
-		
-	</object>
-
-	<object id="Router2_Serial1" scope="singleton" class="router.Interface">
-		
-		<constructor-arg name="name">		<value>Serial1</value>		</constructor-arg>
-    		<constructor-arg name="bandwidth">	<value>45000000</value>		</constructor-arg>
-    		<constructor-arg name="port">		<value>2001</value>		</constructor-arg>
-    		<constructor-arg name="address">	<value>10.46.231.100</value>	</constructor-arg>
-    		<constructor-arg name="netmask">	<value>255.255.128.0</value>	</constructor-arg>
 	</object>
 	
+	<object id="R1_R2" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R1_R3" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R1_G1" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R1_S1" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+		
+
+<!-- R2 -->
+	<object id="R2" scope="singleton" class="router.Router">
+		<constructor-arg name="hostname">	<value>R2</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R2_R1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R1_R2" />		</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R2_R4"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R4_R2" />		</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	<object id="R2_R1" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R2_R4" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+
+<!-- R3 -->
+	<object id="R3" scope="singleton" class="router.Router">
+		<constructor-arg name="hostname">	<value>R3</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R3_R1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R1_R3" />		</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R3_R4"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R4_R3" />		</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	<object id="R3_R1" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R3_R4" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	
+
+<!-- R4 -->
+	<object id="R4" scope="singleton" class="router.Router">
+		<constructor-arg name="hostname">	<value>R4</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R4_R3"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R3_R4" />		</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R4_R2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R2_R4" />		</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R4_G2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="G2" />	</constructor-arg>
+				</object>
+				<object scope="singleton" class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R4_S2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="S2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	<object id="R4_R3" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R4_R2" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R4_G2" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+	<object id="R4_S2" scope="singleton" class="router.Interface" parent="Standart_Intf" />
+
 </objects>

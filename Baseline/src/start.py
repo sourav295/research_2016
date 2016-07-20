@@ -4,7 +4,8 @@ from configure import GlobalConfiguration
 configs = [XMLConfig("resource/current/Topology.xml"), XMLConfig("resource/current/Router.xml")]
 
 
-g = GlobalConfiguration()
-g.configure(configs)
 
 
+GlobalConfiguration.configure(configs)
+
+GlobalConfiguration.simpyEnv.run(until=int(1000))

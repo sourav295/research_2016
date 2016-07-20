@@ -2,21 +2,38 @@
 import simpy
 import random
 import functools
-import dijkstra
+import graph
+import routing
 
 from configure import GlobalConfiguration
 
 from SimComponents import PacketGenerator, PacketSink, SwitchPort, RandomBrancher
 
+
+        
 class Router(object):
 
-    def __init__(self, hostname, interfaces):
+    def __init__(self, hostname, links):
         self.hostname   = hostname
-        self.interfaces = interfaces
+        self.links      = links
+        
+        self.routing_processor = routing.Routing_Processor()
+        
+        for link in self.links:
+            local_port  = link.this_port
+            local_port.set_routing_processor(self.routing_processor)
+                    
+    def __repr__(self):
+        return "(Router){}".format(self.hostname)
+
+class Link(object):
+    def __init__(self, this_port, remote_port):
+        self.this_port    = this_port   #switch port at local end
+        self.remote_port  = remote_port #could be switch port, sink or host
 
 class Host(PacketGenerator):
 
-    def __init__(self, hostname, interfaces, mean_arrv_time, mean_pkt_size):
+    def __init__(self, hostname, mean_arrv_time, mean_pkt_size):
         
         arrv_time_distribution = functools.partial(random.expovariate, 1.0/float(mean_arrv_time))
         pkt_size_distribution  = functools.partial(random.expovariate, 1.0/float(mean_pkt_size))
@@ -24,19 +41,27 @@ class Host(PacketGenerator):
         PacketGenerator.__init__(self,GlobalConfiguration.simpyEnv, hostname, arrv_time_distribution, pkt_size_distribution)
         
         self.hostname   = hostname
-        self.interfaces = interfaces
+        
+    
+    def __repr__(self):
+        return "(Host){}".format(self.hostname)
         
 class Sink(PacketSink):
 
-    def __init__(self, hostname, interfaces):#, rec_arrivals=False, absolute_arrivals=False, rec_waits=True, debug=False, selector=None
+    def __init__(self, hostname):#, rec_arrivals=False, absolute_arrivals=False, rec_waits=True, debug=False, selector=None
         
         
         PacketSink.__init__(self, GlobalConfiguration.simpyEnv, debug=True)
         
         self.hostname   = hostname
-        self.interfaces = interfaces 
+       
+        
+    def __repr__(self):
+        return "(Sink){}".format(self.hostname)
    
 class Interface(SwitchPort):
+    
+    curr_id = 0
     
     def __init__(self, name, bandwidth, port, address, netmask):
           
@@ -48,51 +73,76 @@ class Interface(SwitchPort):
         self.port       = port
         self.address    = address
         self.netmask    = netmask
+        self.id         = Interface.curr_id
+        
+        Interface.curr_id = Interface.curr_id + 1         
+        
+    def find_host_router(self, routers):
+        for router in routers:
+            for link in router.links:
+                if link.this_port == self:
+                    return router
     
-class Link(object):
+    def __repr__(self):
+        return "(Inf){}".format(self.id)
 
-    def __init__(self, Rx, Tx):
-        self.Tx = Tx
-        self.Rx = Rx
     
-    def findRouterForThisRx(self, routers):
-        routersWithIntfRx=[r for r in routers if self.Rx in r.interfaces]
-        return routersWithIntfRx
-    
-    def findRouterForThisTx(self, routers):
-        routersWithIntfTx=[r for r in routers if self.Tx in r.interfaces]
-        return routersWithIntfTx
-
+        
     
 class Topology(object):
-    routers= []
-    links   = []
-    graph = dijkstra.Graph()
     
-    def drawRoughGraph(self):
-
-        for node in self.routers:
-            self.graph.add_node(node.hostname)
-
-        for link in self.links:
-            linkRxRouters = link.findRouterForThisRx(self.routers)
-            linkTxRouters = link.findRouterForThisTx(self.routers)
-            
-            '''Should check if the array returned has more than one element or not'''  
-            if len(linkRxRouters)==1 and len(linkTxRouters)==1:
-                self.graph.add_edge(linkRxRouters[0].hostname, linkTxRouters[0].hostname, 1)    
-            
-        self.graph.savefig("path_graph1.png")
-        print self.graph.nodes
-        print dijkstra.shortest_path(self.graph, "PG1", "PS1")
-        
+    
+    network_components= []
+    network_graph = graph.Graph()
+    
     def wireComponents(self):
-        for link in self.links:
-            linkRxRouters = link.findRouterForThisRx(self.routers)
-            linkTxRouters = link.findRouterForThisTx(self.routers)
+
+        routing.Network_Components.initialize(self)
+        
+       
+        all_routers = routing.Network_Components.routers        
+        for router in all_routers:
+            for link in router.links:
+                local_port  = link.this_port #this router's switch port 
+                remote_port = link.remote_port #could be the remote  switch_port, sink or host(packet generator)
+                
+                if isinstance(remote_port, Interface):
+                    #idetify remote router
+                    remote_router  = remote_port.find_host_router(all_routers)
+                    local_port.out = remote_port#remote_port = switch port
+                    #register in this router's processor
+                    local_port.get_routing_processor().add_interface(remote_router, local_port)
+                    #for dijkstr's calculations
+                    self.network_graph.add_edge(router, remote_router, 1)
+                    
+                
+                if isinstance(remote_port, Host):
+                    local_port.out  = remote_port
+                    remote_port.out = local_port
+                    #register in this router's processor
+                    local_port.get_routing_processor().add_interface(remote_port, local_port)
+                    #for dijkstr's calculations
+                    self.network_graph.add_edge(router, remote_port, 1)
+                    self.network_graph.add_edge(remote_port, router, 1)
+                    
+                    
+                if isinstance(remote_port, Sink):
+                    local_port.out = remote_port
+                    #register in this router's processor
+                    local_port.get_routing_processor().add_interface(remote_port, local_port)
+                    #for dijkstr's calculations
+                    self.network_graph.add_edge(router, remote_port, 1)
+                    self.network_graph.add_edge(remote_port, router, 1)
+                
+        self.network_graph.savefig("path_graph1.png")
+                
+        #just some logging - very dirty, needed to be cleaned        
+        for router in all_routers:
+            print router
             
-            if len(linkRxRouters)==1 and len(linkTxRouters)==1:
-                Rx = link.Rx if isinstance(linkRxRouters[0], Router) else linkRxRouters[0]
-                Tx = link.Tx if isinstance(linkTxRouters[0], Router) else linkTxRouters[0]
-                Rx.out = Tx
+            
+            for link in router.links:
+                print "local port:  ",link.this_port, " remote port: ",link.remote_port
+            print "======="
+                
                 
