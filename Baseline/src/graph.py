@@ -16,10 +16,7 @@ class Graph(object):
         self.nxGraph.add_node(value)
 
     def add_edge(self, from_node, to_node, dist):
-        #Join bidirectionally
         self.join_uniDirectionally(from_node, to_node, dist)
-        
-        
         self.nxGraph.add_edge(from_node, to_node, distance=float(dist))
     
     def join_uniDirectionally(self, from_node, to_node, dist):

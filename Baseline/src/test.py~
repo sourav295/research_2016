@@ -1,23 +1,9 @@
-'''
-import graph
+import functools
 
-graph = graph.Graph()
+def x(a,b):
+    return a+b
 
-for node in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
-    graph.add_node(node)
+p1 = functools.partial(x, b=4)
+p1(10)
 
-graph.add_edge('A', 'B', 1)
-graph.add_edge('A', 'C', 1)
-graph.add_edge('B', 'D', 1)
-graph.add_edge('C', 'D', 1)
-graph.add_edge('B', 'E', 1)
-graph.add_edge('D', 'E', 1)
-graph.add_edge('E', 'F', 1)
-graph.add_edge('F', 'G', 1)
 
-print graph.shortestPath('D','A')
-'''
-
-import router
-
-print router.Network_Components.sinks

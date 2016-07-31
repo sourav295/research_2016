@@ -1,0 +1,98 @@
+=========================================
+Router: (Router)C1_PE1
+-----------------------------------------
+local port: (Inf)20    -- next componenet --> remote component: (Router)C1_P1
+local port: (Inf)17    -- next componenet --> remote component: (Router)C1_P1
+local port: (Inf)26    -- next componenet --> remote component: (Host)C1_G1
+local port: (Inf)19    -- next componenet --> remote component: (Router)C1_P1
+local port: (Inf)29    -- next componenet --> remote component: (Sink)C1_S1
+-----------------------------------------
+local port: (Inf)26    -- connected to --> remote port: (Host)C1_G1
+local port: (Inf)29    -- connected to --> remote port: (Sink)C1_S1
+local port: (Inf)19    -- connected to --> remote port: (Inf)28   
+local port: (Inf)20    -- connected to --> remote port: (Inf)27   
+local port: (Inf)17    -- connected to --> remote port: (Inf)16   
+=========================================
+=========================================
+Router: (Router)C1_PE2
+-----------------------------------------
+local port: (Inf)21    -- next componenet --> remote component: (Sink)C1_S2
+local port: (Inf)32    -- next componenet --> remote component: (Router)C1_P1
+local port: (Inf)33    -- next componenet --> remote component: (Router)C1_P1
+local port: (Inf)30    -- next componenet --> remote component: (Host)C1_G2
+local port: (Inf)31    -- next componenet --> remote component: (Router)C1_P1
+-----------------------------------------
+local port: (Inf)30    -- connected to --> remote port: (Host)C1_G2
+local port: (Inf)21    -- connected to --> remote port: (Sink)C1_S2
+local port: (Inf)31    -- connected to --> remote port: (Inf)22   
+local port: (Inf)32    -- connected to --> remote port: (Inf)23   
+local port: (Inf)33    -- connected to --> remote port: (Inf)24   
+=========================================
+=========================================
+Router: (Router)C1_P1
+-----------------------------------------
+local port: (Inf)24    -- next componenet --> remote component: (Router)C1_PE2
+local port: (Inf)22    -- next componenet --> remote component: (Router)C1_PE2
+local port: (Inf)27    -- next componenet --> remote component: (Router)C1_PE1
+local port: (Inf)23    -- next componenet --> remote component: (Router)C1_PE2
+local port: (Inf)28    -- next componenet --> remote component: (Router)C1_PE1
+local port: (Inf)18    -- next componenet --> remote component: (Roadm)2  
+local port: (Inf)16    -- next componenet --> remote component: (Router)C1_PE1
+-----------------------------------------
+local port: (Inf)28    -- connected to --> remote port: (Inf)19   
+local port: (Inf)27    -- connected to --> remote port: (Inf)20   
+local port: (Inf)16    -- connected to --> remote port: (Inf)17   
+local port: (Inf)22    -- connected to --> remote port: (Inf)31   
+local port: (Inf)23    -- connected to --> remote port: (Inf)32   
+local port: (Inf)24    -- connected to --> remote port: (Inf)33   
+local port: (Inf)18    -- connected to --> remote port: (Roadm)2  
+=========================================
+=========================================
+Router: (Router)C2_PE1
+-----------------------------------------
+local port: (Inf)8     -- next componenet --> remote component: (Host)C2_G1
+local port: (Inf)13    -- next componenet --> remote component: (Router)C2_P1
+local port: (Inf)9     -- next componenet --> remote component: (Sink)C2_S1
+local port: (Inf)15    -- next componenet --> remote component: (Router)C2_P1
+local port: (Inf)11    -- next componenet --> remote component: (Router)C2_P1
+-----------------------------------------
+local port: (Inf)8     -- connected to --> remote port: (Host)C2_G1
+local port: (Inf)9     -- connected to --> remote port: (Sink)C2_S1
+local port: (Inf)11    -- connected to --> remote port: (Inf)10   
+local port: (Inf)13    -- connected to --> remote port: (Inf)12   
+local port: (Inf)15    -- connected to --> remote port: (Inf)14   
+=========================================
+=========================================
+Router: (Router)C2_PE2
+-----------------------------------------
+local port: (Inf)3     -- next componenet --> remote component: (Router)C2_P1
+local port: (Inf)5     -- next componenet --> remote component: (Router)C2_P1
+local port: (Inf)0     -- next componenet --> remote component: (Host)C2_G2
+local port: (Inf)7     -- next componenet --> remote component: (Router)C2_P1
+local port: (Inf)1     -- next componenet --> remote component: (Sink)C2_S2
+-----------------------------------------
+local port: (Inf)0     -- connected to --> remote port: (Host)C2_G2
+local port: (Inf)1     -- connected to --> remote port: (Sink)C2_S2
+local port: (Inf)3     -- connected to --> remote port: (Inf)2    
+local port: (Inf)5     -- connected to --> remote port: (Inf)4    
+local port: (Inf)7     -- connected to --> remote port: (Inf)6    
+=========================================
+=========================================
+Router: (Router)C2_P1
+-----------------------------------------
+local port: (Inf)10    -- next componenet --> remote component: (Router)C2_PE1
+local port: (Inf)25    -- next componenet --> remote component: (Roadm)0  
+local port: (Inf)12    -- next componenet --> remote component: (Router)C2_PE1
+local port: (Inf)6     -- next componenet --> remote component: (Router)C2_PE2
+local port: (Inf)14    -- next componenet --> remote component: (Router)C2_PE1
+local port: (Inf)2     -- next componenet --> remote component: (Router)C2_PE2
+local port: (Inf)4     -- next componenet --> remote component: (Router)C2_PE2
+-----------------------------------------
+local port: (Inf)10    -- connected to --> remote port: (Inf)11   
+local port: (Inf)12    -- connected to --> remote port: (Inf)13   
+local port: (Inf)14    -- connected to --> remote port: (Inf)15   
+local port: (Inf)2     -- connected to --> remote port: (Inf)3    
+local port: (Inf)4     -- connected to --> remote port: (Inf)5    
+local port: (Inf)6     -- connected to --> remote port: (Inf)7    
+local port: (Inf)25    -- connected to --> remote port: (Roadm)0  
+=========================================

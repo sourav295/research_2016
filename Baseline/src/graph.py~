@@ -27,7 +27,7 @@ class Graph(object):
         self.edges[from_node]= sub_map
         
     def savefig(self, filePath):
-        nx.draw(self.nxGraph, with_labels=True)
+        nx.draw_spring(self.nxGraph, with_labels=True)
         plt.savefig(filePath)
         
     def shortestPath(self,start,end):

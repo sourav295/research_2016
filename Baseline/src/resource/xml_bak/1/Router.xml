@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<objects xmlns="http://www.springframework.org/springpython/schema/objects"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
+	http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
+
+
+	<object id="Standart_Intf"  class="router.Interface" abstract="True" lazy-init="True">
+		<constructor-arg name="name">		<value>Serial1</value>		</constructor-arg>
+    		<constructor-arg name="bandwidth">	<value>10000</value>		</constructor-arg>
+    		<constructor-arg name="port">		<value>2001</value>		</constructor-arg>
+    		<constructor-arg name="address">	<value>10.46.231.100</value>	</constructor-arg>
+    		<constructor-arg name="netmask">	<value>255.255.128.0</value>	</constructor-arg>
+	</object>
+
+<!-- S1 -->
+	<object id="S1"  class="router.Sink">
+		<constructor-arg name="hostname">	<value>S1</value>		</constructor-arg>
+	</object>
+
+<!-- G1 -->
+	<object id="G1"  class="router.Host">
+		<constructor-arg name="hostname">	<value>G1</value>		</constructor-arg>
+		<constructor-arg name="mean_arrv_time">	<value>5</value>		</constructor-arg>
+		<constructor-arg name="mean_pkt_size">	<value>100</value>		</constructor-arg>
+	</object>
+
+
+<!-- R1 -->
+	<object id="R1"  class="router.Router">
+		<constructor-arg name="hostname">	<value>R1</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R1_S1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="G1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R1_RD1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="RD1" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	<object id="R1_S1"  class="router.Interface" parent="Standart_Intf" />
+	<object id="R1_RD1"  class="router.Interface" parent="Standart_Intf" />
+	
+		
+
+<!-- R2 -->
+	<object id="R2"  class="router.Router">
+		<constructor-arg name="hostname">	<value>R2</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R2_RD3"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="RD3" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="R2_S1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="S1" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	<object id="R2_RD3"  class="router.Interface" parent="Standart_Intf" />
+	<object id="R2_S1"  class="router.Interface" parent="Standart_Intf" />
+
+
+</objects>

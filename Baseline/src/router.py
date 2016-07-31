@@ -4,11 +4,15 @@ import random
 import functools
 import graph
 import routing
+import logging
+from roadm import Roadm
+
 
 from configure import GlobalConfiguration
 
-from SimComponents import PacketGenerator, PacketSink, SwitchPort, RandomBrancher
+from SimComponents import PacketGenerator, PacketSink, SwitchPort, Cable
 
+        
 
         
 class Router(object):
@@ -16,8 +20,9 @@ class Router(object):
     def __init__(self, hostname, links):
         self.hostname   = hostname
         self.links      = links
-        
-        self.routing_processor = routing.Routing_Processor()
+
+        local_ports = [l.this_port for l in self.links]
+        self.routing_processor = routing.Routing_Processor(local_ports)
         
         for link in self.links:
             local_port  = link.this_port
@@ -30,6 +35,9 @@ class Link(object):
     def __init__(self, this_port, remote_port):
         self.this_port    = this_port   #switch port at local end
         self.remote_port  = remote_port #could be switch port, sink or host
+        
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__) and self.this_port == other.this_port and self.remote_port == other.remote_port)
 
 class Host(PacketGenerator):
 
@@ -49,13 +57,9 @@ class Host(PacketGenerator):
 class Sink(PacketSink):
 
     def __init__(self, hostname):#, rec_arrivals=False, absolute_arrivals=False, rec_waits=True, debug=False, selector=None
-        
-        
         PacketSink.__init__(self, GlobalConfiguration.simpyEnv, debug=True)
-        
         self.hostname   = hostname
        
-        
     def __repr__(self):
         return "(Sink){}".format(self.hostname)
    
@@ -63,16 +67,13 @@ class Interface(SwitchPort):
     
     curr_id = 0
     
-    def __init__(self, name, bandwidth, port, address, netmask):
-          
+    #def __init__(self, name, bandwidth, port, address, netmask):
+    def __init__(self, bandwidth):
+           
           
         SwitchPort.__init__(self, GlobalConfiguration.simpyEnv, float(bandwidth), None, False)
         
-        self.name       = name
         self.bandwidth  = bandwidth
-        self.port       = port
-        self.address    = address
-        self.netmask    = netmask
         self.id         = Interface.curr_id
         
         Interface.curr_id = Interface.curr_id + 1         
@@ -82,67 +83,46 @@ class Interface(SwitchPort):
             for link in router.links:
                 if link.this_port == self:
                     return router
+        return None
     
+    def is_adjacent_router(self, next_hop_router):
+        for router in next_hop_router:
+            for link in router.links:
+                if link.remote_port == self:
+                    return True
+        return False
+                
+
     def __repr__(self):
         return "(Inf){}".format(self.id)
 
+class Copy(object):
     
+    @staticmethod
+    def copyObj(comp):
+        if isinstance(comp, Interface):
+            return Interface(comp.bandwidth)
         
-    
-class Topology(object):
-    
-    
-    network_components= []
-    network_graph = graph.Graph()
-    
-    def wireComponents(self):
-
-        routing.Network_Components.initialize(self)
+        if isinstance(comp, Link):
+            return Link(   Copy.copyObj(comp.this_port), Copy.copyObj(comp.remote_port)   )
         
-       
-        all_routers = routing.Network_Components.routers        
-        for router in all_routers:
-            for link in router.links:
-                local_port  = link.this_port #this router's switch port 
-                remote_port = link.remote_port #could be the remote  switch_port, sink or host(packet generator)
-                
-                if isinstance(remote_port, Interface):
-                    #idetify remote router
-                    remote_router  = remote_port.find_host_router(all_routers)
-                    local_port.out = remote_port#remote_port = switch port
-                    #register in this router's processor
-                    local_port.get_routing_processor().add_interface(remote_router, local_port)
-                    #for dijkstr's calculations
-                    self.network_graph.add_edge(router, remote_router, 1)
-                    
-                
-                if isinstance(remote_port, Host):
-                    local_port.out  = remote_port
-                    remote_port.out = local_port
-                    #register in this router's processor
-                    local_port.get_routing_processor().add_interface(remote_port, local_port)
-                    #for dijkstr's calculations
-                    self.network_graph.add_edge(router, remote_port, 1)
-                    self.network_graph.add_edge(remote_port, router, 1)
-                    
-                    
-                if isinstance(remote_port, Sink):
-                    local_port.out = remote_port
-                    #register in this router's processor
-                    local_port.get_routing_processor().add_interface(remote_port, local_port)
-                    #for dijkstr's calculations
-                    self.network_graph.add_edge(router, remote_port, 1)
-                    self.network_graph.add_edge(remote_port, router, 1)
-                
-        self.network_graph.savefig("path_graph1.png")
-                
-        #just some logging - very dirty, needed to be cleaned        
-        for router in all_routers:
-            print router
+        if isinstance(comp, Router):
+            return Router(comp.hostname, [ Copy.copyObj(l) for l in comp.links ])
+        
+        if isinstance(comp, Sink):
+            return Router(comp.hostname)
+        
+        if isinstance(comp, Host):
+            return Router(comp.hostname, comp.mean_arrv_time, comp.mean_pkt_size)
+        
+        return comp#other roadm etc
+        
+    @staticmethod
+    def exc(network_components):
+        core_net_routers = [r for r in network_components if isinstance(r, Router)]
+        oldInf_to_newInf_map = {}
+        for r in core_net_routers:
+            for link in r.links:
+                oldInf_to_newInf_map[link.this_port] = Copy.copyObj(link)
             
             
-            for link in router.links:
-                print "local port:  ",link.this_port, " remote port: ",link.remote_port
-            print "======="
-                
-                
