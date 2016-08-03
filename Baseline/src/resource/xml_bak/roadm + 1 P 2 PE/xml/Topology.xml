@@ -8,13 +8,14 @@
 	<object id="topology" class="network.Topology">
 		<property name="networks">
 			<list>
-				<ref object="optcl_net"/>
-				<ref object="C1"/>
+			    	<ref object="C1"/>
 				<ref object="C2"/>
 				<ref object="C3"/>
+				<ref object="optcl_net"/>
 			</list>
    		</property>
 	</object>
+
 
 
 	<object id="C1" class="network.Core_Office">
@@ -26,7 +27,7 @@
 				<ref object="C1_G2"/>
 				<ref object="C1_PE1"/>
 				<ref object="C1_PE2"/>
-				<ref object="C1_P1"/><!--connected to R1_1-->
+				<ref object="C1_P1"/>
 			</list>
    		</constructor-arg>
 	</object>
@@ -40,7 +41,7 @@
 				<ref object="C2_G2"/>
 				<ref object="C2_PE1"/>
 				<ref object="C2_PE2"/>
-				<ref object="C2_P1"/><!--connected to R5_1-->
+				<ref object="C2_P1"/>
 			</list>
    		</constructor-arg>
 	</object>
@@ -58,5 +59,7 @@
 			</list>
    		</constructor-arg>
 	</object>
+	
+
 
 </objects>

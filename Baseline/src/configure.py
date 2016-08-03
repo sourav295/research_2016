@@ -18,6 +18,8 @@ class GlobalConfiguration(object):
     #topology png file path
     topology_png_file_path = "./resource/log/path_graph.png"
     
+    #nPriorityLevels
+    nPrioLevels = 3
     
     @staticmethod
     def configure():

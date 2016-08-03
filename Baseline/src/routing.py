@@ -95,12 +95,18 @@ class Routing_Processor(object):
         
     def put(self, pck, in_port):
         next_hop = pck.next_hop()
+        
+        #compeiting queues and prio - log information
+        competing_priority_queues = [self.key_to_prioQueue_map[k] for k in self.key_to_prioQueue_map if k[0] == next_hop]
+        pck.log("{}".format(str(Priority_Queue.findCompetition(competing_priority_queues))))
+        
         #key to the appropiate priority queue
         key = (next_hop, in_port)
+        print pck
+        print pck.explicit_path
         prioQueue = self.key_to_prioQueue_map[key]
         prioQueue.put(pck)
         pck.log("Packet stored in appropiate Queue to reach {}".format(next_hop))
-        
         
         
     def get_all_prio_queues(self, out_port):
@@ -148,3 +154,22 @@ class Priority_Queue(object):
     def append_port(self, new_port):
         self.attached_out_port.append(new_port)
         new_port.wait = GlobalConfiguration.simpyEnv.event()
+        
+    def count(self, priority = None):
+        if priority == None:
+            return len(self.queue)
+        else:
+            return len( [msg for msg in self.queue if msg.priority == priority] )
+        
+        
+    @staticmethod
+    def findCompetition(competing_queues):
+        n = GlobalConfiguration.nPrioLevels+1
+        prio_count_map = {}
+        #init
+        for prio in range(1,n):
+            prio_count_map[prio] = 0
+        for queue in competing_queues:
+            for prio in range(1,n):
+                prio_count_map[prio] += queue.count(priority = prio)
+        return prio_count_map

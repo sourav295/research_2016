@@ -2,6 +2,7 @@ from collections import defaultdict, deque
 import matplotlib.pyplot as plt
 import networkx as nx
 import dijkstra
+import pygraphviz
 
 class Graph(object):
     def __init__(self):
@@ -12,7 +13,6 @@ class Graph(object):
 
     def add_node(self, value):
         self.nodes.add(value)
-        
         self.nxGraph.add_node(value)
 
     def add_edge(self, from_node, to_node, dist):
@@ -27,8 +27,11 @@ class Graph(object):
         self.edges[from_node]= sub_map
         
     def savefig(self, filePath):
-        nx.draw(self.nxGraph, with_labels=True)
+        pos = nx.nx_agraph.graphviz_layout(self.nxGraph)
+        nx.draw(self.nxGraph, pos, with_labels=True)
         plt.savefig(filePath)
         
     def shortestPath(self,start,end):
         return dijkstra.shortestPath(self.edges, start, end)
+    
+   

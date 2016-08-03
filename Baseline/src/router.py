@@ -29,7 +29,7 @@ class Router(object):
             local_port.set_routing_processor(self.routing_processor)
                     
     def __repr__(self):
-        return "(Router){}".format(self.hostname)
+        return "{}".format(self.hostname)
 
 class Link(object):
     def __init__(self, this_port, remote_port):

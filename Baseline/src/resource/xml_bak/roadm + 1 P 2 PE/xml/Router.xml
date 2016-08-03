@@ -6,7 +6,7 @@
 
 
 	<object id="Standart_Intf"  class="router.Interface" abstract="True" lazy-init="True">
-		<constructor-arg name="bandwidth">	<value>300</value>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<value>3000000</value>		</constructor-arg>
 	</object>
 
 
@@ -140,7 +140,7 @@
 				</object>
 				<object  class="router.Link">
 					<constructor-arg name="this_port">	<ref object="C1_P1_RD1"/>	</constructor-arg>
-					<constructor-arg name="remote_port">	<ref object="R1_1" />	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="RD1" />	</constructor-arg>
 				</object>
 			</list>
 		</constructor-arg>
@@ -291,7 +291,7 @@
 				</object>
 				<object  class="router.Link">
 					<constructor-arg name="this_port">	<ref object="C2_P1_RD4"/>	</constructor-arg>
-					<constructor-arg name="remote_port">	<ref object="R5_1" />	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="RD4" />	</constructor-arg>
 				</object>
 			</list>
 		</constructor-arg>
@@ -307,7 +307,6 @@
 	<object id="C2_P1_PE2_3"  class="router.Interface" parent="Standart_Intf" />
 
 	<object id="C2_P1_RD4"  class="router.Interface" parent="Standart_Intf" />
-
 <!--
 **************************************************************************************************************
 **************************************************************************************************************
@@ -442,7 +441,7 @@
 				</object>
 				<object  class="router.Link">
 					<constructor-arg name="this_port">	<ref object="C3_P1_RD4"/>	</constructor-arg>
-					<constructor-arg name="remote_port">	<ref object="R3_1" />	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="RD5" />	</constructor-arg>
 				</object>
 			</list>
 		</constructor-arg>
@@ -458,5 +457,6 @@
 	<object id="C3_P1_PE2_3"  class="router.Interface" parent="Standart_Intf" />
 
 	<object id="C3_P1_RD4"  class="router.Interface" parent="Standart_Intf" />
+
 
 </objects>

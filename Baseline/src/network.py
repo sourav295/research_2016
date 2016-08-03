@@ -159,6 +159,12 @@ class Topology(object):
             for link in router.links:
                 topology_logger.info("local port: {:10} -- connected to --> remote port: {:10}".format(link.this_port, link.remote_port))
             topology_logger.info("=========================================")
+            
+            
+        for border_roadms in roadm.Roadm.get_border_roadms(routing.Network_Components.roadms):
+            topology_logger.info("||||=========================================||||")
+            topology_logger.info("{}".format(border_roadms))
+            topology_logger.info("{}".format(border_roadms.LFIB))
         
 class Core_Office_Change(object):
     

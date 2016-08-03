@@ -2,6 +2,7 @@ from springpython.config import XMLConfig
 from configure import GlobalConfiguration
 
 GlobalConfiguration.configure()
+
 GlobalConfiguration.simpyEnv.run(until=int(300))
 
 

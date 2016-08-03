@@ -30,7 +30,8 @@ class Lambda(object):
         self.category = category
     def __eq__(self, other):
         return (isinstance(other, self.__class__) and self.category == other.category)
-    
+    def __repr__(self):
+        return "Lambd {}".format(self.category)
         
 class Lambda_Factory(object):
     
@@ -95,18 +96,16 @@ class Channel(object):
         
 class Roadm(object):
     
-    last_unused_id = 0
     
-    def __init__(self, n_of_degrees, is_border = False):
+    def __init__(self,hostname, n_of_degrees, is_border = False):
         self.n_of_degrees = int(n_of_degrees)
         self.degrees = []
         self.LFIB = {}
         
-        self.id = Roadm.last_unused_id
+        self.id = hostname
         self.is_border = is_border
         
         
-        Roadm.last_unused_id = Roadm.last_unused_id + 1
         
         #init all degrees on this roadm
         for id in range(self.n_of_degrees):
@@ -128,7 +127,7 @@ class Roadm(object):
         avble_degree_on_other = other_roadm.get_an_unconnected_degree()
         
         if ( not avble_degree_on_self ) or ( not avble_degree_on_other ):
-            raise ValueError('Not enough degrees on RoadM')
+            raise ValueError('Not enough degrees on RoadM on {} or {}'.format(self, other_roadm))
         else:
             of1 = Optical_Fibre()
             of2 = Optical_Fibre()
@@ -155,9 +154,10 @@ class Roadm(object):
                 connected_fiber = self_out_port.out
                 nxt_port        = connected_fiber.out # port on other roadm
                 
-                if len([other_degree for other_degree in other_roadm.degrees if nxt_port == other_degree.in_port]) > 0:
+                other_degrees = [other_degree for other_degree in other_roadm.degrees if nxt_port == other_degree.in_port]
+                if len(other_degrees) > 0:
                     #plausdible to reach the other_road via this self_degree / connected_fiber
-                    return self_degree
+                    return self_degree #self degree signifies out port, other degree signifies the in port
             except AttributeError:
                 print "out doesnt exist"
         raise ValueError('No direct link to the next roadm')
@@ -168,22 +168,35 @@ class Roadm(object):
         self.LFIB[fec] = (out_port, lambd)
             
     def distribute_labels(self, fec, path):
-        out_degrees_in_path = []
+        out_degrees_in_path  = []
         for i in range(len(path)-1):#exclude the last path element (roadm)
             this_roadm = path[i]
             next_roadm = path[i+1]
             out_degrees_in_path.append(  this_roadm.find_degree_to_reach_next_Roadm( next_roadm )  )
+        
+        in_degrees_in_path = []
+        for roadm in path:
+            in_degrees_in_path.extend(  [in_d for in_d in roadm.degrees if in_d not in out_degrees_in_path]  )
+            
+            
+        print "~~",  path
+        print out_degrees_in_path
         #Find available resource
         unavailable_resources_on_path   = []#[uavail_res for uavail_res in degree.out_port.resources_reserved for degree in out_degrees_in_path]
         for degree in out_degrees_in_path:
             unavailable_resources_on_path.extend(  degree.out_port.resources_reserved  )
+            
+        for degree in in_degrees_in_path:
+            unavailable_resources_on_path.extend(  degree.in_port.resources_reserved  )
         
         available_resource = Lambda_Factory.generate_lambda(unavailable_resources_on_path)
         #Reserve resource on each out_port on this path and create entry in wss
         for degree in out_degrees_in_path:
             degree.wss.set_lambda_to_select(available_resource)
             degree.out_port.reserve_resource(available_resource)
-            
+        for degree in in_degrees_in_path:
+            degree.in_port.reserve_resource(available_resource)
+        
             
         #Register to LFIB on this roadm
         target_out_port_on_self = out_degrees_in_path[0].out_port #out port on roadm this signal is supposed to go through
@@ -199,7 +212,7 @@ class Roadm(object):
         return [net_comp for net_comp in explicit_path if not isinstance(net_comp,Roadm) or net_comp.is_border == True]
         
     def __repr__(self):
-        return "(Roadm){}".format(self.id)
+        return "{}".format(self.id)
         #construct map {incoming port, incoming lambda} -> {outgoing port, outport lambda}
         
 class Degree(object):
@@ -283,7 +296,7 @@ class Roadm_Port(object):
             pck.log("--~~--")
             pck.log("Packet arrived at Optical Network Egress: {}, Lambda removed".format(self))
             pck.log("--~~--")
-            
+            print "Packet arrived at Optical Network Egress: {}, Lambda removed".format(self)
             self.out.put(pck)
         else:#intermediatary roadms
             self.out.put(value)
