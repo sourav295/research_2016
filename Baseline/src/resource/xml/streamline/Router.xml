@@ -4,17 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
 	http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
 
-	<!--Rates --> 
+		<!--Rates 
 	<long id="1GE"  >1000000000   </long>
 	<long id="10GE" >10000000000  </long>
 	<long id="100GE">100000000000 </long>
-	<long id="1TE"  >1000000000000</long>
-	<!--
-	<long id="1GE"  >1000</long>
-	<long id="10GE" >10000</long>
-	<long id="100GE">100000</long>
-	<long id="1TE"  >1000000</long>
-	-->
+	<long id="1TE"  >1000000000000</long>--> 
+	
+	<long id="1GE"  >1000000</long>
+	<long id="10GE" >10000000</long>
+	<long id="100GE">100000000</long>
+	<long id="1TE"  >1000000000</long>
+	
 
 
 	<!--Router Interfaces -->
@@ -420,7 +420,7 @@
 		</constructor-arg>
 	</object>
 	<object  class="router.Linecard" id = "C1_P1_L1">
-		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
 		<constructor-arg name="links">
 			<list>
 				<object  class="router.Link">
@@ -438,12 +438,12 @@
 			</list>
 		</constructor-arg>
 	</object>
-	<object id="C1_P1_L1_PE1_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C1_P1_L1_PE2_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C1_P1_L1_PE3_L3"  class="router.Interface" parent="10G_Inf" />
+	<object id="C1_P1_L1_PE1_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C1_P1_L1_PE2_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C1_P1_L1_PE3_L3"  class="router.Interface" parent="1G_Inf" />
 
 		<object  class="router.Linecard" id = "C1_P1_L2">
-		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
 		<constructor-arg name="links">
 			<list>
 				<object  class="router.Link">
@@ -461,9 +461,9 @@
 			</list>
 		</constructor-arg>
 	</object>
-	<object id="C1_P1_L2_PE1_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C1_P1_L2_PE2_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C1_P1_L2_PE3_L3"  class="router.Interface" parent="10G_Inf" />
+	<object id="C1_P1_L2_PE1_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C1_P1_L2_PE2_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C1_P1_L2_PE3_L3"  class="router.Interface" parent="1G_Inf" />
 	<!-- Connected to Muxponder -->
 	<object  class="router.Linecard" id = "C1_P1_L3">
 		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
@@ -886,7 +886,7 @@
 		</constructor-arg>
 	</object>
 	<object  class="router.Linecard" id = "C2_P1_L1">
-		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
 		<constructor-arg name="links">
 			<list>
 				<object  class="router.Link">
@@ -904,12 +904,12 @@
 			</list>
 		</constructor-arg>
 	</object>
-	<object id="C2_P1_L1_PE1_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C2_P1_L1_PE2_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C2_P1_L1_PE3_L3"  class="router.Interface" parent="10G_Inf" />
+	<object id="C2_P1_L1_PE1_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C2_P1_L1_PE2_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C2_P1_L1_PE3_L3"  class="router.Interface" parent="1G_Inf" />
 
 		<object  class="router.Linecard" id = "C2_P1_L2">
-		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
 		<constructor-arg name="links">
 			<list>
 				<object  class="router.Link">
@@ -927,9 +927,9 @@
 			</list>
 		</constructor-arg>
 	</object>
-	<object id="C2_P1_L2_PE1_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C2_P1_L2_PE2_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C2_P1_L2_PE3_L3"  class="router.Interface" parent="10G_Inf" />
+	<object id="C2_P1_L2_PE1_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C2_P1_L2_PE2_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C2_P1_L2_PE3_L3"  class="router.Interface" parent="1G_Inf" />
 	<!-- Connected to Muxponder -->
 	<object  class="router.Linecard" id = "C2_P1_L3">
 		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
@@ -1353,7 +1353,7 @@
 		</constructor-arg>
 	</object>
 	<object  class="router.Linecard" id = "C3_P1_L1">
-		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
 		<constructor-arg name="links">
 			<list>
 				<object  class="router.Link">
@@ -1371,12 +1371,12 @@
 			</list>
 		</constructor-arg>
 	</object>
-	<object id="C3_P1_L1_PE1_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C3_P1_L1_PE2_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C3_P1_L1_PE3_L3"  class="router.Interface" parent="10G_Inf" />
+	<object id="C3_P1_L1_PE1_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C3_P1_L1_PE2_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C3_P1_L1_PE3_L3"  class="router.Interface" parent="1G_Inf" />
 
 		<object  class="router.Linecard" id = "C3_P1_L2">
-		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
 		<constructor-arg name="links">
 			<list>
 				<object  class="router.Link">
@@ -1394,9 +1394,9 @@
 			</list>
 		</constructor-arg>
 	</object>
-	<object id="C3_P1_L2_PE1_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C3_P1_L2_PE2_L3"  class="router.Interface" parent="10G_Inf" />
-	<object id="C3_P1_L2_PE3_L3"  class="router.Interface" parent="10G_Inf" />
+	<object id="C3_P1_L2_PE1_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C3_P1_L2_PE2_L3"  class="router.Interface" parent="1G_Inf" />
+	<object id="C3_P1_L2_PE3_L3"  class="router.Interface" parent="1G_Inf" />
 	<!-- Connected to Muxponder -->
 	<object  class="router.Linecard" id = "C3_P1_L3">
 		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>

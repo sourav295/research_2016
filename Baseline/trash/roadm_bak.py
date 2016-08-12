@@ -174,27 +174,34 @@ class Roadm(object):
             next_roadm = path[i+1]
             out_degrees_in_path.append(  this_roadm.find_degree_to_reach_next_Roadm( next_roadm )  )
         
+        other_degrees   =  []
+        firstRoadM      = path[0]
+        other_degrees.extend( out_d for out_d in firstRoadM.degrees )
+        '''
         in_degrees_in_path = []
         for roadm in path:#exclude last roadm
             in_degrees_in_path.extend(  [in_d for in_d in roadm.degrees if in_d not in out_degrees_in_path]  )
-        
+        '''
         #Find available resource
         unavailable_resources_on_path   = []#[uavail_res for uavail_res in degree.out_port.resources_reserved for degree in out_degrees_in_path]
         for degree in out_degrees_in_path:
             unavailable_resources_on_path.extend(  degree.out_port.resources_reserved  )
         
+        '''    
         for degree in in_degrees_in_path:
             unavailable_resources_on_path.extend(  degree.in_port.resources_reserved  )
-        
+        '''
         available_resource = Lambda_Factory.generate_lambda(unavailable_resources_on_path)
         #Reserve resource on each out_port on this path and create entry in wss
         for degree in out_degrees_in_path:
             degree.wss.set_lambda_to_select(available_resource)
             degree.out_port.reserve_resource(available_resource)
-        
+            '''
         for degree in in_degrees_in_path:
             degree.in_port.reserve_resource(available_resource)
-        
+            '''
+        for degree in other_degrees:
+            degree.out_port.reserve_resource(available_resource)
             
         #Register to LFIB on this roadm
         target_out_port_on_self = out_degrees_in_path[0].out_port #out port on roadm this signal is supposed to go through

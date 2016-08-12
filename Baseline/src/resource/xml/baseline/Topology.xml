@@ -44,8 +44,12 @@
 				<ref object="C1_PE3_L1_G3"/>
 				<ref object="C1_PE3"/>
 		
+				<ref object="C1_AGG1"/>
+				<ref object="C1_AGG2"/>
+
 				<ref object="C1_P1"/>
-				
+				<ref object="C1_P2"/>
+
 				<ref object="C1_Mux"/>
 
 			</list>
@@ -79,8 +83,12 @@
 				<ref object="C2_PE3_L1_G3"/>
 				<ref object="C2_PE3"/>
 		
+				<ref object="C2_AGG1"/>
+				<ref object="C2_AGG2"/>
+
 				<ref object="C2_P1"/>
-				
+				<ref object="C2_P2"/>
+
 				<ref object="C2_Mux"/>
 
 			</list>
@@ -114,8 +122,12 @@
 				<ref object="C3_PE3_L1_G3"/>
 				<ref object="C3_PE3"/>
 		
+				<ref object="C3_AGG1"/>
+				<ref object="C3_AGG2"/>
+
 				<ref object="C3_P1"/>
-				
+				<ref object="C3_P2"/>
+
 				<ref object="C3_Mux"/>
 
 			</list>
