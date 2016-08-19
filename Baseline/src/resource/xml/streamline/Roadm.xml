@@ -188,7 +188,7 @@
 	<!--Ring 1-->
 	<object id="R1_1"  class="roadm.Roadm" >
 		<constructor-arg name="hostname">	<value>R1_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
 		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
 	</object>
 
@@ -214,7 +214,7 @@
 	<!--Ring 3-->
 	<object id="R3_1"  class="roadm.Roadm" >
 		<constructor-arg name="hostname">	<value>R3_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
 		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
 	</object>
 
@@ -240,7 +240,7 @@
 	<!--Ring 5-->
 	<object id="R5_1"  class="roadm.Roadm" >
 		<constructor-arg name="hostname">	<value>R5_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
 		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
 	</object>
 

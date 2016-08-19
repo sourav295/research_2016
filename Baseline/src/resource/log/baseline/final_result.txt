@@ -1,0 +1,4 @@
+Arrv Rate:          1 | Pkt Dropped          0 | Pkt Generated       5467
+Cost 162.0
+SDN - [C1_AGG1, C1_AGG2]
+NFV - []

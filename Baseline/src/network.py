@@ -61,10 +61,10 @@ class Core_Office(object):
                     remote_linecard  = remote_port.find_host_linecard(routing.Network_Components.linecards)
                     local_mux_port.addInterface(remote_linecard) #create entry
                 elif isinstance(remote_port, roadm.Roadm):
-                    roadm_degree = remote_port.get_an_unconnected_degree()
-                    roadm_degree.mark_as_interfacing_outside_network()
-                    self.cable_components(local_mux_port,roadm_degree.in_port)
-                    self.cable_components(roadm_degree.out_port, local_mux_port)
+                    central_add_drop  = remote_port.add_drop_module
+                    
+                    self.cable_components(  local_mux_port        ,central_add_drop.Tx    )
+                    self.cable_components(  central_add_drop.Rx   ,local_mux_port         )
                     #register in this router's processor
                     local_mux_port.addInterface(remote_port)
                     #for dijkstr's calculations
@@ -114,11 +114,10 @@ class Core_Office(object):
                     
                 '''Router Interface connected to a Roadm'''
                 if isinstance(remote_port, roadm.Roadm):
-                    roadm_degree = remote_port.get_an_unconnected_degree()
-                    roadm_degree.mark_as_interfacing_outside_network()
+                    central_add_drop  = remote_port.add_drop_module
                     
-                    self.cable_components(local_port,roadm_degree.in_port)
-                    self.cable_components(roadm_degree.out_port, local_port)
+                    self.cable_components(  local_port            ,central_add_drop.Tx    )
+                    self.cable_components(  central_add_drop.Rx   , local_port            )
                     #register in this router's processor
                     local_port.addInterface(remote_port)
                     #for dijkstr's calculations
@@ -177,8 +176,6 @@ class Topology(object):
         for core_office in [core_net for core_net in self.networks if isinstance(core_net, Core_Office)]:
             core_office.wireComponenets()
         
-        '''Calculate Cost'''
-        
         if GlobalConfiguration.to_log:
             self.log_topology()
         
@@ -194,6 +191,7 @@ class Topology(object):
             topology_logger.info("Router: {}".format(router))
             for linecard in router.linecards:
                 topology_logger.info("-----------------------------------------")
+                topology_logger.info("===={}====".format(linecard))
                 port_component_map = linecard.routing_processor.outPort_to_nextHop_map
                 for local_port in port_component_map:
                     topology_logger.info("local port: {:10} -- next componenet --> remote component: {:10}".format(local_port, port_component_map[local_port]))
@@ -201,6 +199,7 @@ class Topology(object):
             
             #print router link information
             for linkcard in router.linecards:
+                topology_logger.info("<===={}====>".format(linkcard))
                 for link in linkcard.links:
                     topology_logger.info("local port: {:10} -- connected to --> remote port: {:10}".format(link.this_port, link.remote_port))
             #--------
@@ -217,3 +216,13 @@ class Topology(object):
     
     def getStats(self):#nOfPktdropped, nOfPktGenerated
         return routing.Network_Components.getStats(), Packet.getStats()
+    
+class NFV_SDN(object):
+    sdn_list = []
+    nfv_list = []
+    
+    def distribute_information(self):
+        for sdn in self.sdn_list:
+            sdn.set_as_SDN()
+        for nfv in self.nfv_list:
+            nfv.set_as_NFV()

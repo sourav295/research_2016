@@ -1,0 +1,2 @@
+Arrv Rate:          1 | Pkt Dropped          0 | Pkt Generated       5424
+Cost 124.5

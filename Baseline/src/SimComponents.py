@@ -232,19 +232,7 @@ class Cable(object):
                 
 
 class SwitchPort(object):
-    """ Models a switch output port with a given rate and buffer size limit in bytes.
-        Set the "out" member variable to the entity to receive the packet.
-
-        Parameters
-        ----------
-        env : simpy.Environment
-            the simulation environment
-        rate : float
-            the bit rate of the port
-        qlimit : integer (or None)
-            a buffer size limit in bytes for the queue (does not include items in service).
-
-    """
+    
     def __init__(self, env, rate, qlimit=None, debug=False):
         #self.store = simpy.Store(env)
         self.rate = rate
@@ -258,7 +246,8 @@ class SwitchPort(object):
         self.busy = 0                   # Used to track if a packet is currently being sent
         self.routing_processor = None
         self.wait = None                # wait a pck when they are not available
-
+        self.delay_factor = 1           #Delay factor introduced to distinguish between NFV and SDN
+        
         self.action = env.process(self.run())  # starts the run() method as a SimPy process
         
         
@@ -286,8 +275,9 @@ class SwitchPort(object):
                 self.busy = 1
                 self.byte_size -= msg.size                      
                 
-                yield self.env.timeout(msg.size*8.0/self.rate)  #Start Transmitting
-                
+                #Delay factor employed distinguish it from SDN or NFV or physical
+                yield self.env.timeout(msg.size * 8.0 * self.delay_factor / self.rate)  #Start Transmitting
+                #print self.delay_factor
                 transmission_time = self.env.now - env_time_before_transmission
                 msg.log("Packet transmitted to cabel at: {} duration: {}".format(self.env.now, transmission_time))
                 if GlobalConfiguration.queue_log:
@@ -324,6 +314,8 @@ class SwitchPort(object):
         return self.routing_processor
     def addInterface(self, next_hop):
         self.routing_processor.add_interface(next_hop, self)
+    def set_delay_factor(self, delay_fact):
+        self.delay_factor = delay_fact
         
         
 class MuxponderPort(object):

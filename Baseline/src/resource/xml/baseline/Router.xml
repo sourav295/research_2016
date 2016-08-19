@@ -418,6 +418,7 @@
 				<ref object="C1_AGG1_L2"/>
 			</list>
 		</constructor-arg>
+		<!--<constructor-arg name="is_SDN">		<value>True</value>		</constructor-arg>-->
 	</object>
 	<object  class="router.Linecard" id = "C1_AGG1_L1">
 		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
@@ -469,6 +470,7 @@
 				<ref object="C1_AGG2_L2"/>
 			</list>
 		</constructor-arg>
+		<!--<constructor-arg name="is_SDN">		<value>True</value>		</constructor-arg>-->
 	</object>
 	<object  class="router.Linecard" id = "C1_AGG2_L1">
 		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>

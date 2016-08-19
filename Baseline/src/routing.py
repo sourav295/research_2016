@@ -27,18 +27,23 @@ class Network_Components(object):
         for core_office in [core_net for core_net in topology.networks if topology.isCoreOffice(core_net)]:
             
             rs = [ nc for nc in core_office.network_components if topology.isRouter(nc) ]
-            
             Network_Components.routers.extend(rs)
             for r in rs:
                 Network_Components.linecards.extend( r.linecards )
-            
-            
+                '''
+                for l in r.linecards:
+                    Network_Components.hosts.extend(    [ link.this_port for link in l.links if topology.isHost(link.remote_port)   ]   )
+                    Network_Components.sinks.extend(    [ link.this_port for link in l.links if topology.isSink(link.remote_port)   ]   )
+            '''
             Network_Components.hosts.extend(    [ nc for nc in core_office.network_components if topology.isHost(nc)   ]   )
             Network_Components.sinks.extend(    [ nc for nc in core_office.network_components if topology.isSink(nc)   ]   )
+            
             Network_Components.muxs.extend(     [ nc for nc in core_office.network_components if topology.isMux(nc)    ]   )
-            
-            
+        
         Network_Components.network_graph = topology.network_graph
+        
+        print "SDN", [r for r in Network_Components.routers if r.is_SDN]
+        print "NFV", [r for r in Network_Components.routers if r.is_NFV]
 
     @staticmethod
     def selectRandomSink():
@@ -62,6 +67,7 @@ class Network_Components(object):
                     queues.append(map[key])
                     
         return sum(c.packets_drop for c in queues)
+    
         
     @staticmethod
     def flush():

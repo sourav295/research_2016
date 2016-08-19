@@ -14,8 +14,25 @@
 				<ref object="optcl_net"/>
 			</list>
    		</property>
+		
+		
 	</object>
 
+	<object id="nfv_sdn" class="network.NFV_SDN">
+		<property name="sdn_list">
+			<list>
+				<ref object="C1_AGG1"/>
+				<ref object="C1_AGG2"/>
+			</list>
+   		</property>
+		<!--		
+		<property name="nfv_list">
+			<list>
+				<ref object="C2_AGG1"/>
+			</list>
+   		</property>-->
+	</object>
+	
 
 	<object id="C1" class="network.Core_Office">
 		<constructor-arg name="network_components">		

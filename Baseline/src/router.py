@@ -14,42 +14,100 @@ from SimComponents import PacketGenerator, PacketSink, SwitchPort, Cable, Muxpon
 
 class Router(object):
 
-    def __init__(self, hostname, linecards):
+    def __init__(self, hostname, linecards, is_SDN = False, is_NFV = False):
         self.hostname   = hostname
         self.linecards  = linecards
         self.backplane  = routing.Routing_Backplane(linecards)
 
         self.backplane.wire_linecards()
+    
+        self.is_SDN = is_SDN
+        self.is_NFV = is_NFV
         
         for i in range(len(self.linecards)):
             self.linecards[i].id        = "{}_LC{}".format(self.hostname, i)
             self.linecards[i].backplane =  self.backplane
+            '''
+            if self.is_SDN:
+                self.linecards[i].set_as_SDN()
+            if self.is_NFV:
+                self.linecards[i].set_as_NFV()
+            #self.linecards[i].is_SDN    = self.is_SDN
+            #self.linecards[i].is_NFV    = self.is_NFV
+            '''
+    def set_as_SDN(self):
+        self.is_SDN = True
+        for linecard in self.linecards:
+            linecard.set_as_SDN()
+    def set_as_NFV(self):
+        self.is_NFV = True
+        for linecard in self.linecards:
+            linecard.set_as_NFV()        
             
-                    
     def __repr__(self):
         return "{}".format(self.hostname)
     
 class Linecard(object):
 
-    def __init__(self, bandwidth, links):
+    def __init__(self, bandwidth, links = [], connected_servers = None):
         self.links      = links
         self.id         = None
         self.backplane  = None
         self.bandwidth  = bandwidth
         
-        
-        #Assign default interface
+        self.is_SDN = False
+        self.is_NFV = False
+        '''
+        #Attach the connected servers
+        if connected_servers != None:
+            print "@1",len(self.links), self
+            self.links.extend(  connected_servers.generate_links(self)  )
+            print "@2",len(self.links)
+        '''
+        #Assign default interface - only remote port initialized
         for link in self.links:
             if link.this_port == None:
                 link.this_port  = Interface(self.bandwidth)
+        
 
         local_ports = [l.this_port for l in self.links]
+        
         self.routing_processor = routing.Routing_Processor(local_ports)
         
         for link in self.links:
             local_port  = link.this_port
             local_port.set_routing_processor(self.routing_processor)
-                    
+            #set delay factor - SDN / NFV / Traditional Network
+            #self.set_delay_factor( local_port )
+    '''
+    def set_delay_factor(self, local_port):
+        if self.is_SDN and self.is_NFV:
+            raise ValueError("line card happens to be both NFV and SDN")
+        elif self.is_SDN:
+            local_port.set_delay_factor(  GlobalConfiguration.delay_fact_SDN  )
+        elif self.is_NFV:
+            local_port.set_delay_factor(  GlobalConfiguration.delay_fact_NFV  )
+    '''
+    def set_as_SDN(self):
+        #check if it not set as NFV
+        if self.is_NFV:
+            raise ValueError("line card happens to be both NFV and SDN")
+        #mark as SDN
+        self.is_SDN = True
+        for link in self.links:
+            local_port  = link.this_port
+            local_port.set_delay_factor(  GlobalConfiguration.delay_fact_SDN  )
+            
+    def set_as_NFV(self):
+        #check if it not set as SDN
+        if self.is_SDN:
+            raise ValueError("line card happens to be both NFV and SDN")
+        #mark as NFV
+        self.is_NFV = True
+        for link in self.links:
+            local_port  = link.this_port
+            local_port.set_delay_factor(  GlobalConfiguration.delay_fact_NFV  )
+    
     def __repr__(self):
         return "{}".format(self.id)
     
@@ -58,7 +116,7 @@ class Linecard(object):
         #check if link already exist
         for l in [l1.this_port for l1 in lc_1.links]:
             if l in [l2.remote_port for l2 in lc_2.links]:
-                return
+                return #nothing has to be done
         
         
         #create interface of same bandwidth
@@ -175,5 +233,28 @@ class MuxInterface(MuxponderPort):
 
     def __repr__(self):
         return "(MuxInf){}".format(self.id)
+    
+class Server(object):
+    
+    def __init__(self, mean_pkt_size, bandwidth, name_group, no_of_servers):
+        self.mean_pkt_size = mean_pkt_size
+        self.bandwidth     = bandwidth
+        self.name_group    = str(name_group)
+        self.no_of_servers = int(no_of_servers)
+        
+        
+    def generate_links(self, linecard):
+        links = []
+        for i in range(self.no_of_servers):
+            
+            h = Host( self.mean_pkt_size, self.bandwidth, "{}_G{}".format(self.name_group, i) )
+            s = Sink( "{}_S{}".format(self.name_group, i) )
+            
+            links.append(  Link(this_port = Interface(linecard.bandwidth), remote_port = h)  )
+            links.append(  Link(this_port = Interface(linecard.bandwidth), remote_port = s)  )
+            
+        print len(links)
+        return links
+        
 
         

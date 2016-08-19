@@ -105,15 +105,15 @@ class Roadm(object):
         self.id = hostname
         self.is_border = is_border
         
+        self.add_drop_module = Add_Drop_Module(self.LFIB)
+        
         
         
         #init all degrees on this roadm
         for id in range(self.n_of_degrees):
             new_degree_id = "{}_{}".format(str(self.id), str(id))
-            new_degree = Degree(new_degree_id, is_border = self.is_border, LFIB = self.LFIB)
-            #wire to other degrees
-            for other_degree in self.degrees:
-                new_degree.connect(other_degree)
+            new_degree = Degree(new_degree_id, self.add_drop_module, is_border = self.is_border, LFIB = self.LFIB)
+            
             self.degrees.append(new_degree)
             
             
@@ -157,7 +157,7 @@ class Roadm(object):
                 other_degrees = [other_degree for other_degree in other_roadm.degrees if nxt_port == other_degree.in_port]
                 if len(other_degrees) > 0:
                     #plausdible to reach the other_road via this self_degree / connected_fiber
-                    return self_degree #self degree signifies out port, other degree signifies the in port
+                    return self_degree, other_degrees[0] #out degree to reach other roadm and in degree where the signal in the other roadm will be received
             except AttributeError:
                 print "out doesnt exist"
         raise ValueError('No direct link to the next roadm')
@@ -166,37 +166,51 @@ class Roadm(object):
     def register_FEC_to_LFIB(self, fec, out_port, lambd):
         #FEC = destination roadM
         self.LFIB[fec] = (out_port, lambd)
-            
+        
+    #used only by ingress roadm
     def distribute_labels(self, fec, path):
         out_degrees_in_path  = []
+        
+        this_out_next_in_map = {}
         for i in range(len(path)-1):#exclude the last path element (roadm)
             this_roadm = path[i]
             next_roadm = path[i+1]
-            out_degrees_in_path.append(  this_roadm.find_degree_to_reach_next_Roadm( next_roadm )  )
-        
-        in_degrees_in_path = []
-        for roadm in path:#exclude last roadm
-            in_degrees_in_path.extend(  [in_d for in_d in roadm.degrees if in_d not in out_degrees_in_path]  )
+
+            out_degree_this_roadm, in_degree_next_roadm  = this_roadm.find_degree_to_reach_next_Roadm( next_roadm )
+            this_out_next_in_map [out_degree_this_roadm] = in_degree_next_roadm
+            
+            out_degrees_in_path.append(out_degree_this_roadm)
+            
         
         #Find available resource
         unavailable_resources_on_path   = []#[uavail_res for uavail_res in degree.out_port.resources_reserved for degree in out_degrees_in_path]
-        for degree in out_degrees_in_path:
-            unavailable_resources_on_path.extend(  degree.out_port.resources_reserved  )
-        
-        for degree in in_degrees_in_path:
-            unavailable_resources_on_path.extend(  degree.in_port.resources_reserved  )
+        for out_degree in out_degrees_in_path:
+            in_degree = this_out_next_in_map[out_degree]
+            
+            unavailable_resources_on_path.extend(  out_degree.out_port.resources_reserved  )
+            unavailable_resources_on_path.extend(  in_degree.in_port.resources_reserved    )
         
         available_resource = Lambda_Factory.generate_lambda(unavailable_resources_on_path)
+        
         #Reserve resource on each out_port on this path and create entry in wss
-        for degree in out_degrees_in_path:
-            degree.wss.set_lambda_to_select(available_resource)
-            degree.out_port.reserve_resource(available_resource)
-        
-        for degree in in_degrees_in_path:
-            degree.in_port.reserve_resource(available_resource)
-        
+        for out_degree in out_degrees_in_path:
+            out_degree.out_port.reserve_resource(available_resource)
+            out_degree.wss.set_lambda_to_select(available_resource)
             
+        for out_degree in out_degrees_in_path[:-1]:#Skip last element
+            in_degree = this_out_next_in_map[out_degree]
+            
+            index_of_next_out_degree = out_degrees_in_path.index(out_degree) + 1
+            next_out_degree          = out_degrees_in_path[index_of_next_out_degree]
+            
+            in_degree.in_port.reserve_resource(available_resource)
+            in_degree.splitter.set_lambda_direction(available_resource, next_out_degree.out_port)
+        
+    
         #Register to LFIB on this roadm
+        last_in_degree = this_out_next_in_map[  out_degrees_in_path[-1]  ]
+        last_in_degree.splitter.set_lambda_direction(available_resource, fec.add_drop_module.Rx)
+        
         target_out_port_on_self = out_degrees_in_path[0].out_port #out port on roadm this signal is supposed to go through
         self.register_FEC_to_LFIB(fec, target_out_port_on_self, available_resource)
         
@@ -215,7 +229,7 @@ class Roadm(object):
         
 class Degree(object):
     
-    def __init__(self, id, is_border = False, LFIB = None):
+    def __init__(self, id, central_add_drop_module, is_border = False, LFIB = None):
         self.id = id
         self.LFIB = LFIB
         self.in_port    = Roadm_Port("{}_in".format(self.id), LFIB = self.LFIB)
@@ -227,36 +241,56 @@ class Degree(object):
         self.in_port.out = self.splitter
         self.wss.out     = self.out_port
         
-        self.add_drop_module = Add_Drop_Module()
-        self.splitter.out.append(self.add_drop_module)
+        self.central_add_drop_module = central_add_drop_module 
         
-        
-    def connect(self, other_degree):
-
-        if other_degree == self:
-            return
-        if not other_degree.wss in self.splitter.out:
-            self.splitter.out.append(other_degree.wss)
-        if not self.wss in other_degree.splitter.out:
-            other_degree.splitter.out.append(self.wss)
-    
-    def mark_as_interfacing_outside_network(self):
-        self.in_port.has_to_add_label       = True
-        self.out_port.has_to_remove_label   = True
-        self.wss.disabled                   = True
-    
     def __repr__(self):
         return "(Degree){}".format(self.id)
 
+'''==================ADD DROP MODULE======================================'''
+
 class Add_Drop_Module(object):
     
-    def __init__(self):
-        out = None
+    def __init__(self, LFIB):
+        out = []
+        self.Tx = Add_Side(LFIB)
+        self.Rx = Drop_Side(LFIB)
+        
+class Add_Side(object):
+    
+    def __init__(self, LFIB):
+        self.LFIB = LFIB
+        self.out  = None
         
     def put(self, value):
-        todo = "NOT COMPETTED"
-        
+        pck = value
+        fec = pck.next_hop()
 
+        pck.log("--~~--")
+        pck.log("Packet arrived at Optical Network Ingress: {}".format(self))
+        out_port, lambd = self.LFIB[fec]#query LFIB
+        pck.log("Lambda Category Assigned: {} For FEC: {}".format(lambd.category, fec))
+        pck.log("--~~--")
+
+        pck.increment_explicit_path_pointer()
+        out_port.put(  Optical_Signal(pck, lambd)  )
+
+class Drop_Side(object):
+    
+    def __init__(self, LFIB):
+        self.LFIB = LFIB
+        self.out  = None
+        
+    def put(self, value):
+        sig = value
+        pck = sig.get_pck()
+        pck.increment_explicit_path_pointer()
+        
+        pck.log("--~~--")
+        pck.log("Packet arrived at Optical Network Egress: {}, Lambda removed".format(self))
+        pck.log("--~~--")
+        
+        self.out.put(pck)
+'''========================================================================================='''
 class Roadm_Port(object):
      
     def __init__(self, id, LFIB = None):
@@ -266,37 +300,9 @@ class Roadm_Port(object):
         self.LFIB = LFIB #LFIB[fec] --to--> (out_port, lambd) MAP
         
         self.resources_reserved = []
-        #if it is a border roadm
-        self.has_to_add_label       = False
-        self.has_to_remove_label    = False
-    
-    def put(self, value, destination_roadm = None):
-        #destination_roadm (fec) compulsary if label is to be added
-        if self.has_to_add_label:#convert to optical signal, ingress port
-            
-            pck = value
-            fec = pck.next_hop()
-            
-            pck.log("--~~--")
-            pck.log("Packet arrived at Optical Network Ingress: {}".format(self))
-            out_port, lambd = self.LFIB[fec]#query LFIB
-            pck.log("Lambda Category Assigned: {} For FEC: {}".format(lambd.category, fec))
-            pck.log("--~~--")
-            
-            pck.increment_explicit_path_pointer()
-            self.out.put(  Optical_Signal(pck, lambd)  )
-        elif self.has_to_remove_label:#convert from optical to something else, egress port
-            sig = value
-            pck = sig.get_pck()
-            pck.increment_explicit_path_pointer()
-            
-            pck.log("--~~--")
-            pck.log("Packet arrived at Optical Network Egress: {}, Lambda removed".format(self))
-            pck.log("--~~--")
-            
-            self.out.put(pck)
-        else:#intermediatary roadms
-            self.out.put(value)
+        
+    def put(self, value):
+        self.out.put(value)
             
     
     def reserve_resource(self, resource):
@@ -320,16 +326,13 @@ class WSS(object): #wavelength selective switch
     def __init__(self):
         self.out = None
         self.lambda_to_select = []
-        self.disabled = False
+        
 
     def put(self, value):
-        if not self.disabled:
-            if value.get_lambda() in self.lambda_to_select:
-                self.out.put(value)
-            else:
-                todo = "WSS dropped packet"
-        else:
+        if value.get_lambda() in self.lambda_to_select:
             self.out.put(value)
+        else:
+            print "WSS dropped packet"
     
     def set_lambda_to_select(self, resource):
         #just to keep track
@@ -345,11 +348,12 @@ class WSS(object): #wavelength selective switch
 class Splitter(object):
     
     def __init__(self):
-        #self.env = env
-        self.out = []
+        self.lambda_direction_map = {}
+        
+    def set_lambda_direction(self, lambd, next_out_degree):
+        self.lambda_direction_map[lambd] = next_out_degree
         
     def put(self, value):
-        for out in self.out:
-            out.put(value)
-            
+        self.lambda_direction_map[  value.get_lambda()  ].put(value)
+        
 
