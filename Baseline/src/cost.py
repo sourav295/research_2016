@@ -14,7 +14,7 @@ class CostMap(object):
         self.muxponder_cost  = 10
         self.server_cost     = 1
         
-        #COST REDUCTIONS
+        #COST REDUCTIONS - amended cost = traditional cost / cost reduction
         self.cost_reduction_fact_SDN = 1               #REDUCTION ON SDN
         self.cost_reduction_fact_NFV = 1               #REDUCTION ON NFV
         
@@ -32,6 +32,8 @@ class CostMap(object):
         self.aggregate_cost     = 0
     
     def calculate(self):
+        
+            self.aggregate_cost     = 0
         
             self.calculate_linecard_cost()
             self.calculate_server_cost()

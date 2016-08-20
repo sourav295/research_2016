@@ -26,16 +26,18 @@ class GlobalConfiguration(object):
     N_Channels      = 200               # on optical fibre
     nPrioLevels     = 3                 # no of priority levels
     
-    start_rate      = 1                 # first pkt generation rate
-    end_rate        = 17.5              # last  pkt generation rate
-    rate_increments = 0.025             # increments
+    start_rate      = 1                  # first pkt generation rate
+    end_rate        = 2                  # last  pkt generation rate
+    rate_increments = 0.5                # increments
     
     delay_fact_SDN  = 1
     delay_fact_NFV  = 1
     
-    simulation_until= 100               # Simulation time
+    simulation_until= 100                # Simulation time
     
-    test_run        = True              # runs the code only for the start_rate, information logged
+    test_run        = False              # runs the code only for the start_rate, information logged
+    
+    simulate_delay_on_server = False
     #=========================================================================
     
     #spring xml resources

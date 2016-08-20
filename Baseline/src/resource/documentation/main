@@ -1,0 +1,94 @@
+==================================================================================
+COMMITING
+==================================================================================
+
+git add .
+git commit -m "[message]"
+git push -u origin master (use option -f for force commit)
+
+
+==================================================================================
+SIMULATION WORK FLOW
+==================================================================================
+
+- Set up the network topology (e.g. files in ./src/resource/xml/[ baseline| streamline ]/[ router.xml| roadm.xml| topology.xml ])
+- Configure the simulation parameters 	(e.g ./src/configure.py & ./src/cost.py)
+- Execution
+	There are 2 mode (set during configuration )- [TestRun | NOT TestRun]:
+	
+	NOT TestRun (Normal)
+	- Concentrated on producing the final result(e.g. pkts dropped vs arrival rate, no of packets produced, etc),
+	  loggers are switched off from logging intermediatary infomation.
+	- Results (cost, pkts dropped, arrv rate, graphs) are stored in 
+		- baseline   --> .src/resource/log/baseline/
+		- streamline --> .src/resource/log/streamline/
+	- The code is simulated for a range of packet arrival rates one by one. 
+	  We are essentially looking for the rate at which there is a spike in the packet drop count, 
+		which helps us determine netwoek capacity. 
+	  	The start / end and increments on rates are defined in the config file
+	- For each arrival rate the no of packets dropped is calculated. Other parameters can also be calculated if required.
+
+	TestRun
+	- Only runs the code for 1 arrival rate (not a range of arrival rates).
+	  The arrival rate selected is the start_rate defined in configuration.py 
+	- Collects all sorts of information about the simulation. (e.g. files in ./src/resource/log/)
+	- Logs:
+		- tolopology.log --> can be used to verify the links
+		- simulation.log --> logs the pcks generated and pcks received in the cronological order of events
+		- packet.log	 --> each segment in the file logs information about the pkt's entire lifetime from src to dest. 
+				     e.g. delays experienced on linecard, propagation etc
+
+
+
+==================================================================================
+CONFIGS
+==================================================================================
+
+
+**General configuration**
+
+1) architecture
+There are 2 achitectures to choose from.
+Depending on this the src configuration xmls will be selected- either /xml/baseline/ OR /xml/streamline/ .
+And the final log files- /log/baseline/ OR /log/streamline/
+
+2) qlimit:
+Queue limits expressed in bytes
+
+3) delay_over_IP:
+The propagation delay experienced by packets on every link (except optical links, propagation delay over optical is considered 0)
+
+4) N_Channels:
+No. of wavelengths permitted by the system.
+
+5) nPrioLevels:
+Number of Priority levels of packets generated. Would be identified by priority queues in IP routers
+
+6) start_rate / end_rate / rate_increments:
+If the values are 10 20 and 2 respectively, the simulation will run the code for arrival rates-
+[10, 12, 14, 16, 18]
+The first run will take 10 to be the MEAN arrival rate for all the servers, the second run would take 12 and so on.
+
+7) delay_fact_SDN / delay_fact_NFV
+The no of folds by which the delay produced by an SDN / NFV components exceeds the delay on traditional network hardware._
+
+8) simulation_until
+The time until which the descrete event simulation would run.
+
+9) testrun  = (True / False)
+The difference is discribed above in the work flow section.
+
+10) simulate_delay_on_server  = (True / False)
+Ideally this should be set to true.
+After pkts are generated on the servers, it has to be loaded on to the links (transimission delay simulation). You could switch this delay off so that the pkts are loaded as soon as they are generated, to avoid waiting and to populate the links faster.
+
+** XML Configuration **
+
+I'll only explain few things here just to keep it simple. Like-
+
+-How to classify a network component as NFV or a SDN
+-How to change the mean pkt size
+-How you could tone down the values of 1G / 10G / 100G to make the simulation to decrease the simulation time.
+
+
+
