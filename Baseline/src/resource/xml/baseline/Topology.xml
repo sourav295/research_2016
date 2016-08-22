@@ -23,42 +23,27 @@
 			<list>
 				<ref object="C1_AGG1"/>
 				<ref object="C1_AGG2"/>
+				<ref object="C2_AGG1"/>
+				<ref object="C2_AGG2"/>
+				<ref object="C3_AGG1"/>
+				<ref object="C3_AGG2"/>
+				
 			</list>
    		</property>
-		<!--		
+				
 		<property name="nfv_list">
 			<list>
-				<ref object="C2_AGG1"/>
+				
 			</list>
-   		</property>-->
+   		</property>
 	</object>
 	
 
 	<object id="C1" class="network.Core_Office">
 		<constructor-arg name="network_components">		
 			<list>
-			    	<ref object="C1_PE1_L1_S1"/>
-				<ref object="C1_PE1_L1_S2"/>
-				<ref object="C1_PE1_L1_S3"/>
-				<ref object="C1_PE1_L1_G1"/>
-				<ref object="C1_PE1_L1_G2"/>
-				<ref object="C1_PE1_L1_G3"/>
-				<ref object="C1_PE1"/>
-
-			    	<ref object="C1_PE2_L1_S1"/>
-				<ref object="C1_PE2_L1_S2"/>
-				<ref object="C1_PE2_L1_S3"/>
-				<ref object="C1_PE2_L1_G1"/>
-				<ref object="C1_PE2_L1_G2"/>
-				<ref object="C1_PE2_L1_G3"/>
+			    	<ref object="C1_PE1"/>
 				<ref object="C1_PE2"/>
-
-			    	<ref object="C1_PE3_L1_S1"/>
-				<ref object="C1_PE3_L1_S2"/>
-				<ref object="C1_PE3_L1_S3"/>
-				<ref object="C1_PE3_L1_G1"/>
-				<ref object="C1_PE3_L1_G2"/>
-				<ref object="C1_PE3_L1_G3"/>
 				<ref object="C1_PE3"/>
 		
 				<ref object="C1_AGG1"/>
@@ -76,28 +61,8 @@
 	<object id="C2" class="network.Core_Office">
 		<constructor-arg name="network_components">		
 			<list>
-			    	<ref object="C2_PE1_L1_S1"/>
-				<ref object="C2_PE1_L1_S2"/>
-				<ref object="C2_PE1_L1_S3"/>
-				<ref object="C2_PE1_L1_G1"/>
-				<ref object="C2_PE1_L1_G2"/>
-				<ref object="C2_PE1_L1_G3"/>
-				<ref object="C2_PE1"/>
-
-			    	<ref object="C2_PE2_L1_S1"/>
-				<ref object="C2_PE2_L1_S2"/>
-				<ref object="C2_PE2_L1_S3"/>
-				<ref object="C2_PE2_L1_G1"/>
-				<ref object="C2_PE2_L1_G2"/>
-				<ref object="C2_PE2_L1_G3"/>
+			    	<ref object="C2_PE1"/>
 				<ref object="C2_PE2"/>
-
-			    	<ref object="C2_PE3_L1_S1"/>
-				<ref object="C2_PE3_L1_S2"/>
-				<ref object="C2_PE3_L1_S3"/>
-				<ref object="C2_PE3_L1_G1"/>
-				<ref object="C2_PE3_L1_G2"/>
-				<ref object="C2_PE3_L1_G3"/>
 				<ref object="C2_PE3"/>
 		
 				<ref object="C2_AGG1"/>
@@ -115,28 +80,8 @@
 		<object id="C3" class="network.Core_Office">
 		<constructor-arg name="network_components">		
 			<list>
-			    	<ref object="C3_PE1_L1_S1"/>
-				<ref object="C3_PE1_L1_S2"/>
-				<ref object="C3_PE1_L1_S3"/>
-				<ref object="C3_PE1_L1_G1"/>
-				<ref object="C3_PE1_L1_G2"/>
-				<ref object="C3_PE1_L1_G3"/>
-				<ref object="C3_PE1"/>
-
-			    	<ref object="C3_PE2_L1_S1"/>
-				<ref object="C3_PE2_L1_S2"/>
-				<ref object="C3_PE2_L1_S3"/>
-				<ref object="C3_PE2_L1_G1"/>
-				<ref object="C3_PE2_L1_G2"/>
-				<ref object="C3_PE2_L1_G3"/>
+			    	<ref object="C3_PE1"/>
 				<ref object="C3_PE2"/>
-
-			    	<ref object="C3_PE3_L1_S1"/>
-				<ref object="C3_PE3_L1_S2"/>
-				<ref object="C3_PE3_L1_S3"/>
-				<ref object="C3_PE3_L1_G1"/>
-				<ref object="C3_PE3_L1_G2"/>
-				<ref object="C3_PE3_L1_G3"/>
 				<ref object="C3_PE3"/>
 		
 				<ref object="C3_AGG1"/>

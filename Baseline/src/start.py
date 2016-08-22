@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 x_coord = []
 y_coord = []
 
+print GlobalConfiguration.achitecture
+
 if GlobalConfiguration.test_run:
     GlobalConfiguration.end_rate        = GlobalConfiguration.start_rate + 1
     GlobalConfiguration.rate_increments = 2
@@ -25,9 +27,9 @@ for arrv_rate in numpy.arange(GlobalConfiguration.start_rate, GlobalConfiguratio
     except KeyboardInterrupt:
         break
     
-    nOfPktdropped, nOfPktGenerated = GlobalConfiguration.getStats()
+    nOfPktdropped, nOfPktGenerated, mean_end_to_end_delay = GlobalConfiguration.getStats()
     
-    status = "Arrv Rate: {:10} | Pkt Dropped {:10} | Pkt Generated {:10}".format(arrv_rate, nOfPktdropped, nOfPktGenerated)
+    status = "Arrv Rate: {:10} | Pkt Dropped {:10} | Pkt Generated {:10} | End to end delay {:10}".format(arrv_rate, nOfPktdropped, nOfPktGenerated, mean_end_to_end_delay)
 
     print status
     f.write(status + '\n')

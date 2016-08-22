@@ -1,0 +1,936 @@
+=========================================
+Router: C1_PE1
+-----------------------------------------
+====C1_PE1_LC0====
+local port: (Inf)198   -- next componenet --> remote component: C1_PE1_LC2
+local port: (Inf)180   -- next componenet --> remote component: (Host)C1_PE1_LC0_G2
+local port: (Inf)177   -- next componenet --> remote component: (Sink)C1_PE1_LC0_S0
+local port: (Inf)196   -- next componenet --> remote component: C1_PE1_LC1
+local port: (Inf)179   -- next componenet --> remote component: (Sink)C1_PE1_LC0_S1
+local port: (Inf)181   -- next componenet --> remote component: (Sink)C1_PE1_LC0_S2
+local port: (Inf)184   -- next componenet --> remote component: (Host)C1_PE1_LC0_G4
+local port: (Inf)183   -- next componenet --> remote component: (Sink)C1_PE1_LC0_S3
+local port: (Inf)176   -- next componenet --> remote component: (Host)C1_PE1_LC0_G0
+local port: (Inf)185   -- next componenet --> remote component: (Sink)C1_PE1_LC0_S4
+local port: (Inf)178   -- next componenet --> remote component: (Host)C1_PE1_LC0_G1
+local port: (Inf)182   -- next componenet --> remote component: (Host)C1_PE1_LC0_G3
+-----------------------------------------
+-----------------------------------------
+====C1_PE1_LC1====
+local port: (Inf)197   -- next componenet --> remote component: C1_PE1_LC0
+local port: (Inf)187   -- next componenet --> remote component: (Sink)C1_PE1_LC1_S0
+local port: (Inf)189   -- next componenet --> remote component: (Sink)C1_PE1_LC1_S1
+local port: (Inf)200   -- next componenet --> remote component: C1_PE1_LC2
+local port: (Inf)191   -- next componenet --> remote component: (Sink)C1_PE1_LC1_S2
+local port: (Inf)195   -- next componenet --> remote component: (Sink)C1_PE1_LC1_S4
+local port: (Inf)193   -- next componenet --> remote component: (Sink)C1_PE1_LC1_S3
+local port: (Inf)186   -- next componenet --> remote component: (Host)C1_PE1_LC1_G0
+local port: (Inf)194   -- next componenet --> remote component: (Host)C1_PE1_LC1_G4
+local port: (Inf)188   -- next componenet --> remote component: (Host)C1_PE1_LC1_G1
+local port: (Inf)190   -- next componenet --> remote component: (Host)C1_PE1_LC1_G2
+local port: (Inf)192   -- next componenet --> remote component: (Host)C1_PE1_LC1_G3
+-----------------------------------------
+-----------------------------------------
+====C1_PE1_LC2====
+local port: (Inf)148   -- next componenet --> remote component: C1_AGG2_LC0
+local port: (Inf)201   -- next componenet --> remote component: C1_PE1_LC1
+local port: (Inf)149   -- next componenet --> remote component: C1_AGG1_LC0
+local port: (Inf)199   -- next componenet --> remote component: C1_PE1_LC0
+-----------------------------------------
+<====C1_PE1_LC0====>
+local port: (Inf)176   -- connected to --> remote port: (Host)C1_PE1_LC0_G0
+local port: (Inf)177   -- connected to --> remote port: (Sink)C1_PE1_LC0_S0
+local port: (Inf)178   -- connected to --> remote port: (Host)C1_PE1_LC0_G1
+local port: (Inf)179   -- connected to --> remote port: (Sink)C1_PE1_LC0_S1
+local port: (Inf)180   -- connected to --> remote port: (Host)C1_PE1_LC0_G2
+local port: (Inf)181   -- connected to --> remote port: (Sink)C1_PE1_LC0_S2
+local port: (Inf)182   -- connected to --> remote port: (Host)C1_PE1_LC0_G3
+local port: (Inf)183   -- connected to --> remote port: (Sink)C1_PE1_LC0_S3
+local port: (Inf)184   -- connected to --> remote port: (Host)C1_PE1_LC0_G4
+local port: (Inf)185   -- connected to --> remote port: (Sink)C1_PE1_LC0_S4
+local port: (Inf)196   -- connected to --> remote port: (Inf)197  
+local port: (Inf)198   -- connected to --> remote port: (Inf)199  
+<====C1_PE1_LC1====>
+local port: (Inf)186   -- connected to --> remote port: (Host)C1_PE1_LC1_G0
+local port: (Inf)187   -- connected to --> remote port: (Sink)C1_PE1_LC1_S0
+local port: (Inf)188   -- connected to --> remote port: (Host)C1_PE1_LC1_G1
+local port: (Inf)189   -- connected to --> remote port: (Sink)C1_PE1_LC1_S1
+local port: (Inf)190   -- connected to --> remote port: (Host)C1_PE1_LC1_G2
+local port: (Inf)191   -- connected to --> remote port: (Sink)C1_PE1_LC1_S2
+local port: (Inf)192   -- connected to --> remote port: (Host)C1_PE1_LC1_G3
+local port: (Inf)193   -- connected to --> remote port: (Sink)C1_PE1_LC1_S3
+local port: (Inf)194   -- connected to --> remote port: (Host)C1_PE1_LC1_G4
+local port: (Inf)195   -- connected to --> remote port: (Sink)C1_PE1_LC1_S4
+local port: (Inf)197   -- connected to --> remote port: (Inf)196  
+local port: (Inf)200   -- connected to --> remote port: (Inf)201  
+<====C1_PE1_LC2====>
+local port: (Inf)149   -- connected to --> remote port: (Inf)165  
+local port: (Inf)148   -- connected to --> remote port: (Inf)175  
+local port: (Inf)199   -- connected to --> remote port: (Inf)198  
+local port: (Inf)201   -- connected to --> remote port: (Inf)200  
+=========================================
+=========================================
+Router: C1_PE2
+-----------------------------------------
+====C1_PE2_LC0====
+local port: (Inf)204   -- next componenet --> remote component: (Sink)C1_PE2_LC0_S0
+local port: (Inf)225   -- next componenet --> remote component: C1_PE2_LC2
+local port: (Inf)206   -- next componenet --> remote component: (Sink)C1_PE2_LC0_S1
+local port: (Inf)209   -- next componenet --> remote component: (Host)C1_PE2_LC0_G3
+local port: (Inf)208   -- next componenet --> remote component: (Sink)C1_PE2_LC0_S2
+local port: (Inf)210   -- next componenet --> remote component: (Sink)C1_PE2_LC0_S3
+local port: (Inf)223   -- next componenet --> remote component: C1_PE2_LC1
+local port: (Inf)203   -- next componenet --> remote component: (Host)C1_PE2_LC0_G0
+local port: (Inf)211   -- next componenet --> remote component: (Host)C1_PE2_LC0_G4
+local port: (Inf)205   -- next componenet --> remote component: (Host)C1_PE2_LC0_G1
+local port: (Inf)207   -- next componenet --> remote component: (Host)C1_PE2_LC0_G2
+local port: (Inf)212   -- next componenet --> remote component: (Sink)C1_PE2_LC0_S4
+-----------------------------------------
+-----------------------------------------
+====C1_PE2_LC1====
+local port: (Inf)216   -- next componenet --> remote component: (Sink)C1_PE2_LC1_S1
+local port: (Inf)221   -- next componenet --> remote component: (Host)C1_PE2_LC1_G4
+local port: (Inf)219   -- next componenet --> remote component: (Host)C1_PE2_LC1_G3
+local port: (Inf)218   -- next componenet --> remote component: (Sink)C1_PE2_LC1_S2
+local port: (Inf)220   -- next componenet --> remote component: (Sink)C1_PE2_LC1_S3
+local port: (Inf)227   -- next componenet --> remote component: C1_PE2_LC2
+local port: (Inf)213   -- next componenet --> remote component: (Host)C1_PE2_LC1_G0
+local port: (Inf)215   -- next componenet --> remote component: (Host)C1_PE2_LC1_G1
+local port: (Inf)224   -- next componenet --> remote component: C1_PE2_LC0
+local port: (Inf)222   -- next componenet --> remote component: (Sink)C1_PE2_LC1_S4
+local port: (Inf)217   -- next componenet --> remote component: (Host)C1_PE2_LC1_G2
+local port: (Inf)214   -- next componenet --> remote component: (Sink)C1_PE2_LC1_S0
+-----------------------------------------
+-----------------------------------------
+====C1_PE2_LC2====
+local port: (Inf)202   -- next componenet --> remote component: C1_AGG1_LC0
+local port: (Inf)226   -- next componenet --> remote component: C1_PE2_LC0
+local port: (Inf)228   -- next componenet --> remote component: C1_PE2_LC1
+local port: (Inf)33    -- next componenet --> remote component: C1_AGG2_LC0
+-----------------------------------------
+<====C1_PE2_LC0====>
+local port: (Inf)203   -- connected to --> remote port: (Host)C1_PE2_LC0_G0
+local port: (Inf)204   -- connected to --> remote port: (Sink)C1_PE2_LC0_S0
+local port: (Inf)205   -- connected to --> remote port: (Host)C1_PE2_LC0_G1
+local port: (Inf)206   -- connected to --> remote port: (Sink)C1_PE2_LC0_S1
+local port: (Inf)207   -- connected to --> remote port: (Host)C1_PE2_LC0_G2
+local port: (Inf)208   -- connected to --> remote port: (Sink)C1_PE2_LC0_S2
+local port: (Inf)209   -- connected to --> remote port: (Host)C1_PE2_LC0_G3
+local port: (Inf)210   -- connected to --> remote port: (Sink)C1_PE2_LC0_S3
+local port: (Inf)211   -- connected to --> remote port: (Host)C1_PE2_LC0_G4
+local port: (Inf)212   -- connected to --> remote port: (Sink)C1_PE2_LC0_S4
+local port: (Inf)223   -- connected to --> remote port: (Inf)224  
+local port: (Inf)225   -- connected to --> remote port: (Inf)226  
+<====C1_PE2_LC1====>
+local port: (Inf)213   -- connected to --> remote port: (Host)C1_PE2_LC1_G0
+local port: (Inf)214   -- connected to --> remote port: (Sink)C1_PE2_LC1_S0
+local port: (Inf)215   -- connected to --> remote port: (Host)C1_PE2_LC1_G1
+local port: (Inf)216   -- connected to --> remote port: (Sink)C1_PE2_LC1_S1
+local port: (Inf)217   -- connected to --> remote port: (Host)C1_PE2_LC1_G2
+local port: (Inf)218   -- connected to --> remote port: (Sink)C1_PE2_LC1_S2
+local port: (Inf)219   -- connected to --> remote port: (Host)C1_PE2_LC1_G3
+local port: (Inf)220   -- connected to --> remote port: (Sink)C1_PE2_LC1_S3
+local port: (Inf)221   -- connected to --> remote port: (Host)C1_PE2_LC1_G4
+local port: (Inf)222   -- connected to --> remote port: (Sink)C1_PE2_LC1_S4
+local port: (Inf)224   -- connected to --> remote port: (Inf)223  
+local port: (Inf)227   -- connected to --> remote port: (Inf)228  
+<====C1_PE2_LC2====>
+local port: (Inf)202   -- connected to --> remote port: (Inf)154  
+local port: (Inf)33    -- connected to --> remote port: (Inf)32   
+local port: (Inf)226   -- connected to --> remote port: (Inf)225  
+local port: (Inf)228   -- connected to --> remote port: (Inf)227  
+=========================================
+=========================================
+Router: C1_PE3
+-----------------------------------------
+====C1_PE3_LC0====
+local port: (Inf)229   -- next componenet --> remote component: (Host)C1_PE3_LC0_G0
+local port: (Inf)235   -- next componenet --> remote component: (Host)C1_PE3_LC0_G3
+local port: (Inf)231   -- next componenet --> remote component: (Host)C1_PE3_LC0_G1
+local port: (Inf)233   -- next componenet --> remote component: (Host)C1_PE3_LC0_G2
+local port: (Inf)249   -- next componenet --> remote component: C1_PE3_LC1
+local port: (Inf)230   -- next componenet --> remote component: (Sink)C1_PE3_LC0_S0
+local port: (Inf)251   -- next componenet --> remote component: C1_PE3_LC2
+local port: (Inf)232   -- next componenet --> remote component: (Sink)C1_PE3_LC0_S1
+local port: (Inf)237   -- next componenet --> remote component: (Host)C1_PE3_LC0_G4
+local port: (Inf)234   -- next componenet --> remote component: (Sink)C1_PE3_LC0_S2
+local port: (Inf)236   -- next componenet --> remote component: (Sink)C1_PE3_LC0_S3
+local port: (Inf)238   -- next componenet --> remote component: (Sink)C1_PE3_LC0_S4
+-----------------------------------------
+-----------------------------------------
+====C1_PE3_LC1====
+local port: (Inf)239   -- next componenet --> remote component: (Host)C1_PE3_LC1_G0
+local port: (Inf)241   -- next componenet --> remote component: (Host)C1_PE3_LC1_G1
+local port: (Inf)245   -- next componenet --> remote component: (Host)C1_PE3_LC1_G3
+local port: (Inf)248   -- next componenet --> remote component: (Sink)C1_PE3_LC1_S4
+local port: (Inf)243   -- next componenet --> remote component: (Host)C1_PE3_LC1_G2
+local port: (Inf)240   -- next componenet --> remote component: (Sink)C1_PE3_LC1_S0
+local port: (Inf)242   -- next componenet --> remote component: (Sink)C1_PE3_LC1_S1
+local port: (Inf)253   -- next componenet --> remote component: C1_PE3_LC2
+local port: (Inf)247   -- next componenet --> remote component: (Host)C1_PE3_LC1_G4
+local port: (Inf)250   -- next componenet --> remote component: C1_PE3_LC0
+local port: (Inf)244   -- next componenet --> remote component: (Sink)C1_PE3_LC1_S2
+local port: (Inf)246   -- next componenet --> remote component: (Sink)C1_PE3_LC1_S3
+-----------------------------------------
+-----------------------------------------
+====C1_PE3_LC2====
+local port: (Inf)0     -- next componenet --> remote component: C1_AGG1_LC0
+local port: (Inf)252   -- next componenet --> remote component: C1_PE3_LC0
+local port: (Inf)254   -- next componenet --> remote component: C1_PE3_LC1
+local port: (Inf)1     -- next componenet --> remote component: C1_AGG2_LC0
+-----------------------------------------
+<====C1_PE3_LC0====>
+local port: (Inf)229   -- connected to --> remote port: (Host)C1_PE3_LC0_G0
+local port: (Inf)230   -- connected to --> remote port: (Sink)C1_PE3_LC0_S0
+local port: (Inf)231   -- connected to --> remote port: (Host)C1_PE3_LC0_G1
+local port: (Inf)232   -- connected to --> remote port: (Sink)C1_PE3_LC0_S1
+local port: (Inf)233   -- connected to --> remote port: (Host)C1_PE3_LC0_G2
+local port: (Inf)234   -- connected to --> remote port: (Sink)C1_PE3_LC0_S2
+local port: (Inf)235   -- connected to --> remote port: (Host)C1_PE3_LC0_G3
+local port: (Inf)236   -- connected to --> remote port: (Sink)C1_PE3_LC0_S3
+local port: (Inf)237   -- connected to --> remote port: (Host)C1_PE3_LC0_G4
+local port: (Inf)238   -- connected to --> remote port: (Sink)C1_PE3_LC0_S4
+local port: (Inf)249   -- connected to --> remote port: (Inf)250  
+local port: (Inf)251   -- connected to --> remote port: (Inf)252  
+<====C1_PE3_LC1====>
+local port: (Inf)239   -- connected to --> remote port: (Host)C1_PE3_LC1_G0
+local port: (Inf)240   -- connected to --> remote port: (Sink)C1_PE3_LC1_S0
+local port: (Inf)241   -- connected to --> remote port: (Host)C1_PE3_LC1_G1
+local port: (Inf)242   -- connected to --> remote port: (Sink)C1_PE3_LC1_S1
+local port: (Inf)243   -- connected to --> remote port: (Host)C1_PE3_LC1_G2
+local port: (Inf)244   -- connected to --> remote port: (Sink)C1_PE3_LC1_S2
+local port: (Inf)245   -- connected to --> remote port: (Host)C1_PE3_LC1_G3
+local port: (Inf)246   -- connected to --> remote port: (Sink)C1_PE3_LC1_S3
+local port: (Inf)247   -- connected to --> remote port: (Host)C1_PE3_LC1_G4
+local port: (Inf)248   -- connected to --> remote port: (Sink)C1_PE3_LC1_S4
+local port: (Inf)250   -- connected to --> remote port: (Inf)249  
+local port: (Inf)253   -- connected to --> remote port: (Inf)254  
+<====C1_PE3_LC2====>
+local port: (Inf)0     -- connected to --> remote port: (Inf)150  
+local port: (Inf)1     -- connected to --> remote port: (Inf)164  
+local port: (Inf)252   -- connected to --> remote port: (Inf)251  
+local port: (Inf)254   -- connected to --> remote port: (Inf)253  
+=========================================
+=========================================
+Router: C1_AGG1
+-----------------------------------------
+====C1_AGG1_LC0====
+local port: (Inf)165   -- next componenet --> remote component: C1_PE1_LC2
+local port: (Inf)150   -- next componenet --> remote component: C1_PE3_LC2
+local port: (Inf)260   -- next componenet --> remote component: C1_AGG1_LC1
+local port: (Inf)154   -- next componenet --> remote component: C1_PE2_LC2
+-----------------------------------------
+-----------------------------------------
+====C1_AGG1_LC1====
+local port: (Inf)261   -- next componenet --> remote component: C1_AGG1_LC0
+local port: (Inf)257   -- next componenet --> remote component: C1_P1_LC0 
+local port: (Inf)160   -- next componenet --> remote component: C1_P2_LC0 
+-----------------------------------------
+<====C1_AGG1_LC0====>
+local port: (Inf)165   -- connected to --> remote port: (Inf)149  
+local port: (Inf)154   -- connected to --> remote port: (Inf)202  
+local port: (Inf)150   -- connected to --> remote port: (Inf)0    
+local port: (Inf)260   -- connected to --> remote port: (Inf)261  
+<====C1_AGG1_LC1====>
+local port: (Inf)257   -- connected to --> remote port: (Inf)256  
+local port: (Inf)160   -- connected to --> remote port: (Inf)161  
+local port: (Inf)261   -- connected to --> remote port: (Inf)260  
+=========================================
+=========================================
+Router: C1_AGG2
+-----------------------------------------
+====C1_AGG2_LC0====
+local port: (Inf)175   -- next componenet --> remote component: C1_PE1_LC2
+local port: (Inf)262   -- next componenet --> remote component: C1_AGG2_LC1
+local port: (Inf)32    -- next componenet --> remote component: C1_PE2_LC2
+local port: (Inf)164   -- next componenet --> remote component: C1_PE3_LC2
+-----------------------------------------
+-----------------------------------------
+====C1_AGG2_LC1====
+local port: (Inf)258   -- next componenet --> remote component: C1_P1_LC0 
+local port: (Inf)162   -- next componenet --> remote component: C1_P2_LC0 
+local port: (Inf)263   -- next componenet --> remote component: C1_AGG2_LC0
+-----------------------------------------
+<====C1_AGG2_LC0====>
+local port: (Inf)175   -- connected to --> remote port: (Inf)148  
+local port: (Inf)32    -- connected to --> remote port: (Inf)33   
+local port: (Inf)164   -- connected to --> remote port: (Inf)1    
+local port: (Inf)262   -- connected to --> remote port: (Inf)263  
+<====C1_AGG2_LC1====>
+local port: (Inf)258   -- connected to --> remote port: (Inf)255  
+local port: (Inf)162   -- connected to --> remote port: (Inf)163  
+local port: (Inf)263   -- connected to --> remote port: (Inf)262  
+=========================================
+=========================================
+Router: C1_P1
+-----------------------------------------
+====C1_P1_LC0====
+local port: (Inf)256   -- next componenet --> remote component: C1_AGG1_LC1
+local port: (Inf)264   -- next componenet --> remote component: C1_P1_LC1 
+local port: (Inf)255   -- next componenet --> remote component: C1_AGG2_LC1
+-----------------------------------------
+-----------------------------------------
+====C1_P1_LC1====
+local port: (Inf)265   -- next componenet --> remote component: C1_P1_LC0 
+local port: (Inf)259   -- next componenet --> remote component: C1_Mux    
+local port: (Inf)168   -- next componenet --> remote component: C1_P2_LC1 
+-----------------------------------------
+<====C1_P1_LC0====>
+local port: (Inf)256   -- connected to --> remote port: (Inf)257  
+local port: (Inf)255   -- connected to --> remote port: (Inf)258  
+local port: (Inf)264   -- connected to --> remote port: (Inf)265  
+<====C1_P1_LC1====>
+local port: (Inf)259   -- connected to --> remote port: (MuxInf)1 
+local port: (Inf)168   -- connected to --> remote port: (Inf)169  
+local port: (Inf)265   -- connected to --> remote port: (Inf)264  
+=========================================
+=========================================
+Router: C1_P2
+-----------------------------------------
+====C1_P2_LC0====
+local port: (Inf)161   -- next componenet --> remote component: C1_AGG1_LC1
+local port: (Inf)163   -- next componenet --> remote component: C1_AGG2_LC1
+local port: (Inf)266   -- next componenet --> remote component: C1_P2_LC1 
+-----------------------------------------
+-----------------------------------------
+====C1_P2_LC1====
+local port: (Inf)153   -- next componenet --> remote component: C1_Mux    
+local port: (Inf)169   -- next componenet --> remote component: C1_P1_LC1 
+local port: (Inf)267   -- next componenet --> remote component: C1_P2_LC0 
+-----------------------------------------
+<====C1_P2_LC0====>
+local port: (Inf)161   -- connected to --> remote port: (Inf)160  
+local port: (Inf)163   -- connected to --> remote port: (Inf)162  
+local port: (Inf)266   -- connected to --> remote port: (Inf)267  
+<====C1_P2_LC1====>
+local port: (Inf)153   -- connected to --> remote port: (MuxInf)0 
+local port: (Inf)169   -- connected to --> remote port: (Inf)168  
+local port: (Inf)267   -- connected to --> remote port: (Inf)266  
+=========================================
+=========================================
+Router: C2_PE1
+-----------------------------------------
+====C2_PE1_LC0====
+local port: (Inf)142   -- next componenet --> remote component: C2_PE1_LC2
+local port: (Inf)121   -- next componenet --> remote component: (Sink)C2_PE1_LC0_S0
+local port: (Inf)126   -- next componenet --> remote component: (Host)C2_PE1_LC0_G3
+local port: (Inf)123   -- next componenet --> remote component: (Sink)C2_PE1_LC0_S1
+local port: (Inf)128   -- next componenet --> remote component: (Host)C2_PE1_LC0_G4
+local port: (Inf)125   -- next componenet --> remote component: (Sink)C2_PE1_LC0_S2
+local port: (Inf)127   -- next componenet --> remote component: (Sink)C2_PE1_LC0_S3
+local port: (Inf)140   -- next componenet --> remote component: C2_PE1_LC1
+local port: (Inf)129   -- next componenet --> remote component: (Sink)C2_PE1_LC0_S4
+local port: (Inf)120   -- next componenet --> remote component: (Host)C2_PE1_LC0_G0
+local port: (Inf)122   -- next componenet --> remote component: (Host)C2_PE1_LC0_G1
+local port: (Inf)124   -- next componenet --> remote component: (Host)C2_PE1_LC0_G2
+-----------------------------------------
+-----------------------------------------
+====C2_PE1_LC1====
+local port: (Inf)134   -- next componenet --> remote component: (Host)C2_PE1_LC1_G2
+local port: (Inf)131   -- next componenet --> remote component: (Sink)C2_PE1_LC1_S0
+local port: (Inf)141   -- next componenet --> remote component: C2_PE1_LC0
+local port: (Inf)133   -- next componenet --> remote component: (Sink)C2_PE1_LC1_S1
+local port: (Inf)135   -- next componenet --> remote component: (Sink)C2_PE1_LC1_S2
+local port: (Inf)138   -- next componenet --> remote component: (Host)C2_PE1_LC1_G4
+local port: (Inf)137   -- next componenet --> remote component: (Sink)C2_PE1_LC1_S3
+local port: (Inf)144   -- next componenet --> remote component: C2_PE1_LC2
+local port: (Inf)139   -- next componenet --> remote component: (Sink)C2_PE1_LC1_S4
+local port: (Inf)130   -- next componenet --> remote component: (Host)C2_PE1_LC1_G0
+local port: (Inf)132   -- next componenet --> remote component: (Host)C2_PE1_LC1_G1
+local port: (Inf)136   -- next componenet --> remote component: (Host)C2_PE1_LC1_G3
+-----------------------------------------
+-----------------------------------------
+====C2_PE1_LC2====
+local port: (Inf)58    -- next componenet --> remote component: C2_AGG2_LC0
+local port: (Inf)145   -- next componenet --> remote component: C2_PE1_LC1
+local port: (Inf)57    -- next componenet --> remote component: C2_AGG1_LC0
+local port: (Inf)143   -- next componenet --> remote component: C2_PE1_LC0
+-----------------------------------------
+<====C2_PE1_LC0====>
+local port: (Inf)120   -- connected to --> remote port: (Host)C2_PE1_LC0_G0
+local port: (Inf)121   -- connected to --> remote port: (Sink)C2_PE1_LC0_S0
+local port: (Inf)122   -- connected to --> remote port: (Host)C2_PE1_LC0_G1
+local port: (Inf)123   -- connected to --> remote port: (Sink)C2_PE1_LC0_S1
+local port: (Inf)124   -- connected to --> remote port: (Host)C2_PE1_LC0_G2
+local port: (Inf)125   -- connected to --> remote port: (Sink)C2_PE1_LC0_S2
+local port: (Inf)126   -- connected to --> remote port: (Host)C2_PE1_LC0_G3
+local port: (Inf)127   -- connected to --> remote port: (Sink)C2_PE1_LC0_S3
+local port: (Inf)128   -- connected to --> remote port: (Host)C2_PE1_LC0_G4
+local port: (Inf)129   -- connected to --> remote port: (Sink)C2_PE1_LC0_S4
+local port: (Inf)140   -- connected to --> remote port: (Inf)141  
+local port: (Inf)142   -- connected to --> remote port: (Inf)143  
+<====C2_PE1_LC1====>
+local port: (Inf)130   -- connected to --> remote port: (Host)C2_PE1_LC1_G0
+local port: (Inf)131   -- connected to --> remote port: (Sink)C2_PE1_LC1_S0
+local port: (Inf)132   -- connected to --> remote port: (Host)C2_PE1_LC1_G1
+local port: (Inf)133   -- connected to --> remote port: (Sink)C2_PE1_LC1_S1
+local port: (Inf)134   -- connected to --> remote port: (Host)C2_PE1_LC1_G2
+local port: (Inf)135   -- connected to --> remote port: (Sink)C2_PE1_LC1_S2
+local port: (Inf)136   -- connected to --> remote port: (Host)C2_PE1_LC1_G3
+local port: (Inf)137   -- connected to --> remote port: (Sink)C2_PE1_LC1_S3
+local port: (Inf)138   -- connected to --> remote port: (Host)C2_PE1_LC1_G4
+local port: (Inf)139   -- connected to --> remote port: (Sink)C2_PE1_LC1_S4
+local port: (Inf)141   -- connected to --> remote port: (Inf)140  
+local port: (Inf)144   -- connected to --> remote port: (Inf)145  
+<====C2_PE1_LC2====>
+local port: (Inf)57    -- connected to --> remote port: (Inf)118  
+local port: (Inf)58    -- connected to --> remote port: (Inf)119  
+local port: (Inf)143   -- connected to --> remote port: (Inf)142  
+local port: (Inf)145   -- connected to --> remote port: (Inf)144  
+=========================================
+=========================================
+Router: C2_PE2
+-----------------------------------------
+====C2_PE2_LC0====
+local port: (Inf)99    -- next componenet --> remote component: (Sink)C2_PE2_LC0_S3
+local port: (Inf)92    -- next componenet --> remote component: (Host)C2_PE2_LC0_G0
+local port: (Inf)96    -- next componenet --> remote component: (Host)C2_PE2_LC0_G2
+local port: (Inf)94    -- next componenet --> remote component: (Host)C2_PE2_LC0_G1
+local port: (Inf)112   -- next componenet --> remote component: C2_PE2_LC1
+local port: (Inf)114   -- next componenet --> remote component: C2_PE2_LC2
+local port: (Inf)93    -- next componenet --> remote component: (Sink)C2_PE2_LC0_S0
+local port: (Inf)95    -- next componenet --> remote component: (Sink)C2_PE2_LC0_S1
+local port: (Inf)100   -- next componenet --> remote component: (Host)C2_PE2_LC0_G4
+local port: (Inf)97    -- next componenet --> remote component: (Sink)C2_PE2_LC0_S2
+local port: (Inf)101   -- next componenet --> remote component: (Sink)C2_PE2_LC0_S4
+local port: (Inf)98    -- next componenet --> remote component: (Host)C2_PE2_LC0_G3
+-----------------------------------------
+-----------------------------------------
+====C2_PE2_LC1====
+local port: (Inf)102   -- next componenet --> remote component: (Host)C2_PE2_LC1_G0
+local port: (Inf)111   -- next componenet --> remote component: (Sink)C2_PE2_LC1_S4
+local port: (Inf)116   -- next componenet --> remote component: C2_PE2_LC2
+local port: (Inf)104   -- next componenet --> remote component: (Host)C2_PE2_LC1_G1
+local port: (Inf)106   -- next componenet --> remote component: (Host)C2_PE2_LC1_G2
+local port: (Inf)103   -- next componenet --> remote component: (Sink)C2_PE2_LC1_S0
+local port: (Inf)113   -- next componenet --> remote component: C2_PE2_LC0
+local port: (Inf)108   -- next componenet --> remote component: (Host)C2_PE2_LC1_G3
+local port: (Inf)105   -- next componenet --> remote component: (Sink)C2_PE2_LC1_S1
+local port: (Inf)107   -- next componenet --> remote component: (Sink)C2_PE2_LC1_S2
+local port: (Inf)109   -- next componenet --> remote component: (Sink)C2_PE2_LC1_S3
+local port: (Inf)110   -- next componenet --> remote component: (Host)C2_PE2_LC1_G4
+-----------------------------------------
+-----------------------------------------
+====C2_PE2_LC2====
+local port: (Inf)89    -- next componenet --> remote component: C2_AGG1_LC0
+local port: (Inf)117   -- next componenet --> remote component: C2_PE2_LC1
+local port: (Inf)91    -- next componenet --> remote component: C2_AGG2_LC0
+local port: (Inf)115   -- next componenet --> remote component: C2_PE2_LC0
+-----------------------------------------
+<====C2_PE2_LC0====>
+local port: (Inf)92    -- connected to --> remote port: (Host)C2_PE2_LC0_G0
+local port: (Inf)93    -- connected to --> remote port: (Sink)C2_PE2_LC0_S0
+local port: (Inf)94    -- connected to --> remote port: (Host)C2_PE2_LC0_G1
+local port: (Inf)95    -- connected to --> remote port: (Sink)C2_PE2_LC0_S1
+local port: (Inf)96    -- connected to --> remote port: (Host)C2_PE2_LC0_G2
+local port: (Inf)97    -- connected to --> remote port: (Sink)C2_PE2_LC0_S2
+local port: (Inf)98    -- connected to --> remote port: (Host)C2_PE2_LC0_G3
+local port: (Inf)99    -- connected to --> remote port: (Sink)C2_PE2_LC0_S3
+local port: (Inf)100   -- connected to --> remote port: (Host)C2_PE2_LC0_G4
+local port: (Inf)101   -- connected to --> remote port: (Sink)C2_PE2_LC0_S4
+local port: (Inf)112   -- connected to --> remote port: (Inf)113  
+local port: (Inf)114   -- connected to --> remote port: (Inf)115  
+<====C2_PE2_LC1====>
+local port: (Inf)102   -- connected to --> remote port: (Host)C2_PE2_LC1_G0
+local port: (Inf)103   -- connected to --> remote port: (Sink)C2_PE2_LC1_S0
+local port: (Inf)104   -- connected to --> remote port: (Host)C2_PE2_LC1_G1
+local port: (Inf)105   -- connected to --> remote port: (Sink)C2_PE2_LC1_S1
+local port: (Inf)106   -- connected to --> remote port: (Host)C2_PE2_LC1_G2
+local port: (Inf)107   -- connected to --> remote port: (Sink)C2_PE2_LC1_S2
+local port: (Inf)108   -- connected to --> remote port: (Host)C2_PE2_LC1_G3
+local port: (Inf)109   -- connected to --> remote port: (Sink)C2_PE2_LC1_S3
+local port: (Inf)110   -- connected to --> remote port: (Host)C2_PE2_LC1_G4
+local port: (Inf)111   -- connected to --> remote port: (Sink)C2_PE2_LC1_S4
+local port: (Inf)113   -- connected to --> remote port: (Inf)112  
+local port: (Inf)116   -- connected to --> remote port: (Inf)117  
+<====C2_PE2_LC2====>
+local port: (Inf)89    -- connected to --> remote port: (Inf)88   
+local port: (Inf)91    -- connected to --> remote port: (Inf)90   
+local port: (Inf)115   -- connected to --> remote port: (Inf)114  
+local port: (Inf)117   -- connected to --> remote port: (Inf)116  
+=========================================
+=========================================
+Router: C2_PE3
+-----------------------------------------
+====C2_PE3_LC0====
+local port: (Inf)62    -- next componenet --> remote component: (Host)C2_PE3_LC0_G0
+local port: (Inf)64    -- next componenet --> remote component: (Host)C2_PE3_LC0_G1
+local port: (Inf)68    -- next componenet --> remote component: (Host)C2_PE3_LC0_G3
+local port: (Inf)66    -- next componenet --> remote component: (Host)C2_PE3_LC0_G2
+local port: (Inf)63    -- next componenet --> remote component: (Sink)C2_PE3_LC0_S0
+local port: (Inf)71    -- next componenet --> remote component: (Sink)C2_PE3_LC0_S4
+local port: (Inf)65    -- next componenet --> remote component: (Sink)C2_PE3_LC0_S1
+local port: (Inf)67    -- next componenet --> remote component: (Sink)C2_PE3_LC0_S2
+local port: (Inf)84    -- next componenet --> remote component: C2_PE3_LC2
+local port: (Inf)82    -- next componenet --> remote component: C2_PE3_LC1
+local port: (Inf)69    -- next componenet --> remote component: (Sink)C2_PE3_LC0_S3
+local port: (Inf)70    -- next componenet --> remote component: (Host)C2_PE3_LC0_G4
+-----------------------------------------
+-----------------------------------------
+====C2_PE3_LC1====
+local port: (Inf)74    -- next componenet --> remote component: (Host)C2_PE3_LC1_G1
+local port: (Inf)83    -- next componenet --> remote component: C2_PE3_LC0
+local port: (Inf)73    -- next componenet --> remote component: (Sink)C2_PE3_LC1_S0
+local port: (Inf)86    -- next componenet --> remote component: C2_PE3_LC2
+local port: (Inf)75    -- next componenet --> remote component: (Sink)C2_PE3_LC1_S1
+local port: (Inf)78    -- next componenet --> remote component: (Host)C2_PE3_LC1_G3
+local port: (Inf)80    -- next componenet --> remote component: (Host)C2_PE3_LC1_G4
+local port: (Inf)77    -- next componenet --> remote component: (Sink)C2_PE3_LC1_S2
+local port: (Inf)76    -- next componenet --> remote component: (Host)C2_PE3_LC1_G2
+local port: (Inf)79    -- next componenet --> remote component: (Sink)C2_PE3_LC1_S3
+local port: (Inf)72    -- next componenet --> remote component: (Host)C2_PE3_LC1_G0
+local port: (Inf)81    -- next componenet --> remote component: (Sink)C2_PE3_LC1_S4
+-----------------------------------------
+-----------------------------------------
+====C2_PE3_LC2====
+local port: (Inf)60    -- next componenet --> remote component: C2_AGG1_LC0
+local port: (Inf)61    -- next componenet --> remote component: C2_AGG2_LC0
+local port: (Inf)87    -- next componenet --> remote component: C2_PE3_LC1
+local port: (Inf)85    -- next componenet --> remote component: C2_PE3_LC0
+-----------------------------------------
+<====C2_PE3_LC0====>
+local port: (Inf)62    -- connected to --> remote port: (Host)C2_PE3_LC0_G0
+local port: (Inf)63    -- connected to --> remote port: (Sink)C2_PE3_LC0_S0
+local port: (Inf)64    -- connected to --> remote port: (Host)C2_PE3_LC0_G1
+local port: (Inf)65    -- connected to --> remote port: (Sink)C2_PE3_LC0_S1
+local port: (Inf)66    -- connected to --> remote port: (Host)C2_PE3_LC0_G2
+local port: (Inf)67    -- connected to --> remote port: (Sink)C2_PE3_LC0_S2
+local port: (Inf)68    -- connected to --> remote port: (Host)C2_PE3_LC0_G3
+local port: (Inf)69    -- connected to --> remote port: (Sink)C2_PE3_LC0_S3
+local port: (Inf)70    -- connected to --> remote port: (Host)C2_PE3_LC0_G4
+local port: (Inf)71    -- connected to --> remote port: (Sink)C2_PE3_LC0_S4
+local port: (Inf)82    -- connected to --> remote port: (Inf)83   
+local port: (Inf)84    -- connected to --> remote port: (Inf)85   
+<====C2_PE3_LC1====>
+local port: (Inf)72    -- connected to --> remote port: (Host)C2_PE3_LC1_G0
+local port: (Inf)73    -- connected to --> remote port: (Sink)C2_PE3_LC1_S0
+local port: (Inf)74    -- connected to --> remote port: (Host)C2_PE3_LC1_G1
+local port: (Inf)75    -- connected to --> remote port: (Sink)C2_PE3_LC1_S1
+local port: (Inf)76    -- connected to --> remote port: (Host)C2_PE3_LC1_G2
+local port: (Inf)77    -- connected to --> remote port: (Sink)C2_PE3_LC1_S2
+local port: (Inf)78    -- connected to --> remote port: (Host)C2_PE3_LC1_G3
+local port: (Inf)79    -- connected to --> remote port: (Sink)C2_PE3_LC1_S3
+local port: (Inf)80    -- connected to --> remote port: (Host)C2_PE3_LC1_G4
+local port: (Inf)81    -- connected to --> remote port: (Sink)C2_PE3_LC1_S4
+local port: (Inf)83    -- connected to --> remote port: (Inf)82   
+local port: (Inf)86    -- connected to --> remote port: (Inf)87   
+<====C2_PE3_LC2====>
+local port: (Inf)60    -- connected to --> remote port: (Inf)59   
+local port: (Inf)61    -- connected to --> remote port: (Inf)54   
+local port: (Inf)85    -- connected to --> remote port: (Inf)84   
+local port: (Inf)87    -- connected to --> remote port: (Inf)86   
+=========================================
+=========================================
+Router: C2_AGG1
+-----------------------------------------
+====C2_AGG1_LC0====
+local port: (Inf)118   -- next componenet --> remote component: C2_PE1_LC2
+local port: (Inf)59    -- next componenet --> remote component: C2_PE3_LC2
+local port: (Inf)268   -- next componenet --> remote component: C2_AGG1_LC1
+local port: (Inf)88    -- next componenet --> remote component: C2_PE2_LC2
+-----------------------------------------
+-----------------------------------------
+====C2_AGG1_LC1====
+local port: (Inf)152   -- next componenet --> remote component: C2_P2_LC0 
+local port: (Inf)167   -- next componenet --> remote component: C2_P1_LC0 
+local port: (Inf)269   -- next componenet --> remote component: C2_AGG1_LC0
+-----------------------------------------
+<====C2_AGG1_LC0====>
+local port: (Inf)118   -- connected to --> remote port: (Inf)57   
+local port: (Inf)88    -- connected to --> remote port: (Inf)89   
+local port: (Inf)59    -- connected to --> remote port: (Inf)60   
+local port: (Inf)268   -- connected to --> remote port: (Inf)269  
+<====C2_AGG1_LC1====>
+local port: (Inf)167   -- connected to --> remote port: (Inf)166  
+local port: (Inf)152   -- connected to --> remote port: (Inf)151  
+local port: (Inf)269   -- connected to --> remote port: (Inf)268  
+=========================================
+=========================================
+Router: C2_AGG2
+-----------------------------------------
+====C2_AGG2_LC0====
+local port: (Inf)270   -- next componenet --> remote component: C2_AGG2_LC1
+local port: (Inf)90    -- next componenet --> remote component: C2_PE2_LC2
+local port: (Inf)119   -- next componenet --> remote component: C2_PE1_LC2
+local port: (Inf)54    -- next componenet --> remote component: C2_PE3_LC2
+-----------------------------------------
+-----------------------------------------
+====C2_AGG2_LC1====
+local port: (Inf)271   -- next componenet --> remote component: C2_AGG2_LC0
+local port: (Inf)172   -- next componenet --> remote component: C2_P1_LC0 
+local port: (Inf)147   -- next componenet --> remote component: C2_P2_LC0 
+-----------------------------------------
+<====C2_AGG2_LC0====>
+local port: (Inf)119   -- connected to --> remote port: (Inf)58   
+local port: (Inf)90    -- connected to --> remote port: (Inf)91   
+local port: (Inf)54    -- connected to --> remote port: (Inf)61   
+local port: (Inf)270   -- connected to --> remote port: (Inf)271  
+<====C2_AGG2_LC1====>
+local port: (Inf)172   -- connected to --> remote port: (Inf)173  
+local port: (Inf)147   -- connected to --> remote port: (Inf)146  
+local port: (Inf)271   -- connected to --> remote port: (Inf)270  
+=========================================
+=========================================
+Router: C2_P1
+-----------------------------------------
+====C2_P1_LC0====
+local port: (Inf)166   -- next componenet --> remote component: C2_AGG1_LC1
+local port: (Inf)272   -- next componenet --> remote component: C2_P1_LC1 
+local port: (Inf)173   -- next componenet --> remote component: C2_AGG2_LC1
+-----------------------------------------
+-----------------------------------------
+====C2_P1_LC1====
+local port: (Inf)171   -- next componenet --> remote component: C2_Mux    
+local port: (Inf)273   -- next componenet --> remote component: C2_P1_LC0 
+local port: (Inf)155   -- next componenet --> remote component: C2_P2_LC1 
+-----------------------------------------
+<====C2_P1_LC0====>
+local port: (Inf)166   -- connected to --> remote port: (Inf)167  
+local port: (Inf)173   -- connected to --> remote port: (Inf)172  
+local port: (Inf)272   -- connected to --> remote port: (Inf)273  
+<====C2_P1_LC1====>
+local port: (Inf)171   -- connected to --> remote port: (MuxInf)8 
+local port: (Inf)155   -- connected to --> remote port: (Inf)156  
+local port: (Inf)273   -- connected to --> remote port: (Inf)272  
+=========================================
+=========================================
+Router: C2_P2
+-----------------------------------------
+====C2_P2_LC0====
+local port: (Inf)146   -- next componenet --> remote component: C2_AGG2_LC1
+local port: (Inf)151   -- next componenet --> remote component: C2_AGG1_LC1
+local port: (Inf)274   -- next componenet --> remote component: C2_P2_LC1 
+-----------------------------------------
+-----------------------------------------
+====C2_P2_LC1====
+local port: (Inf)174   -- next componenet --> remote component: C2_Mux    
+local port: (Inf)156   -- next componenet --> remote component: C2_P1_LC1 
+local port: (Inf)275   -- next componenet --> remote component: C2_P2_LC0 
+-----------------------------------------
+<====C2_P2_LC0====>
+local port: (Inf)151   -- connected to --> remote port: (Inf)152  
+local port: (Inf)146   -- connected to --> remote port: (Inf)147  
+local port: (Inf)274   -- connected to --> remote port: (Inf)275  
+<====C2_P2_LC1====>
+local port: (Inf)174   -- connected to --> remote port: (MuxInf)6 
+local port: (Inf)156   -- connected to --> remote port: (Inf)155  
+local port: (Inf)275   -- connected to --> remote port: (Inf)274  
+=========================================
+=========================================
+Router: C3_PE1
+-----------------------------------------
+====C3_PE1_LC0====
+local port: (Inf)281   -- next componenet --> remote component: (Sink)C3_PE1_LC0_S2
+local port: (Inf)283   -- next componenet --> remote component: (Sink)C3_PE1_LC0_S3
+local port: (Inf)298   -- next componenet --> remote component: C3_PE1_LC2
+local port: (Inf)276   -- next componenet --> remote component: (Host)C3_PE1_LC0_G0
+local port: (Inf)278   -- next componenet --> remote component: (Host)C3_PE1_LC0_G1
+local port: (Inf)296   -- next componenet --> remote component: C3_PE1_LC1
+local port: (Inf)280   -- next componenet --> remote component: (Host)C3_PE1_LC0_G2
+local port: (Inf)282   -- next componenet --> remote component: (Host)C3_PE1_LC0_G3
+local port: (Inf)285   -- next componenet --> remote component: (Sink)C3_PE1_LC0_S4
+local port: (Inf)279   -- next componenet --> remote component: (Sink)C3_PE1_LC0_S1
+local port: (Inf)284   -- next componenet --> remote component: (Host)C3_PE1_LC0_G4
+local port: (Inf)277   -- next componenet --> remote component: (Sink)C3_PE1_LC0_S0
+-----------------------------------------
+-----------------------------------------
+====C3_PE1_LC1====
+local port: (Inf)293   -- next componenet --> remote component: (Sink)C3_PE1_LC1_S3
+local port: (Inf)286   -- next componenet --> remote component: (Host)C3_PE1_LC1_G0
+local port: (Inf)290   -- next componenet --> remote component: (Host)C3_PE1_LC1_G2
+local port: (Inf)295   -- next componenet --> remote component: (Sink)C3_PE1_LC1_S4
+local port: (Inf)288   -- next componenet --> remote component: (Host)C3_PE1_LC1_G1
+local port: (Inf)287   -- next componenet --> remote component: (Sink)C3_PE1_LC1_S0
+local port: (Inf)292   -- next componenet --> remote component: (Host)C3_PE1_LC1_G3
+local port: (Inf)294   -- next componenet --> remote component: (Host)C3_PE1_LC1_G4
+local port: (Inf)289   -- next componenet --> remote component: (Sink)C3_PE1_LC1_S1
+local port: (Inf)297   -- next componenet --> remote component: C3_PE1_LC0
+local port: (Inf)291   -- next componenet --> remote component: (Sink)C3_PE1_LC1_S2
+local port: (Inf)300   -- next componenet --> remote component: C3_PE1_LC2
+-----------------------------------------
+-----------------------------------------
+====C3_PE1_LC2====
+local port: (Inf)34    -- next componenet --> remote component: C3_AGG1_LC0
+local port: (Inf)301   -- next componenet --> remote component: C3_PE1_LC1
+local port: (Inf)35    -- next componenet --> remote component: C3_AGG2_LC0
+local port: (Inf)299   -- next componenet --> remote component: C3_PE1_LC0
+-----------------------------------------
+<====C3_PE1_LC0====>
+local port: (Inf)276   -- connected to --> remote port: (Host)C3_PE1_LC0_G0
+local port: (Inf)277   -- connected to --> remote port: (Sink)C3_PE1_LC0_S0
+local port: (Inf)278   -- connected to --> remote port: (Host)C3_PE1_LC0_G1
+local port: (Inf)279   -- connected to --> remote port: (Sink)C3_PE1_LC0_S1
+local port: (Inf)280   -- connected to --> remote port: (Host)C3_PE1_LC0_G2
+local port: (Inf)281   -- connected to --> remote port: (Sink)C3_PE1_LC0_S2
+local port: (Inf)282   -- connected to --> remote port: (Host)C3_PE1_LC0_G3
+local port: (Inf)283   -- connected to --> remote port: (Sink)C3_PE1_LC0_S3
+local port: (Inf)284   -- connected to --> remote port: (Host)C3_PE1_LC0_G4
+local port: (Inf)285   -- connected to --> remote port: (Sink)C3_PE1_LC0_S4
+local port: (Inf)296   -- connected to --> remote port: (Inf)297  
+local port: (Inf)298   -- connected to --> remote port: (Inf)299  
+<====C3_PE1_LC1====>
+local port: (Inf)286   -- connected to --> remote port: (Host)C3_PE1_LC1_G0
+local port: (Inf)287   -- connected to --> remote port: (Sink)C3_PE1_LC1_S0
+local port: (Inf)288   -- connected to --> remote port: (Host)C3_PE1_LC1_G1
+local port: (Inf)289   -- connected to --> remote port: (Sink)C3_PE1_LC1_S1
+local port: (Inf)290   -- connected to --> remote port: (Host)C3_PE1_LC1_G2
+local port: (Inf)291   -- connected to --> remote port: (Sink)C3_PE1_LC1_S2
+local port: (Inf)292   -- connected to --> remote port: (Host)C3_PE1_LC1_G3
+local port: (Inf)293   -- connected to --> remote port: (Sink)C3_PE1_LC1_S3
+local port: (Inf)294   -- connected to --> remote port: (Host)C3_PE1_LC1_G4
+local port: (Inf)295   -- connected to --> remote port: (Sink)C3_PE1_LC1_S4
+local port: (Inf)297   -- connected to --> remote port: (Inf)296  
+local port: (Inf)300   -- connected to --> remote port: (Inf)301  
+<====C3_PE1_LC2====>
+local port: (Inf)34    -- connected to --> remote port: (Inf)45   
+local port: (Inf)35    -- connected to --> remote port: (Inf)36   
+local port: (Inf)299   -- connected to --> remote port: (Inf)298  
+local port: (Inf)301   -- connected to --> remote port: (Inf)300  
+=========================================
+=========================================
+Router: C3_PE2
+-----------------------------------------
+====C3_PE2_LC0====
+local port: (Inf)14    -- next componenet --> remote component: (Host)C3_PE2_LC0_G4
+local port: (Inf)15    -- next componenet --> remote component: (Sink)C3_PE2_LC0_S4
+local port: (Inf)11    -- next componenet --> remote component: (Sink)C3_PE2_LC0_S2
+local port: (Inf)13    -- next componenet --> remote component: (Sink)C3_PE2_LC0_S3
+local port: (Inf)6     -- next componenet --> remote component: (Host)C3_PE2_LC0_G0
+local port: (Inf)28    -- next componenet --> remote component: C3_PE2_LC2
+local port: (Inf)12    -- next componenet --> remote component: (Host)C3_PE2_LC0_G3
+local port: (Inf)8     -- next componenet --> remote component: (Host)C3_PE2_LC0_G1
+local port: (Inf)26    -- next componenet --> remote component: C3_PE2_LC1
+local port: (Inf)10    -- next componenet --> remote component: (Host)C3_PE2_LC0_G2
+local port: (Inf)7     -- next componenet --> remote component: (Sink)C3_PE2_LC0_S0
+local port: (Inf)9     -- next componenet --> remote component: (Sink)C3_PE2_LC0_S1
+-----------------------------------------
+-----------------------------------------
+====C3_PE2_LC1====
+local port: (Inf)21    -- next componenet --> remote component: (Sink)C3_PE2_LC1_S2
+local port: (Inf)23    -- next componenet --> remote component: (Sink)C3_PE2_LC1_S3
+local port: (Inf)24    -- next componenet --> remote component: (Host)C3_PE2_LC1_G4
+local port: (Inf)30    -- next componenet --> remote component: C3_PE2_LC2
+local port: (Inf)16    -- next componenet --> remote component: (Host)C3_PE2_LC1_G0
+local port: (Inf)25    -- next componenet --> remote component: (Sink)C3_PE2_LC1_S4
+local port: (Inf)18    -- next componenet --> remote component: (Host)C3_PE2_LC1_G1
+local port: (Inf)20    -- next componenet --> remote component: (Host)C3_PE2_LC1_G2
+local port: (Inf)22    -- next componenet --> remote component: (Host)C3_PE2_LC1_G3
+local port: (Inf)17    -- next componenet --> remote component: (Sink)C3_PE2_LC1_S0
+local port: (Inf)19    -- next componenet --> remote component: (Sink)C3_PE2_LC1_S1
+local port: (Inf)27    -- next componenet --> remote component: C3_PE2_LC0
+-----------------------------------------
+-----------------------------------------
+====C3_PE2_LC2====
+local port: (Inf)31    -- next componenet --> remote component: C3_PE2_LC1
+local port: (Inf)3     -- next componenet --> remote component: C3_AGG1_LC0
+local port: (Inf)5     -- next componenet --> remote component: C3_AGG2_LC0
+local port: (Inf)29    -- next componenet --> remote component: C3_PE2_LC0
+-----------------------------------------
+<====C3_PE2_LC0====>
+local port: (Inf)6     -- connected to --> remote port: (Host)C3_PE2_LC0_G0
+local port: (Inf)7     -- connected to --> remote port: (Sink)C3_PE2_LC0_S0
+local port: (Inf)8     -- connected to --> remote port: (Host)C3_PE2_LC0_G1
+local port: (Inf)9     -- connected to --> remote port: (Sink)C3_PE2_LC0_S1
+local port: (Inf)10    -- connected to --> remote port: (Host)C3_PE2_LC0_G2
+local port: (Inf)11    -- connected to --> remote port: (Sink)C3_PE2_LC0_S2
+local port: (Inf)12    -- connected to --> remote port: (Host)C3_PE2_LC0_G3
+local port: (Inf)13    -- connected to --> remote port: (Sink)C3_PE2_LC0_S3
+local port: (Inf)14    -- connected to --> remote port: (Host)C3_PE2_LC0_G4
+local port: (Inf)15    -- connected to --> remote port: (Sink)C3_PE2_LC0_S4
+local port: (Inf)26    -- connected to --> remote port: (Inf)27   
+local port: (Inf)28    -- connected to --> remote port: (Inf)29   
+<====C3_PE2_LC1====>
+local port: (Inf)16    -- connected to --> remote port: (Host)C3_PE2_LC1_G0
+local port: (Inf)17    -- connected to --> remote port: (Sink)C3_PE2_LC1_S0
+local port: (Inf)18    -- connected to --> remote port: (Host)C3_PE2_LC1_G1
+local port: (Inf)19    -- connected to --> remote port: (Sink)C3_PE2_LC1_S1
+local port: (Inf)20    -- connected to --> remote port: (Host)C3_PE2_LC1_G2
+local port: (Inf)21    -- connected to --> remote port: (Sink)C3_PE2_LC1_S2
+local port: (Inf)22    -- connected to --> remote port: (Host)C3_PE2_LC1_G3
+local port: (Inf)23    -- connected to --> remote port: (Sink)C3_PE2_LC1_S3
+local port: (Inf)24    -- connected to --> remote port: (Host)C3_PE2_LC1_G4
+local port: (Inf)25    -- connected to --> remote port: (Sink)C3_PE2_LC1_S4
+local port: (Inf)27    -- connected to --> remote port: (Inf)26   
+local port: (Inf)30    -- connected to --> remote port: (Inf)31   
+<====C3_PE2_LC2====>
+local port: (Inf)3     -- connected to --> remote port: (Inf)2    
+local port: (Inf)5     -- connected to --> remote port: (Inf)4    
+local port: (Inf)29    -- connected to --> remote port: (Inf)28   
+local port: (Inf)31    -- connected to --> remote port: (Inf)30   
+=========================================
+=========================================
+Router: C3_PE3
+-----------------------------------------
+====C3_PE3_LC0====
+local port: (Inf)303   -- next componenet --> remote component: (Sink)C3_PE3_LC0_S0
+local port: (Inf)305   -- next componenet --> remote component: (Sink)C3_PE3_LC0_S1
+local port: (Inf)306   -- next componenet --> remote component: (Host)C3_PE3_LC0_G2
+local port: (Inf)322   -- next componenet --> remote component: C3_PE3_LC1
+local port: (Inf)310   -- next componenet --> remote component: (Host)C3_PE3_LC0_G4
+local port: (Inf)307   -- next componenet --> remote component: (Sink)C3_PE3_LC0_S2
+local port: (Inf)324   -- next componenet --> remote component: C3_PE3_LC2
+local port: (Inf)311   -- next componenet --> remote component: (Sink)C3_PE3_LC0_S4
+local port: (Inf)309   -- next componenet --> remote component: (Sink)C3_PE3_LC0_S3
+local port: (Inf)302   -- next componenet --> remote component: (Host)C3_PE3_LC0_G0
+local port: (Inf)304   -- next componenet --> remote component: (Host)C3_PE3_LC0_G1
+local port: (Inf)308   -- next componenet --> remote component: (Host)C3_PE3_LC0_G3
+-----------------------------------------
+-----------------------------------------
+====C3_PE3_LC1====
+local port: (Inf)318   -- next componenet --> remote component: (Host)C3_PE3_LC1_G3
+local port: (Inf)315   -- next componenet --> remote component: (Sink)C3_PE3_LC1_S1
+local port: (Inf)326   -- next componenet --> remote component: C3_PE3_LC2
+local port: (Inf)317   -- next componenet --> remote component: (Sink)C3_PE3_LC1_S2
+local port: (Inf)319   -- next componenet --> remote component: (Sink)C3_PE3_LC1_S3
+local port: (Inf)313   -- next componenet --> remote component: (Sink)C3_PE3_LC1_S0
+local port: (Inf)323   -- next componenet --> remote component: C3_PE3_LC0
+local port: (Inf)312   -- next componenet --> remote component: (Host)C3_PE3_LC1_G0
+local port: (Inf)321   -- next componenet --> remote component: (Sink)C3_PE3_LC1_S4
+local port: (Inf)320   -- next componenet --> remote component: (Host)C3_PE3_LC1_G4
+local port: (Inf)314   -- next componenet --> remote component: (Host)C3_PE3_LC1_G1
+local port: (Inf)316   -- next componenet --> remote component: (Host)C3_PE3_LC1_G2
+-----------------------------------------
+-----------------------------------------
+====C3_PE3_LC2====
+local port: (Inf)327   -- next componenet --> remote component: C3_PE3_LC1
+local port: (Inf)46    -- next componenet --> remote component: C3_AGG1_LC0
+local port: (Inf)325   -- next componenet --> remote component: C3_PE3_LC0
+local port: (Inf)37    -- next componenet --> remote component: C3_AGG2_LC0
+-----------------------------------------
+<====C3_PE3_LC0====>
+local port: (Inf)302   -- connected to --> remote port: (Host)C3_PE3_LC0_G0
+local port: (Inf)303   -- connected to --> remote port: (Sink)C3_PE3_LC0_S0
+local port: (Inf)304   -- connected to --> remote port: (Host)C3_PE3_LC0_G1
+local port: (Inf)305   -- connected to --> remote port: (Sink)C3_PE3_LC0_S1
+local port: (Inf)306   -- connected to --> remote port: (Host)C3_PE3_LC0_G2
+local port: (Inf)307   -- connected to --> remote port: (Sink)C3_PE3_LC0_S2
+local port: (Inf)308   -- connected to --> remote port: (Host)C3_PE3_LC0_G3
+local port: (Inf)309   -- connected to --> remote port: (Sink)C3_PE3_LC0_S3
+local port: (Inf)310   -- connected to --> remote port: (Host)C3_PE3_LC0_G4
+local port: (Inf)311   -- connected to --> remote port: (Sink)C3_PE3_LC0_S4
+local port: (Inf)322   -- connected to --> remote port: (Inf)323  
+local port: (Inf)324   -- connected to --> remote port: (Inf)325  
+<====C3_PE3_LC1====>
+local port: (Inf)312   -- connected to --> remote port: (Host)C3_PE3_LC1_G0
+local port: (Inf)313   -- connected to --> remote port: (Sink)C3_PE3_LC1_S0
+local port: (Inf)314   -- connected to --> remote port: (Host)C3_PE3_LC1_G1
+local port: (Inf)315   -- connected to --> remote port: (Sink)C3_PE3_LC1_S1
+local port: (Inf)316   -- connected to --> remote port: (Host)C3_PE3_LC1_G2
+local port: (Inf)317   -- connected to --> remote port: (Sink)C3_PE3_LC1_S2
+local port: (Inf)318   -- connected to --> remote port: (Host)C3_PE3_LC1_G3
+local port: (Inf)319   -- connected to --> remote port: (Sink)C3_PE3_LC1_S3
+local port: (Inf)320   -- connected to --> remote port: (Host)C3_PE3_LC1_G4
+local port: (Inf)321   -- connected to --> remote port: (Sink)C3_PE3_LC1_S4
+local port: (Inf)323   -- connected to --> remote port: (Inf)322  
+local port: (Inf)326   -- connected to --> remote port: (Inf)327  
+<====C3_PE3_LC2====>
+local port: (Inf)46    -- connected to --> remote port: (Inf)47   
+local port: (Inf)37    -- connected to --> remote port: (Inf)38   
+local port: (Inf)325   -- connected to --> remote port: (Inf)324  
+local port: (Inf)327   -- connected to --> remote port: (Inf)326  
+=========================================
+=========================================
+Router: C3_AGG1
+-----------------------------------------
+====C3_AGG1_LC0====
+local port: (Inf)52    -- next componenet --> remote component: C3_AGG1_LC1
+local port: (Inf)47    -- next componenet --> remote component: C3_PE3_LC2
+local port: (Inf)45    -- next componenet --> remote component: C3_PE1_LC2
+local port: (Inf)2     -- next componenet --> remote component: C3_PE2_LC2
+-----------------------------------------
+-----------------------------------------
+====C3_AGG1_LC1====
+local port: (Inf)51    -- next componenet --> remote component: C3_P2_LC0 
+local port: (Inf)49    -- next componenet --> remote component: C3_P1_LC0 
+local port: (Inf)53    -- next componenet --> remote component: C3_AGG1_LC0
+-----------------------------------------
+<====C3_AGG1_LC0====>
+local port: (Inf)45    -- connected to --> remote port: (Inf)34   
+local port: (Inf)2     -- connected to --> remote port: (Inf)3    
+local port: (Inf)47    -- connected to --> remote port: (Inf)46   
+local port: (Inf)52    -- connected to --> remote port: (Inf)53   
+<====C3_AGG1_LC1====>
+local port: (Inf)49    -- connected to --> remote port: (Inf)48   
+local port: (Inf)51    -- connected to --> remote port: (Inf)50   
+local port: (Inf)53    -- connected to --> remote port: (Inf)52   
+=========================================
+=========================================
+Router: C3_AGG2
+-----------------------------------------
+====C3_AGG2_LC0====
+local port: (Inf)36    -- next componenet --> remote component: C3_PE1_LC2
+local port: (Inf)43    -- next componenet --> remote component: C3_AGG2_LC1
+local port: (Inf)4     -- next componenet --> remote component: C3_PE2_LC2
+local port: (Inf)38    -- next componenet --> remote component: C3_PE3_LC2
+-----------------------------------------
+-----------------------------------------
+====C3_AGG2_LC1====
+local port: (Inf)42    -- next componenet --> remote component: C3_P2_LC0 
+local port: (Inf)40    -- next componenet --> remote component: C3_P1_LC0 
+local port: (Inf)44    -- next componenet --> remote component: C3_AGG2_LC0
+-----------------------------------------
+<====C3_AGG2_LC0====>
+local port: (Inf)36    -- connected to --> remote port: (Inf)35   
+local port: (Inf)4     -- connected to --> remote port: (Inf)5    
+local port: (Inf)38    -- connected to --> remote port: (Inf)37   
+local port: (Inf)43    -- connected to --> remote port: (Inf)44   
+<====C3_AGG2_LC1====>
+local port: (Inf)40    -- connected to --> remote port: (Inf)39   
+local port: (Inf)42    -- connected to --> remote port: (Inf)41   
+local port: (Inf)44    -- connected to --> remote port: (Inf)43   
+=========================================
+=========================================
+Router: C3_P1
+-----------------------------------------
+====C3_P1_LC0====
+local port: (Inf)39    -- next componenet --> remote component: C3_AGG2_LC1
+local port: (Inf)48    -- next componenet --> remote component: C3_AGG1_LC1
+local port: (Inf)158   -- next componenet --> remote component: C3_P1_LC1 
+-----------------------------------------
+-----------------------------------------
+====C3_P1_LC1====
+local port: (Inf)157   -- next componenet --> remote component: C3_Mux    
+local port: (Inf)56    -- next componenet --> remote component: C3_P2_LC1 
+local port: (Inf)159   -- next componenet --> remote component: C3_P1_LC0 
+-----------------------------------------
+<====C3_P1_LC0====>
+local port: (Inf)48    -- connected to --> remote port: (Inf)49   
+local port: (Inf)39    -- connected to --> remote port: (Inf)40   
+local port: (Inf)158   -- connected to --> remote port: (Inf)159  
+<====C3_P1_LC1====>
+local port: (Inf)157   -- connected to --> remote port: (MuxInf)2 
+local port: (Inf)56    -- connected to --> remote port: (Inf)55   
+local port: (Inf)159   -- connected to --> remote port: (Inf)158  
+=========================================
+=========================================
+Router: C3_P2
+-----------------------------------------
+====C3_P2_LC0====
+local port: (Inf)50    -- next componenet --> remote component: C3_AGG1_LC1
+local port: (Inf)328   -- next componenet --> remote component: C3_P2_LC1 
+local port: (Inf)41    -- next componenet --> remote component: C3_AGG2_LC1
+-----------------------------------------
+-----------------------------------------
+====C3_P2_LC1====
+local port: (Inf)170   -- next componenet --> remote component: C3_Mux    
+local port: (Inf)329   -- next componenet --> remote component: C3_P2_LC0 
+local port: (Inf)55    -- next componenet --> remote component: C3_P1_LC1 
+-----------------------------------------
+<====C3_P2_LC0====>
+local port: (Inf)50    -- connected to --> remote port: (Inf)51   
+local port: (Inf)41    -- connected to --> remote port: (Inf)42   
+local port: (Inf)328   -- connected to --> remote port: (Inf)329  
+<====C3_P2_LC1====>
+local port: (Inf)170   -- connected to --> remote port: (MuxInf)4 
+local port: (Inf)55    -- connected to --> remote port: (Inf)56   
+local port: (Inf)329   -- connected to --> remote port: (Inf)328  
+=========================================
+||||=========================================||||
+R1_1
+{R5_1: ((Roadm_port)R1_1_0_out, Lambd 0), R3_1: ((Roadm_port)R1_1_1_out, Lambd 0)}
+||||=========================================||||
+R3_1
+{R1_1: ((Roadm_port)R3_1_1_out, Lambd 0), R5_1: ((Roadm_port)R3_1_0_out, Lambd 0)}
+||||=========================================||||
+R5_1
+{R1_1: ((Roadm_port)R5_1_0_out, Lambd 0), R3_1: ((Roadm_port)R5_1_1_out, Lambd 0)}

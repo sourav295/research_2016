@@ -15,8 +15,8 @@ class CostMap(object):
         self.server_cost     = 1
         
         #COST REDUCTIONS - amended cost = traditional cost / cost reduction
-        self.cost_reduction_fact_SDN = 1               #REDUCTION ON SDN
-        self.cost_reduction_fact_NFV = 1               #REDUCTION ON NFV
+        self.cost_reduction_fact_SDN = 100              #REDUCTION ON SDN
+        self.cost_reduction_fact_NFV = 50               #REDUCTION ON NFV
         
         
         #line rate vs cost
@@ -60,18 +60,17 @@ class CostMap(object):
                     self.aggregate_cost += ( unit_cost )
                 
                 noOfLinecardsAccountedFor += 1
-                
+
         if noOfLinecardsAccountedFor != len(  Network_Components.linecards  ):
             raise ValueError("Line cards for which cost is accounted {} doesnt equal actuals {}".format(noOfLinecardsAccountedFor, len(  Network_Components.linecards  )))
      
     def calculate_server_cost(self):
         noOfSinks = len(  Network_Components.sinks  )
         noOfHosts = len(  Network_Components.hosts  )
-        
-        self.aggregate_cost += (noOfSinks + noOfHosts) * self.server_cost
+        #cost is on server -  not on host and sink
+        self.aggregate_cost += float(((noOfSinks + noOfHosts) * self.server_cost)/2)
         
     def calculate_muxponder_cost(self):
         noOfMuxponders = len(  Network_Components.muxs  )
-
         self.aggregate_cost +=  noOfMuxponders * self.muxponder_cost
         

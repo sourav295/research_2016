@@ -19,22 +19,22 @@ class Router(object):
         self.linecards  = linecards
         self.backplane  = routing.Routing_Backplane(linecards)
 
-        self.backplane.wire_linecards()
+        #self.backplane.wire_linecards()
     
         self.is_SDN = is_SDN
         self.is_NFV = is_NFV
         
         for i in range(len(self.linecards)):
+            #COMPLETE LINE CARD SETUP
             self.linecards[i].id        = "{}_LC{}".format(self.hostname, i)
             self.linecards[i].backplane =  self.backplane
-            '''
-            if self.is_SDN:
-                self.linecards[i].set_as_SDN()
-            if self.is_NFV:
-                self.linecards[i].set_as_NFV()
-            #self.linecards[i].is_SDN    = self.is_SDN
-            #self.linecards[i].is_NFV    = self.is_NFV
-            '''
+            #init the servers attached to linecard
+            self.linecards[i].connect_servers()
+            #init the routing processor, notify interfaces
+            self.linecards[i].config_routing_processor()
+            
+        self.backplane.wire_linecards()
+            
     def set_as_SDN(self):
         self.is_SDN = True
         for linecard in self.linecards:
@@ -49,27 +49,22 @@ class Router(object):
     
 class Linecard(object):
 
-    def __init__(self, bandwidth, links = [], connected_servers = None):
-        self.links      = links
+    def __init__(self, bandwidth, links = None, connected_servers = None):
+        self.links      = links if links != None else []
         self.id         = None
         self.backplane  = None
         self.bandwidth  = bandwidth
         
         self.is_SDN = False
         self.is_NFV = False
-        '''
-        #Attach the connected servers
-        if connected_servers != None:
-            print "@1",len(self.links), self
-            self.links.extend(  connected_servers.generate_links(self)  )
-            print "@2",len(self.links)
-        '''
-        #Assign default interface - only remote port initialized
-        for link in self.links:
-            if link.this_port == None:
-                link.this_port  = Interface(self.bandwidth)
         
-
+        self.routing_processor = None
+        self.connected_servers = connected_servers
+        
+        
+        
+    def config_routing_processor(self):
+        
         local_ports = [l.this_port for l in self.links]
         
         self.routing_processor = routing.Routing_Processor(local_ports)
@@ -77,17 +72,31 @@ class Linecard(object):
         for link in self.links:
             local_port  = link.this_port
             local_port.set_routing_processor(self.routing_processor)
-            #set delay factor - SDN / NFV / Traditional Network
-            #self.set_delay_factor( local_port )
-    '''
-    def set_delay_factor(self, local_port):
-        if self.is_SDN and self.is_NFV:
-            raise ValueError("line card happens to be both NFV and SDN")
-        elif self.is_SDN:
-            local_port.set_delay_factor(  GlobalConfiguration.delay_fact_SDN  )
-        elif self.is_NFV:
-            local_port.set_delay_factor(  GlobalConfiguration.delay_fact_NFV  )
-    '''
+            if local_port.rate != self.bandwidth:
+                raise ValueError("Configuration error - the linecard rate doesnt match the port rate")
+            
+    def connect_servers(self):
+        if self.connected_servers != None:
+            host_bandwidth = self.connected_servers.bandwidth
+            linecard_id    = self.id
+            for i in range(self.connected_servers.no_of_servers):
+                host_id = "{}_G{}".format(linecard_id, i)
+                sink_id = "{}_S{}".format(linecard_id, i)
+                
+                h = Host( host_bandwidth, host_id)
+                s = Sink( sink_id )
+
+                inf_h = Interface(self.bandwidth)
+                inf_s = Interface(self.bandwidth)
+                
+                link_h = Link(inf_h , h)
+                link_s = Link(inf_s , s)
+        
+                self.links.append(  link_h  )
+                self.links.append(  link_s  )
+            
+            
+    
     def set_as_SDN(self):
         #check if it not set as NFV
         if self.is_NFV:
@@ -120,10 +129,10 @@ class Linecard(object):
         
         
         #create interface of same bandwidth
-        inf1  = Interface(lc_1.links[0].this_port.bandwidth)
-        inf2  = Interface(lc_2.links[0].this_port.bandwidth)
-        link1 = Link(inf1, inf2)
-        link2 = Link(inf2, inf1)
+        inf1  = Interface(lc_1.bandwidth)
+        inf2  = Interface(lc_2.bandwidth)
+        link1 = Link(inf1, inf2, 0)#delay set to zero
+        link2 = Link(inf2, inf1, 0)#delay set to zero
         
         inf1.set_routing_processor(lc_1.routing_processor)
         inf2.set_routing_processor(lc_2.routing_processor)
@@ -133,6 +142,9 @@ class Linecard(object):
         
         lc_1.routing_processor.local_ports.append(inf1)
         lc_2.routing_processor.local_ports.append(inf2)
+        
+            
+            
         
 
 class Muxponder(object):
@@ -152,18 +164,24 @@ class Muxponder(object):
         return "{}".format(self.hostname)        
 
 class Link(object):
-    def __init__(self, this_port = None, remote_port = None):
+    def __init__(self, this_port = None, remote_port = None, delay = None):
         self.this_port    = this_port   #switch port at local end
         self.remote_port  = remote_port #could be switch port, sink or host
+        self.delay        = delay
+        
+        if self.delay == None:
+            self.delay = GlobalConfiguration.delay_over_IP
         
     def __eq__(self, other):
         return (isinstance(other, self.__class__) and self.this_port == other.this_port and self.remote_port == other.remote_port)
 
 class Host(PacketGenerator):
 
-    def __init__(self, mean_pkt_size, bandwidth, hostname):
+    def __init__(self, bandwidth, hostname):
         
         mean_arrv_rate = GlobalConfiguration.mean_arrv_rate
+        mean_pkt_size  = GlobalConfiguration.mean_pkt_size
+        
         arrv_time_distribution = functools.partial(random.expovariate, mean_arrv_rate)
         pkt_size_distribution  = functools.partial(random.expovariate, 1.0/float(mean_pkt_size))
         
@@ -236,25 +254,8 @@ class MuxInterface(MuxponderPort):
     
 class Server(object):
     
-    def __init__(self, mean_pkt_size, bandwidth, name_group, no_of_servers):
-        self.mean_pkt_size = mean_pkt_size
+    def __init__(self, bandwidth, no_of_servers):
         self.bandwidth     = bandwidth
-        self.name_group    = str(name_group)
         self.no_of_servers = int(no_of_servers)
         
-        
-    def generate_links(self, linecard):
-        links = []
-        for i in range(self.no_of_servers):
-            
-            h = Host( self.mean_pkt_size, self.bandwidth, "{}_G{}".format(self.name_group, i) )
-            s = Sink( "{}_S{}".format(self.name_group, i) )
-            
-            links.append(  Link(this_port = Interface(linecard.bandwidth), remote_port = h)  )
-            links.append(  Link(this_port = Interface(linecard.bandwidth), remote_port = s)  )
-            
-        print len(links)
-        return links
-        
-
         

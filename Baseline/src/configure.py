@@ -22,6 +22,7 @@ class GlobalConfiguration(object):
     achitecture     = architecture_list[0]  
     
     qlimit          = 50000             # bytes
+    mean_pkt_size   = 576               # bytes
     delay_over_IP   = 1                 # delay over ip channel
     N_Channels      = 200               # on optical fibre
     nPrioLevels     = 3                 # no of priority levels
@@ -30,14 +31,14 @@ class GlobalConfiguration(object):
     end_rate        = 2                  # last  pkt generation rate
     rate_increments = 0.5                # increments
     
-    delay_fact_SDN  = 1
+    delay_fact_SDN  = 100
     delay_fact_NFV  = 1
     
     simulation_until= 100                # Simulation time
     
-    test_run        = False              # runs the code only for the start_rate, information logged
+    test_run        = True              # runs the code only for the start_rate, information logged
     
-    simulate_delay_on_server = False
+    simulate_delay_on_server = True
     #=========================================================================
     
     #spring xml resources

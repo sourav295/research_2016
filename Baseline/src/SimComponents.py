@@ -13,30 +13,12 @@ from routing import Network_Components, Priority_Queue
 import logging
 from itertools import cycle
 from configure import GlobalConfiguration
+import numpy
 
 simulation_logger = logging.getLogger("simulation")
 packet_logger = logging.getLogger("packets")
 
 class Packet(object):
-    """ A very simple class that represents a packet.
-        This packet will run thrdough a queue at a switch output port.
-        We use a float to represent the size of the packet in bytes so that
-        we can compare to ideal M/M/1 queues.
-
-        Parameters
-        ----------
-        time : float
-            the time the packet arrives at the output queue.
-        size : float
-            the size of the packet in bytes
-        id : int
-            an identifier for the packet
-        src, dst : int
-            identifiers for source and destination
-        flow_id : int
-            small integer that can be used to identify a flow
-    """
-    
     all_packets_generated = []
     
     
@@ -61,6 +43,9 @@ class Packet(object):
         #keep a record of all paths
         Packet.all_packets_generated.append(self)
         
+        self.has_reached_destination = False
+        self.end_to_end_delay        = None
+        
         
     def __repr__(self):
         return "id: {}, src: {}, dst: {}, time: {}, size: {}, prio: {}".\
@@ -78,6 +63,10 @@ class Packet(object):
     def log(self, value):
         self.log_var += "\n" + value
         
+    def mark_as_reached_dest(self, event_time):
+        self.has_reached_destination = True
+        self.end_to_end_delay        = event_time - self.time
+        
     @staticmethod
     def log_to_file():
         for pck in Packet.all_packets_generated:
@@ -87,9 +76,12 @@ class Packet(object):
             
     @staticmethod
     def getStats():
-        return len(Packet.all_packets_generated)            
-        
+        return len(Packet.all_packets_generated)
     
+    @staticmethod
+    def mean_end_to_end_delay():
+        return numpy.mean([pkt.end_to_end_delay for pkt in Packet.all_packets_generated if pkt.has_reached_destination])         
+        
 
 class PacketGenerator(object):
     """ Generates packets with given inter-arrival time distribution.
@@ -205,6 +197,7 @@ class PacketSink(object):
 
     def put(self, pkt):
         pkt.log("Packet received at sink: {}, time: {}".format( self, self.env.now))
+        pkt.mark_as_reached_dest(self.env.now)
         self.store.put(pkt)
 
 

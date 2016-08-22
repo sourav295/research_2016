@@ -63,8 +63,8 @@ class Core_Office(object):
                 elif isinstance(remote_port, roadm.Roadm):
                     central_add_drop  = remote_port.add_drop_module
                     
-                    self.cable_components(  local_mux_port        ,central_add_drop.Tx    )
-                    self.cable_components(  central_add_drop.Rx   ,local_mux_port         )
+                    self.cable_components(  local_mux_port        ,central_add_drop.Tx    , link.delay)
+                    self.cable_components(  central_add_drop.Rx   ,local_mux_port         , link.delay)
                     #register in this router's processor
                     local_mux_port.addInterface(remote_port)
                     #for dijkstr's calculations
@@ -84,7 +84,7 @@ class Core_Office(object):
                 if isinstance(remote_port, router_module.Interface):
                     #idetify remote line card
                     remote_linecard  = remote_port.find_host_linecard(routing.Network_Components.linecards)
-                    self.cable_components(local_port, remote_port)
+                    self.cable_components(local_port, remote_port,link.delay)
                     #register in this router's processor
                     local_port.addInterface(remote_linecard)
                     #for dijkstr's calculations
@@ -95,8 +95,8 @@ class Core_Office(object):
                     
                 '''Router Interface connected to a Packet Generator (Host)'''
                 if isinstance(remote_port, router_module.Host):
-                    self.cable_components(local_port, remote_port)
-                    self.cable_components(remote_port, local_port)
+                    self.cable_components(local_port, remote_port,link.delay)
+                    self.cable_components(remote_port, local_port,link.delay)
                     #register in this router's processor
                     local_port.addInterface(remote_port)
                     #for dijkstr's calculations
@@ -105,7 +105,7 @@ class Core_Office(object):
                     
                 '''Router Interface connected to a Packet Sink (Sink)'''
                 if isinstance(remote_port, router_module.Sink):
-                    self.cable_components(local_port, remote_port)
+                    self.cable_components(local_port, remote_port,link.delay)
                     #register in this router's processor
                     local_port.addInterface(remote_port)
                     #for dijkstr's calculations
@@ -116,8 +116,8 @@ class Core_Office(object):
                 if isinstance(remote_port, roadm.Roadm):
                     central_add_drop  = remote_port.add_drop_module
                     
-                    self.cable_components(  local_port            ,central_add_drop.Tx    )
-                    self.cable_components(  central_add_drop.Rx   , local_port            )
+                    self.cable_components(  local_port            ,central_add_drop.Tx   ,link.delay )
+                    self.cable_components(  central_add_drop.Rx   , local_port           ,link.delay )
                     #register in this router's processor
                     local_port.addInterface(remote_port)
                     #for dijkstr's calculations
@@ -127,8 +127,8 @@ class Core_Office(object):
                 '''Router Interface connected to another Muxponder interface'''
                 if isinstance(remote_port, router_module.MuxInterface):
                     #idetify remote muxponder
-                    self.cable_components(local_port, remote_port)
-                    self.cable_components(remote_port, local_port)
+                    self.cable_components(local_port, remote_port,link.delay)
+                    self.cable_components(remote_port, local_port,link.delay)
                     remote_mux  = remote_port.find_host_muxponder(routing.Network_Components.muxs)
                     #register in this router's processor
                     local_port.addInterface(remote_mux)
@@ -138,7 +138,7 @@ class Core_Office(object):
                 
         
         
-    def cable_components(self, from_port, to_port, delay = GlobalConfiguration.delay_over_IP):
+    def cable_components(self, from_port, to_port, delay):
         cable = Cable(GlobalConfiguration.simpyEnv, delay)
         from_port.out   = cable
         cable.out       = to_port
@@ -214,8 +214,8 @@ class Topology(object):
                 topology_logger.info("{}".format(border_roadms))
                 topology_logger.info("{}".format(border_roadms.LFIB))
     
-    def getStats(self):#nOfPktdropped, nOfPktGenerated
-        return routing.Network_Components.getStats(), Packet.getStats()
+    def getStats(self):#nOfPktdropped, nOfPktGenerated, mean end to end delay
+        return routing.Network_Components.getStats(), Packet.getStats(), Packet.mean_end_to_end_delay()
     
 class NFV_SDN(object):
     sdn_list = []
