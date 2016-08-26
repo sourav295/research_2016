@@ -8,18 +8,18 @@ python start.py
 COMMIT + PUSH
 ==================================================================================
 
-git add .
-git commit -m "[message]"
-git push -u origin master (use option -f for force commit)
+#git add .
+#git commit -m "[message]"
+#git push -u origin master (use option -f for force commit)
 
 
 ==================================================================================
 SIMULATION WORK FLOW
 ==================================================================================
 
-1) Network topology Setup (config xml in ./src/resource/xml/[ baseline| streamline ]/[ router.xml| roadm.xml| topology.xml ])
-2) Simulation parameters configuration (src in ./src/configure.py & ./src/cost.py)
-3) Execution
+#1) Network topology Setup (config xml in ./src/resource/xml/[ baseline| streamline ]/[ router.xml| roadm.xml| topology.xml ])
+#2) Simulation parameters configuration (src in ./src/configure.py & ./src/cost.py)
+#3) Execution
 	There are 2 mode of execution (set in configuration )- [TestRun | NON TestRun]:
 	
 	NON TestRun

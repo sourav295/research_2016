@@ -9,7 +9,9 @@ COMMIT + PUSH
 ==================================================================================
 
 git add .
+
 git commit -m "[message]"
+
 git push -u origin master (use option -f for force commit)
 
 
@@ -18,8 +20,11 @@ SIMULATION WORK FLOW
 ==================================================================================
 
 1) Network topology Setup (config xml in ./src/resource/xml/[ baseline| streamline ]/[ router.xml| roadm.xml| topology.xml ])
+
 2) Simulation parameters configuration (src in ./src/configure.py & ./src/cost.py)
+
 3) Execution
+
 	There are 2 mode of execution (set in configuration )- [TestRun | NON TestRun]:
 	
 	NON TestRun
@@ -163,5 +168,7 @@ self.linecard_cost_map[ context.get_object("1GE")  ] = 1
 self.linecard_cost_map[ context.get_object("10GE") ] = 2.5
 self.linecard_cost_map[ context.get_object("100GE")] = 12
 
-Cost of 1G / 10G / 100G linecard
+Cost for 1G / 10G / 100G linecards
+
+4) Other costs such as muxponders and servers.
 
