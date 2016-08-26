@@ -61,8 +61,8 @@ configure.py
 
 1) architecture - {achitecture = architecture_list[0]}:  
 There are 2 achitectures to choose from.
-The config xmls to follow depends on the chosen architecture- either src/xml/baseline/ OR src/xml/streamline/ .
-The same applies for the result files- /log/baseline/ OR /log/streamline/
+The config xmls to follow depends on the chosen architecture- either src/resource/xml/baseline/ OR src/resource/xml/streamline/ .
+The same applies for the result files- src/resource/log/baseline/ OR src/resource/log/streamline/
 
 2) qlimit:  
 Buffer size. Queue limits expressed in bytes.
