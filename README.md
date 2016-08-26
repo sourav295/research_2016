@@ -59,52 +59,41 @@ CONFIGS
 configure.py
 -------------------------
 
-1) architecture - {achitecture = architecture_list[0]}:
-
+1) architecture - {achitecture = architecture_list[0]}:  
 There are 2 achitectures to choose from.
 The config xmls to follow depends on the chosen architecture- either src/xml/baseline/ OR src/xml/streamline/ .
 The same applies for the result files- /log/baseline/ OR /log/streamline/
 
-2) qlimit:
-
+2) qlimit:  
 Buffer size. Queue limits expressed in bytes.
 
-3) mean_pkt_size:
-
+3) mean_pkt_size:  
 Mean pkt size in bytes. Exponential distribution applied.
 
-4) delay_over_IP:
-
+4) delay_over_IP:  
 The propagation delay experienced by packets on every link (except on optical links, propagation delay over optical is considered 0)
 
-5) N_Channels:
-
+5) N_Channels:  
 No. of lambdas permitted by the system.
 
-6) nPrioLevels: (e.g. 8)
-
+6) nPrioLevels: (e.g. 8)  
 Levels of priority for the packets generated. Would be used by priority queues in IP routers to discriminate the priority.
 
-7) start_rate / end_rate / rate_increments:
-
+7) start_rate / end_rate / rate_increments:  
 If the values are 10 20 and 2 respectively, the simulation will run the code for arrival rates-
 [10, 12, 14, 16 and 18]
 The first run takes 10 to be the MEAN arrival rate for all servers in the system, the second run takes 12 and so on.
 
-8) delay_fact_SDN / delay_fact_NFV:
-
+8) delay_fact_SDN / delay_fact_NFV:  
 The factor by which the delay produced by an SDN / NFV components exceeds the delay produced by traditional network hardware.
 
-9) simulation_until:
-
+9) simulation_until:  
 The time until when the descrete event simulation runs.
 
-10) testrun  = (True / False):
-
+10) testrun  = (True / False):  
 The difference is discribed above in the work flow section.
 
-11) simulate_delay_on_server  = (True / False):
-
+11) simulate_delay_on_server  = (True / False):  
 Ideally this should be set to true.
 
 ** XML Configuration **
@@ -169,18 +158,16 @@ You can tone down the values of 1G / 10G and 100G by reducing the values in the 
 cost.py
 ---------------------------------
 
-1) cost_reduction_fact_SDN:
-
+1) cost_reduction_fact_SDN:  
 Factor by which a SDN component cost less compared to traditional network component. 
 
-2) cost_reduction_fact_NFV:
-
+2) cost_reduction_fact_NFV:  
 Factor by which a NFV component cost less compared to traditional network component.
 
 3)
-self.linecard_cost_map[ context.get_object("1GE")  ] = 1
-self.linecard_cost_map[ context.get_object("10GE") ] = 2.5
-self.linecard_cost_map[ context.get_object("100GE")] = 12
+self.linecard_cost_map[ context.get_object("1GE")  ] = 1  
+self.linecard_cost_map[ context.get_object("10GE") ] = 2.5  
+self.linecard_cost_map[ context.get_object("100GE")] = 12  
 
 Cost for 1G / 10G / 100G linecards
 
