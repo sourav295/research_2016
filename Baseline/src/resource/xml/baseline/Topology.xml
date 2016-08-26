@@ -21,12 +21,12 @@
 	<object id="nfv_sdn" class="network.NFV_SDN">
 		<property name="sdn_list">
 			<list>
-				<ref object="C1_AGG1"/>
+				<!--<ref object="C1_AGG1"/>
 				<ref object="C1_AGG2"/>
 				<ref object="C2_AGG1"/>
 				<ref object="C2_AGG2"/>
 				<ref object="C3_AGG1"/>
-				<ref object="C3_AGG2"/>
+				<ref object="C3_AGG2"/>-->
 				
 			</list>
    		</property>

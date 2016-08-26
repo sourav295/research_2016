@@ -29,7 +29,7 @@ for arrv_rate in numpy.arange(GlobalConfiguration.start_rate, GlobalConfiguratio
     
     nOfPktdropped, nOfPktGenerated, mean_end_to_end_delay = GlobalConfiguration.getStats()
     
-    status = "Arrv Rate: {:10} | Pkt Dropped {:10} | Pkt Generated {:10} | End to end delay {:10}".format(arrv_rate, nOfPktdropped, nOfPktGenerated, mean_end_to_end_delay)
+    status = "Arrv Rate: {:10} | Pkt Dropped {:10} | Pkt Generated {:10} | End to end delay {:20}".format(arrv_rate, nOfPktdropped, nOfPktGenerated, mean_end_to_end_delay)
 
     print status
     f.write(status + '\n')

@@ -1,4 +1,4 @@
-Arrv Rate:          1 | Pkt Dropped       3503 | Pkt Generated       9105 | End to end delay 12.5053661608
-Cost 177.15
-SDN - [C1_AGG1, C1_AGG2, C2_AGG1, C2_AGG2, C3_AGG1, C3_AGG2]
+Arrv Rate:          1 | Pkt Dropped          0 | Pkt Generated       8837 | End to end delay      0.0327002993421
+Cost 198.0
+SDN - []
 NFV - []

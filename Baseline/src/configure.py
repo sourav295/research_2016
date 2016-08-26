@@ -23,7 +23,7 @@ class GlobalConfiguration(object):
     
     qlimit          = 50000             # bytes
     mean_pkt_size   = 576               # bytes
-    delay_over_IP   = 1                 # delay over ip channel
+    delay_over_IP   = 0.00001           # delay over ip channel 0.00001
     N_Channels      = 200               # on optical fibre
     nPrioLevels     = 3                 # no of priority levels
     
@@ -31,7 +31,7 @@ class GlobalConfiguration(object):
     end_rate        = 2                  # last  pkt generation rate
     rate_increments = 0.5                # increments
     
-    delay_fact_SDN  = 100
+    delay_fact_SDN  = 1
     delay_fact_NFV  = 1
     
     simulation_until= 100                # Simulation time
