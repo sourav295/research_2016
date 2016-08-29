@@ -1,0 +1,23 @@
+class Routing_Processor(object):
+    
+    def __init__(self, local_ports):
+        self.local_ports = local_ports
+        self.out_port_vs_remote_component_map={}
+        self.remote_component_vs_store_map={}#each next hop component has a different store
+        
+    def add_interface(self, network_component, local_interface):
+        self.out_port_vs_remote_component_map[local_interface]  = network_component
+        self.remote_component_vs_store_map[network_component]   = simpy.PriorityStore(GlobalConfiguration.simpyEnv)
+        
+    def put(self, pck):
+        next_hop = pck.next_hop()
+        store = self.remote_component_vs_store_map[next_hop]
+        #insert pck to priority item as payload
+        priority_item = simpy.PriorityItem(pck.priority, pck)
+        return store.put(priority_item)
+        
+        
+    def get_store(self, local_interface):
+        network_component = self.out_port_vs_remote_component_map[local_interface]
+        store = self.remote_component_vs_store_map[network_component]
+        return store

@@ -1,0 +1,7 @@
+Job,Desc,CapEx,OpEx,SDN,NFV
+0,Baseline template,198.0,,,
+1,baseline sdn core,188.0,,C1_P1|C1_P2|C2_P1|C2_P2|C3_P1|C3_P2,
+2,baseline sdn edge,189.0,,C1_PE1|C1_PE2|C1_PE3|C2_PE1|C2_PE2|C2_PE3|C3_PE1|C3_PE2|C3_PE3,
+3,streamline termplate,160.5,,,
+4,streamline sdn core,156.0,,C1_P1|C2_P1|C3_P1,
+5,streamline sdn edge,151.5,,C1_PE1|C1_PE2|C1_PE3|C2_PE1|C2_PE2|C2_PE3|C3_PE1|C3_PE2|C3_PE3,

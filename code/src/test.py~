@@ -1,0 +1,9 @@
+import functools
+
+def x(a,b):
+    return a+b
+
+p1 = functools.partial(x, b=4)
+p1(10)
+
+

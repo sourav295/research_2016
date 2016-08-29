@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<objects xmlns="http://www.springframework.org/springpython/schema/objects"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
+	http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
+
+	<object id="optcl_net"  class="network.Optical_Core" >
+		<property name="all_roadms">
+			<list>
+			    	<ref object="RD1"/>
+				<ref object="RD2"/>
+				<ref object="RD3"/>
+				<ref object="RD4"/>
+				<ref object="RD5"/>
+			</list>
+   		</property>
+		<property name="connections">
+			<list>
+			    	<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="RD1"/>		</constructor-arg>
+					<constructor-arg name="to">	<ref object="RD2"/>		</constructor-arg>
+				</object>
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="RD2"/>		</constructor-arg>
+					<constructor-arg name="to">	<ref object="RD3"/>		</constructor-arg>
+				</object>
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="RD2"/>		</constructor-arg>
+					<constructor-arg name="to">	<ref object="RD5"/>		</constructor-arg>
+				</object>
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="RD3"/>		</constructor-arg>
+					<constructor-arg name="to">	<ref object="RD4"/>		</constructor-arg>
+				</object>
+				
+			</list>
+   		</property>
+	</object>
+	
+
+	<!--Connected to core office C1-->
+	<object id="RD1"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">	<value>RD1</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
+	</object>
+
+	<object id="RD2"  class="roadm.Roadm">
+		<constructor-arg name="hostname">	<value>RD2</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+	</object>
+
+	<!--Connected to core office C3-->
+	<object id="RD5"  class="roadm.Roadm">
+		<constructor-arg name="hostname">	<value>RD5</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
+	</object>
+
+	<object id="RD3"  class="roadm.Roadm">
+		<constructor-arg name="hostname">	<value>RD3</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+	</object>
+
+	<!--Connected to core office C3-->
+	<object id="RD4"  class="roadm.Roadm">
+		<constructor-arg name="hostname">	<value>RD4</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
+	</object>
+
+	
+
+</objects>

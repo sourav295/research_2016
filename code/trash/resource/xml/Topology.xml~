@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<objects xmlns="http://www.springframework.org/springpython/schema/objects"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
+	http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
+
+
+	<object id="topology" class="network.Topology">
+		<property name="networks">
+			<list>
+				<ref object="C1"/>
+				<ref object="C2"/>
+				<ref object="C3"/>
+				<ref object="optcl_net"/>
+			</list>
+   		</property>
+	</object>
+
+
+	<object id="C1" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C1_PE1_L1_S1"/>
+				<ref object="C1_PE1_L1_S2"/>
+				<ref object="C1_PE1_L1_S3"/>
+				<ref object="C1_PE1_L1_G1"/>
+				<ref object="C1_PE1_L1_G2"/>
+				<ref object="C1_PE1_L1_G3"/>
+				<ref object="C1_PE1"/>
+
+			    	<ref object="C1_PE2_L1_S1"/>
+				<ref object="C1_PE2_L1_S2"/>
+				<ref object="C1_PE2_L1_S3"/>
+				<ref object="C1_PE2_L1_G1"/>
+				<ref object="C1_PE2_L1_G2"/>
+				<ref object="C1_PE2_L1_G3"/>
+				<ref object="C1_PE2"/>
+
+			    	<ref object="C1_PE3_L1_S1"/>
+				<ref object="C1_PE3_L1_S2"/>
+				<ref object="C1_PE3_L1_S3"/>
+				<ref object="C1_PE3_L1_G1"/>
+				<ref object="C1_PE3_L1_G2"/>
+				<ref object="C1_PE3_L1_G3"/>
+				<ref object="C1_PE3"/>
+		
+				<ref object="C1_P1"/>
+				
+				<ref object="C1_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+
+	<object id="C2" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C2_PE1_L1_S1"/>
+				<ref object="C2_PE1_L1_S2"/>
+				<ref object="C2_PE1_L1_S3"/>
+				<ref object="C2_PE1_L1_G1"/>
+				<ref object="C2_PE1_L1_G2"/>
+				<ref object="C2_PE1_L1_G3"/>
+				<ref object="C2_PE1"/>
+
+			    	<ref object="C2_PE2_L1_S1"/>
+				<ref object="C2_PE2_L1_S2"/>
+				<ref object="C2_PE2_L1_S3"/>
+				<ref object="C2_PE2_L1_G1"/>
+				<ref object="C2_PE2_L1_G2"/>
+				<ref object="C2_PE2_L1_G3"/>
+				<ref object="C2_PE2"/>
+
+			    	<ref object="C2_PE3_L1_S1"/>
+				<ref object="C2_PE3_L1_S2"/>
+				<ref object="C2_PE3_L1_S3"/>
+				<ref object="C2_PE3_L1_G1"/>
+				<ref object="C2_PE3_L1_G2"/>
+				<ref object="C2_PE3_L1_G3"/>
+				<ref object="C2_PE3"/>
+		
+				<ref object="C2_P1"/>
+				
+				<ref object="C2_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	
+		<object id="C3" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C3_PE1_L1_S1"/>
+				<ref object="C3_PE1_L1_S2"/>
+				<ref object="C3_PE1_L1_S3"/>
+				<ref object="C3_PE1_L1_G1"/>
+				<ref object="C3_PE1_L1_G2"/>
+				<ref object="C3_PE1_L1_G3"/>
+				<ref object="C3_PE1"/>
+
+			    	<ref object="C3_PE2_L1_S1"/>
+				<ref object="C3_PE2_L1_S2"/>
+				<ref object="C3_PE2_L1_S3"/>
+				<ref object="C3_PE2_L1_G1"/>
+				<ref object="C3_PE2_L1_G2"/>
+				<ref object="C3_PE2_L1_G3"/>
+				<ref object="C3_PE2"/>
+
+			    	<ref object="C3_PE3_L1_S1"/>
+				<ref object="C3_PE3_L1_S2"/>
+				<ref object="C3_PE3_L1_S3"/>
+				<ref object="C3_PE3_L1_G1"/>
+				<ref object="C3_PE3_L1_G2"/>
+				<ref object="C3_PE3_L1_G3"/>
+				<ref object="C3_PE3"/>
+		
+				<ref object="C3_P1"/>
+				
+				<ref object="C3_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+
+</objects>
