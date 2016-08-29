@@ -87,7 +87,7 @@ for job_id in job_map:
     
     stats = job_results[job_id]
     
-    job_descriptions.append("{} - Cost CapEx {} OpEx {}".format(stats[index_desc], stats[index_capex], stats[index_opex]))
+    job_descriptions.append("{}".format(stats[index_desc]))
     load_map = job_map[job_id]
  
     for load in load_map:
