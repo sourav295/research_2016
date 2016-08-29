@@ -96,7 +96,7 @@ for job_id in job_map:
         
         coordinates.append( (load, drp_count) )
         
-    coordinates.sort(key=lambda x: x[0])
+    coordinates.sort(key=lambda x: float(x[0]))
     for x, y in coordinates:
         xcoords.append(x)
         ycoords.append(y)

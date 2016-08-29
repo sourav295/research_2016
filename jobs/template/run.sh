@@ -1,11 +1,13 @@
 #============================================================
+# "Job Root Directory" path relative to the python script (entry point)
+root_dir="../../jobs/template/"
+
 #create / clear log file
 > result.log
 cat result.log
 echo "Job,Load,Dropped,Generated,Average_delay" > result.log
 
-final_results="../../jobs/template/result.log"
-
+final_results="${root_dir}result.log"
 #---
 
 #create / clear job_stats file
@@ -13,9 +15,9 @@ final_results="../../jobs/template/result.log"
 cat job_stats.log
 echo "Job,Desc,CapEx,OpEx,SDN,NFV" > job_stats.log
 
-job_stats="../../jobs/template/job_stats.log"
+job_stats="${root_dir}job_stats.log"
 
-graph_path="../../jobs/template/plot.png"
+graph_path="${root_dir}plot.png"
 
 #=============================================================
 
@@ -25,13 +27,13 @@ cd ../../code/src/
 
 
 
-declare -a arr=("../../jobs/template/baseline_sdn_agg"
-		"../../jobs/template/baseline"
-		"../../jobs/template/baseline_sdn_core"
-		"../../jobs/template/baseline_sdn_edge"
-		"../../jobs/template/streamline"
-		"../../jobs/template/streamline_sdn_core"
-		"../../jobs/template/streamline_sdn_edge")
+declare -a arr=("${root_dir}baseline_sdn_agg"
+		"${root_dir}baseline"
+		"${root_dir}baseline_sdn_core"
+		"${root_dir}baseline_sdn_edge"
+		"${root_dir}streamline"
+		"${root_dir}streamline_sdn_core"
+		"${root_dir}streamline_sdn_edge")
 
 declare -i job_id=0
 

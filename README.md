@@ -1,5 +1,40 @@
 ==================================================================================
-RUN
+References
+==================================================================================
+1) Base Code, entirely modified though:  
+https://www.grotto-networking.com/DiscreteEventPython.html , SimComponents.py  
+2) Dijkstra Algorith:  
+https://www.ics.uci.edu/~eppstein/161/python/dijkstra.py  
+
+==================================================================================
+About
+==================================================================================
+
+Discrete Event Simulation to simulate different core office edge architectures over an Optical ROADM network  
+
+Edge components could be catagories as SDN or NFV to manipulate cost and delay. To calculate percentage NFV and SDN suitable for the network.  
+
+Network Components include-  
+
+1) Core Office
+	-IP routers
+		- 1G, 10G, 100G Linecards
+	-Servers
+	-Muxponders
+
+2) Optical Core
+	-ROADM
+		- WSS
+		- Splitter
+		- Add Drop Module
+Deliverables-
+
+1) Load vs Packet Dropped by the network.  
+2) Capital Expenditure.  
+3) Operational Expenditure.
+	
+==================================================================================
+Python Entry point
 ==================================================================================
 
 python start.py

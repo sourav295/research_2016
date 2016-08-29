@@ -1,9 +1,4 @@
-"""
-    A bit more detailed set of components to use in packet switching
-    queueing experiments.
-    Copyright 2014 Greg M. Bernstein
-    Released under the MIT license
-"""
+
 import simpy
 import random
 import copy
@@ -84,24 +79,6 @@ class Packet(object):
         
 
 class PacketGenerator(object):
-    """ Generates packets with given inter-arrival time distribution.
-        Set the "out" member variable to the entity to receive the packet.
-
-        Parameters
-        ----------
-        env : simpy.Environment
-            the simulation environment
-        adist : function
-            a no parameter function that returns the successive inter-arrival times of the packets
-        sdist : function
-            a no parameter function that returns the successive sizes of the packets
-        initial_delay : number
-            Starts generation after an initial delay. Default = 0
-        finish : number
-            Stops generation at the finish time. Default is infinite
-
-
-    """
     def __init__(self, env, id,  adist, sdist, initial_delay=0, finish=float("inf"), flow_id=0, rate = 0):
         self.id = id
         self.env = env
@@ -138,26 +115,6 @@ class PacketGenerator(object):
 
 
 class PacketSink(object):
-    """ Receives packets and collects delay information into the
-        waits list. You can then use this list to look at delay statistics.
-
-        Parameters
-        ----------
-        env : simpy.Environment
-            the simulation environment
-        debug : boolean
-            if true then the contents of each packet will be printed as it is received.
-        rec_arrivals : boolean
-            if true then arrivals will be recorded
-        absolute_arrivals : boolean
-            if true absolute arrival times will be recorded, otherwise the time between consecutive arrivals
-            is recorded.
-        rec_waits : boolean
-            if true waiting time experienced by each packet is recorded
-        selector: a function that takes a packet and returns a boolean
-            used for selective statistics. Default none.
-
-    """
     def __init__(self, env, rec_arrivals=False, absolute_arrivals=False, rec_waits=True, debug=False, selector=None):
         self.store = simpy.Store(env)
         self.env = env

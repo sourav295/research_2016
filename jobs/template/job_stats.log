@@ -1,2 +1,3 @@
 Job,Desc,CapEx,OpEx,SDN,NFV
-0,Baseline template,198.0,16800.0,,
+0,baseline sdn agg,191.0,15800.0,C1_AGG1|C1_AGG2|C2_AGG1|C2_AGG2|C3_AGG1|C3_AGG2,
+1,Baseline,198.0,16800.0,,

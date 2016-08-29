@@ -25,16 +25,18 @@ class GlobalConfiguration(object):
     N_Channels      = 192              # on optical fibre
     nPrioLevels     = 8                 # no of priority levels
     
-    start_rate      = 10                  # first pkt generation rate
+    start_rate      = 15                  # first pkt generation rate
     end_rate        = 15                  # last  pkt generation rate
     rate_increments = 0.5                # increments
     
     delay_fact_SDN  = 1.2
     delay_fact_NFV  = 1.2
     
-    simulation_until= 10                # Simulation time
+    simulation_until= 10               # Simulation time
     
-    test_run        = False              # runs the code only for the start_rate, information logged
+    nOfRuns = 2
+    
+    test_run        = True              # runs the code only for the start_rate, information logged
     
     simulate_delay_on_server = True
     #=========================================================================
