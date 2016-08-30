@@ -1,3 +1,8 @@
 Job,Desc,CapEx,OpEx,SDN,NFV
 0,baseline sdn agg,191.0,15800.0,C1_AGG1|C1_AGG2|C2_AGG1|C2_AGG2|C3_AGG1|C3_AGG2,
 1,Baseline,198.0,16800.0,,
+2,baseline sdn core,188.0,15600.0,C1_P1|C1_P2|C2_P1|C2_P2|C3_P1|C3_P2,
+3,baseline sdn edge,189.0,15000.0,C1_PE1|C1_PE2|C1_PE3|C2_PE1|C2_PE2|C2_PE3|C3_PE1|C3_PE2|C3_PE3,
+4,streamline,160.5,12300.0,,
+5,streamline sdn core,156.0,11600.0,C1_P1|C2_P1|C3_P1,
+6,streamline sdn edge,151.5,10500.0,C1_PE1|C1_PE2|C1_PE3|C2_PE1|C2_PE2|C2_PE3|C3_PE1|C3_PE2|C3_PE3,

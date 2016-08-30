@@ -8,6 +8,16 @@ result_path = sys.argv[1]
 jobs_path   = sys.argv[2]
 plot_path   = sys.argv[3]
 
+partial_analysis = False
+job_id_filter = []#input 1,4,5, job id
+
+if len(sys.argv) == 5:
+    partial_analysis    = True
+    job_id_filter       = (sys.argv[4]).split(',')
+    
+for job_id in job_id_filter:
+    print job_id
+    
 #===========JOB========================
 #"Job,Desc,CapEx,OpEx,SDN,NFV"
 index_job  = 0
@@ -79,7 +89,16 @@ for row in reader:
 #plot observations
 plt.clf()
 job_descriptions = []
-for job_id in job_map:
+
+
+job_id_list = []
+if partial_analysis:
+    job_id_list = [job_id for job_id in job_map if job_id in job_id_filter] 
+else:
+    job_id_list = [job_id for job_id in job_map] 
+
+
+for job_id in job_id_list:
     
     xcoords = []
     ycoords = []
