@@ -1,8 +1,24 @@
 import sys
 import csv as csv
 import matplotlib.pyplot as plt
+import numpy as np
 
+def plot_cost_graph(cost_tuple, N, file_name, desc):
+    
+    width = 0.35       # the width of the bars
+    
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(ind, cost_tuple, width, color='r')
+    
+    # add some text for labels, title and axes ticks
+    ax.set_ylabel('Cost')
+    ax.set_xticks(ind + width)
+    ax.set_xticklabels(x_labels)
 
+    ax.legend(desc, loc='upper left')
+    fig.autofmt_xdate()
+
+    plt.savefig(plot_path + file_name)
 
 result_path = sys.argv[1]
 jobs_path   = sys.argv[2]
@@ -14,6 +30,7 @@ job_id_filter = []#input 1,4,5, job id
 if len(sys.argv) == 5:
     partial_analysis    = True
     job_id_filter       = (sys.argv[4]).split(',')
+    
     
 for job_id in job_id_filter:
     print job_id
@@ -78,7 +95,6 @@ for row in reader:
     
     load_map        = job_map[job_id]
     load_map[load]  = row[2:]#insert all other columns to map
-    
 #===========================================
 
 
@@ -121,7 +137,52 @@ for job_id in job_id_list:
         ycoords.append(y)
     plt.plot(xcoords, ycoords)
 plt.legend(job_descriptions, loc='upper left')
-plt.savefig(plot_path)
+plt.ylabel('Packets dropped')
+plt.xlabel('Load')
+plt.savefig(plot_path + "plot.png")
 plt.show()
     
+#-----------------------------------------------------------------------------
+plt.close()
+plt.clf()
+
+capex_bar = []
+opex_bar  = []
+x_labels  = []
+for job_id in job_id_list:
+    stats = job_results[job_id]
+    
+    capex_bar.append(float(stats[index_capex]))
+    opex_bar.append(float(stats[index_opex]))
+    
+    x_labels.append(stats[index_desc])
+
+
+
+capex_bar = tuple(capex_bar)
+opex_bar  = tuple(opex_bar)
+x_labels  = tuple(x_labels)
+
+N = len(opex_bar)
+
+ind = np.arange(N)  # the x locations for the groups
+
+plot_cost_graph(capex_bar, N, "capex.png", ['CapEx'])
+plot_cost_graph(opex_bar, N, "opex.png", ['OpEx'])
+'''
+fig, ax = plt.subplots()
+rects1 = ax.bar(ind, capex_bar, width, color='r')
+#rects2 = ax.bar(ind + width, opex_bar, width, color='y')
+
+# add some text for labels, title and axes ticks
+ax.set_ylabel('Cost')
+ax.set_xticks(ind + width)
+ax.set_xticklabels(x_labels)
+
+ax_cap.legend((rects1[0], rects2[0]), ('CapEx', 'OpEx'))
+fig.autofmt_xdate()
+
+plt.show()
+plt.savefig(plot_path + "capex.png")
+'''
     

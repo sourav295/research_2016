@@ -17,7 +17,7 @@ echo "Job,Desc,CapEx,OpEx,SDN,NFV" > job_stats.log
 
 job_stats="${root_dir}job_stats.log"
 
-graph_path="${root_dir}plot.png"
+graph_path="${root_dir}"
 
 #=============================================================
 

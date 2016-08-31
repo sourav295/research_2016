@@ -9,7 +9,7 @@ final_results="../../jobs/template/result.log"
 
 job_stats="../../jobs/template/job_stats.log"
 
-graph_path="../../jobs/template/plot.png"
+graph_path="../../jobs/template/"
 
 #=============================================================
 
