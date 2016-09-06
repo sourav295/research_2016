@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<objects xmlns="http://www.springframework.org/springpython/schema/objects"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/springpython/schema/objects
+	http://springpython.webfactional.com/schema/context/spring-python-context-1.0.xsd">
+
+	<!--Rates 
+	<long id="1GE"  >1000000000   </long>
+	<long id="10GE" >10000000000  </long>
+	<long id="100GE">100000000000 </long>
+	<long id="1TE"  >1000000000000</long>--> 
+	
+	<long id="1GE"  >1000000</long>
+	<long id="10GE" >10000000</long>
+	<long id="100GE">100000000</long>
+	<long id="1TE"  >1000000000</long>
+
+
+	<int id="no_of_servers_connected_to_lc">5</int>
+	
+
+	<!--Router Interfaces -->
+	<object id="1G_Inf"  class="router.Interface" abstract="True" lazy-init="True">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+	</object>
+
+	<object id="10G_Inf"  class="router.Interface" abstract="True" lazy-init="True">
+		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+	</object>
+	<!-- Muxponder Interfaces -->
+	<object id="10G_Inf_Mux"  class="router.MuxInterface" abstract="True" lazy-init="True">
+		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+	</object>
+
+	<object id="100G_Inf_Mux"  class="router.MuxInterface" abstract="True" lazy-init="True">
+		<constructor-arg name="bandwidth">	<ref object="100GE"/>		</constructor-arg>
+	</object>
+	
+
+<!-- Core Office: C1 -->
+
+<!--  C1_PE1  ====================-->
+
+	<object id="C1_PE1"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C1_PE1</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C1_PE1_L1"/>
+				<ref object="C1_PE1_L2"/>
+				<ref object="C1_PE1_L3"/> 
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C1_PE1_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C1_PE1_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C1_PE1_L3">
+		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_PE1_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_Mux_PE1_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_PE1_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_Mux_PE1_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C1_PE1_Mux_1"  class="router.Interface" parent="10G_Inf" />
+	<object id="C1_PE1_Mux_2"  class="router.Interface" parent="10G_Inf" />
+<!--  C1_PE2  ====================-->
+	<object id="C1_PE2"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C1_PE2</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C1_PE2_L1"/>
+				<ref object="C1_PE2_L2"/>
+				<ref object="C1_PE2_L3"/>
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C1_PE2_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C1_PE2_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C1_PE2_L3">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_PE2_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_Mux_PE2_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_PE2_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_Mux_PE2_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C1_PE2_Mux_1"  class="router.Interface" parent="1G_Inf" />
+	<object id="C1_PE2_Mux_2"  class="router.Interface" parent="1G_Inf" />
+
+<!--  C1_PE3 ====================-->
+	<object id="C1_PE3"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C1_PE3</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C1_PE3_L1"/>
+				<ref object="C1_PE3_L2"/>
+				<ref object="C1_PE3_L3"/>
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C1_PE3_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C1_PE3_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C1_PE3_L3">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_PE3_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_Mux_PE3_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_PE3_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_Mux_PE3_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C1_PE3_Mux_1"  class="router.Interface" parent="1G_Inf" />
+	<object id="C1_PE3_Mux_2"  class="router.Interface" parent="1G_Inf" />
+
+
+<!-- C1_Mux -->
+	<object id="C1_Mux"  class="router.Muxponder">
+		<constructor-arg name="hostname">	<value>C1_Mux</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_Mux_PE1_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_PE1_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_Mux_PE1_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_PE1_Mux_2" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_Mux_PE2_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_PE2_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_Mux_PE2_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_PE2_Mux_2" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_Mux_PE3_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_PE3_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_Mux_PE3_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C1_PE3_Mux_2" />	</constructor-arg>
+				</object>
+				<!--upstream-->
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C1_RoadmIngress"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R1_1" />		</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	
+	<object id="C1_Mux_PE1_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C1_Mux_PE1_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C1_Mux_PE2_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C1_Mux_PE2_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C1_Mux_PE3_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C1_Mux_PE3_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C1_RoadmIngress"  class="router.MuxInterface" parent="100G_Inf_Mux">
+		<constructor-arg name="is_upstream_bound"> <value>True</value> </constructor-arg>
+	</object>
+
+<!--
+=======~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=======
+=======
+=======
+=======~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+<!-- Core Office: C2 -->
+
+<!--  C2_PE1  ====================-->
+
+	<object id="C2_PE1"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C2_PE1</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C2_PE1_L1"/>
+				<ref object="C2_PE1_L2"/>
+				<ref object="C2_PE1_L3"/> 
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C2_PE1_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C2_PE1_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C2_PE1_L3">
+		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_PE1_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_Mux_PE1_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_PE1_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_Mux_PE1_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C2_PE1_Mux_1"  class="router.Interface" parent="10G_Inf" />
+	<object id="C2_PE1_Mux_2"  class="router.Interface" parent="10G_Inf" />
+<!--  C2_PE2  ====================-->
+	<object id="C2_PE2"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C2_PE2</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C2_PE2_L1"/>
+				<ref object="C2_PE2_L2"/>
+				<ref object="C2_PE2_L3"/>
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C2_PE2_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C2_PE2_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C2_PE2_L3">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_PE2_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_Mux_PE2_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_PE2_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_Mux_PE2_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C2_PE2_Mux_1"  class="router.Interface" parent="1G_Inf" />
+	<object id="C2_PE2_Mux_2"  class="router.Interface" parent="1G_Inf" />
+
+<!--  C2_PE3 ====================-->
+	<object id="C2_PE3"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C2_PE3</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C2_PE3_L1"/>
+				<ref object="C2_PE3_L2"/>
+				<ref object="C2_PE3_L3"/>
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C2_PE3_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C2_PE3_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C2_PE3_L3">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_PE3_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_Mux_PE3_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_PE3_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_Mux_PE3_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C2_PE3_Mux_1"  class="router.Interface" parent="1G_Inf" />
+	<object id="C2_PE3_Mux_2"  class="router.Interface" parent="1G_Inf" />
+
+
+<!-- C2_Mux -->
+	<object id="C2_Mux"  class="router.Muxponder">
+		<constructor-arg name="hostname">	<value>C2_Mux</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_Mux_PE1_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_PE1_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_Mux_PE1_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_PE1_Mux_2" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_Mux_PE2_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_PE2_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_Mux_PE2_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_PE2_Mux_2" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_Mux_PE3_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_PE3_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_Mux_PE3_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C2_PE3_Mux_2" />	</constructor-arg>
+				</object>
+				<!--upstream-->
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C2_RoadmIngress"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R5_1" />		</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	
+	<object id="C2_Mux_PE1_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C2_Mux_PE1_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C2_Mux_PE2_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C2_Mux_PE2_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C2_Mux_PE3_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C2_Mux_PE3_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C2_RoadmIngress"  class="router.MuxInterface" parent="100G_Inf_Mux">
+		<constructor-arg name="is_upstream_bound"> <value>True</value> </constructor-arg>
+	</object>
+
+<!--
+=======~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=======
+=======
+=======
+=======~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+
+<!-- Core Office: C3 -->
+
+<!--  C3_PE1  ====================-->
+
+	<object id="C3_PE1"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C3_PE1</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C3_PE1_L1"/>
+				<ref object="C3_PE1_L2"/>
+				<ref object="C3_PE1_L3"/> 
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C3_PE1_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C3_PE1_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C3_PE1_L3">
+		<constructor-arg name="bandwidth">	<ref object="10GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_PE1_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_Mux_PE1_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_PE1_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_Mux_PE1_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C3_PE1_Mux_1"  class="router.Interface" parent="10G_Inf" />
+	<object id="C3_PE1_Mux_2"  class="router.Interface" parent="10G_Inf" />
+<!--  C3_PE2  ====================-->
+	<object id="C3_PE2"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C3_PE2</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C3_PE2_L1"/>
+				<ref object="C3_PE2_L2"/>
+				<ref object="C3_PE2_L3"/>
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C3_PE2_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C3_PE2_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C3_PE2_L3">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_PE2_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_Mux_PE2_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_PE2_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_Mux_PE2_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C3_PE2_Mux_1"  class="router.Interface" parent="1G_Inf" />
+	<object id="C3_PE2_Mux_2"  class="router.Interface" parent="1G_Inf" />
+
+<!--  C3_PE3 ====================-->
+	<object id="C3_PE3"  class="router.Router">
+		<constructor-arg name="hostname">	<value>C3_PE3</value>		</constructor-arg>
+    		<constructor-arg name="linecards">
+			<list>
+				<ref object="C3_PE3_L1"/>
+				<ref object="C3_PE3_L2"/>
+				<ref object="C3_PE3_L3"/>
+			</list>
+		</constructor-arg>
+	</object>
+	<!-- connected to G1 and S1 -->
+	<object  class="router.Linecard" id = "C3_PE3_L1">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<object  class="router.Linecard" id = "C3_PE3_L2">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="connected_servers">
+			<object  class="router.Server">
+				<constructor-arg name="bandwidth">	<ref object="1GE"/>	</constructor-arg>
+				<constructor-arg name="no_of_servers">	<ref object="no_of_servers_connected_to_lc" />	</constructor-arg>
+			</object>
+		</constructor-arg>
+	</object>
+	<!-- connected Mux -->
+	<object  class="router.Linecard" id = "C3_PE3_L3">
+		<constructor-arg name="bandwidth">	<ref object="1GE"/>		</constructor-arg>
+		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_PE3_Mux_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_Mux_PE3_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_PE3_Mux_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_Mux_PE3_2" />	</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	<object id="C3_PE3_Mux_1"  class="router.Interface" parent="1G_Inf" />
+	<object id="C3_PE3_Mux_2"  class="router.Interface" parent="1G_Inf" />
+
+
+<!-- C3_Mux -->
+	<object id="C3_Mux"  class="router.Muxponder">
+		<constructor-arg name="hostname">	<value>C3_Mux</value>		</constructor-arg>
+    		<constructor-arg name="links">
+			<list>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_Mux_PE1_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_PE1_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_Mux_PE1_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_PE1_Mux_2" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_Mux_PE2_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_PE2_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_Mux_PE2_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_PE2_Mux_2" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_Mux_PE3_1"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_PE3_Mux_1" />	</constructor-arg>
+				</object>
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_Mux_PE3_2"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="C3_PE3_Mux_2" />	</constructor-arg>
+				</object>
+				<!--upstream-->
+				<object  class="router.Link">
+					<constructor-arg name="this_port">	<ref object="C3_RoadmIngress"/>	</constructor-arg>
+					<constructor-arg name="remote_port">	<ref object="R3_1" />		</constructor-arg>
+				</object>
+			</list>
+		</constructor-arg>
+	</object>
+	
+	
+	<object id="C3_Mux_PE1_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C3_Mux_PE1_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C3_Mux_PE2_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C3_Mux_PE2_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C3_Mux_PE3_1"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C3_Mux_PE3_2"  class="router.MuxInterface" parent="10G_Inf_Mux" />
+	<object id="C3_RoadmIngress"  class="router.MuxInterface" parent="100G_Inf_Mux">
+		<constructor-arg name="is_upstream_bound"> <value>True</value> </constructor-arg>
+	</object>
+</objects>

@@ -19,6 +19,10 @@ job_stats="${root_dir}job_stats.log"
 
 graph_path="${root_dir}"
 
+> progress.log
+cat progress.log
+progress_log_path="${root_dir}progress.log"
+
 #=============================================================
 
 #path to python code entry point
@@ -26,20 +30,21 @@ cd ../../code/src/
 
 
 
-
-declare -a arr=("${root_dir}baseline_sdn_agg"
-		"${root_dir}baseline"
+declare -a arr=("${root_dir}baseline"
+		"${root_dir}baseline_sdn_agg"
 		"${root_dir}baseline_sdn_core"
 		"${root_dir}baseline_sdn_edge"
 		"${root_dir}streamline"
 		"${root_dir}streamline_sdn_core"
-		"${root_dir}streamline_sdn_edge")
+		"${root_dir}streamline_sdn_edge"
+		"${root_dir}eeipc"
+		"${root_dir}eeipc_sdn_edge")
 
 declare -i job_id=0
 
 for job_path in "${arr[@]}"
 do
-   python start.py "$job_id" "$job_path" "$final_results" "$job_stats"
+   python start.py "$job_id" "$job_path" "$final_results" "$job_stats" >> "$progress_log_path"
    job_id=$((job_id+1))
 done
 

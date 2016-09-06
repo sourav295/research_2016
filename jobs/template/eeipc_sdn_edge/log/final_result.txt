@@ -1,0 +1,4 @@
+Arrv Rate:          1 | Pkt Dropped          0 | Pkt Generated       8977 | End to end delay      0.0319528172416
+Cost 198.0
+SDN - []
+NFV - []

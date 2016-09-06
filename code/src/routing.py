@@ -35,18 +35,16 @@ class Network_Components(object):
                     Network_Components.hosts.extend(    [ link.remote_port for link in l.links if topology.isHost(link.remote_port)   ]   )
                     Network_Components.sinks.extend(    [ link.remote_port for link in l.links if topology.isSink(link.remote_port)   ]   )
             
-            print len(Network_Components.hosts)
-            print len(Network_Components.sinks)
-            '''
-            Network_Components.hosts.extend(    [ nc for nc in core_office.network_components if topology.isHost(nc)   ]   )
-            Network_Components.sinks.extend(    [ nc for nc in core_office.network_components if topology.isSink(nc)   ]   )
-            '''
+            
             Network_Components.muxs.extend(     [ nc for nc in core_office.network_components if topology.isMux(nc)    ]   )
         
         Network_Components.network_graph = topology.network_graph
         
         print "SDN", [r for r in Network_Components.routers if r.is_SDN]
         print "NFV", [r for r in Network_Components.routers if r.is_NFV]
+        
+        print "Host", len(Network_Components.hosts)
+        print "Sink", len(Network_Components.sinks)
 
     @staticmethod
     def selectRandomSink():
