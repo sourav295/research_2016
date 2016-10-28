@@ -1,10 +1,3 @@
-==================================================================================
-References
-==================================================================================
-1) Base Code, entirely modified though:  
-https://www.grotto-networking.com/DiscreteEventPython.html , SimComponents.py  
-2) Dijkstra Algorith:  
-https://www.ics.uci.edu/~eppstein/161/python/dijkstra.py  
 
 ==================================================================================
 About
