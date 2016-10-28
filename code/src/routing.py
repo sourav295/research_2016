@@ -19,6 +19,12 @@ class Network_Components(object):
     @staticmethod
     def initialize(topology):
         
+        
+        #### multiply links
+        #Network_Components.multiply_links(topology)
+        
+        
+        
         '''' Optical Core Componenets'''
         for optical_net in [op_net for op_net in topology.networks if topology.isOpticalCore(op_net)]:
             Network_Components.roadms.extend( optical_net.all_roadms )
@@ -46,6 +52,31 @@ class Network_Components(object):
         print "Host", len(Network_Components.hosts)
         print "Sink", len(Network_Components.sinks)
 
+
+    @staticmethod
+    def multiply_links(topology):
+        all_line_cards=[]
+        line_card_link_pair_list = [] 
+        for core_office in [core_net for core_net in topology.networks if topology.isCoreOffice(core_net)]:
+            rs = [ nc for nc in core_office.network_components if topology.isRouter(nc) ]#routers
+            for r in rs:
+                for l in r.linecards:
+                    all_line_cards.append(l)
+                    links_in_this_linecard = [ link for link in l.links if topology.isInf(link.remote_port)]
+                    line_card_link_pair_list.append((r, l, links_in_this_linecard))
+        
+        #multiply
+        for router, linecard, link_list in line_card_link_pair_list:
+            for link in link_list:
+                remote_line_card = link.remote_port.find_host_linecard(all_line_cards)
+                if not remote_line_card in router.linecards:
+                    linecard.multiply(link, remote_line_card)
+                    
+                        
+        
+    
+    
+    
     @staticmethod
     def selectRandomSink():
         all_topology_sinks = Network_Components.sinks
@@ -121,14 +152,14 @@ class Routing_Processor(object):
         self.outPort_to_nextHop_map =   {}
         self.key_to_prioQueue_map   =   {}#key = (next hop, in)
         
-    def add_interface(self, next_hop, out_port):
+    def add_interface(self, next_hop, out_port, rate):
         self.outPort_to_nextHop_map[out_port]  = next_hop
 
         for in_port in self.local_ports:
             if in_port != out_port and not self.is_inPort_leading_to_nextHop(in_port, next_hop):
                 key = (next_hop, in_port)
                 if key not in self.key_to_prioQueue_map:
-                    self.key_to_prioQueue_map[key] = Priority_Queue(out_port)
+                    self.key_to_prioQueue_map[key] = Priority_Queue(out_port, rate)
                 else:
                     prio_que = self.key_to_prioQueue_map[key]
                     prio_que.append_port(out_port)
@@ -182,12 +213,13 @@ class Routing_Backplane(object):
         
 class Priority_Queue(object):
     
-    def __init__(self, new_port):
+    def __init__(self, new_port, rate):
         self.queue = []
         self.attached_out_port = [new_port]
         new_port.wait = GlobalConfiguration.simpyEnv.event()
         
-        self.qlimit       = GlobalConfiguration.qlimit
+        self.qlimit       = float(rate)*(GlobalConfiguration.buffer_factor)/1000000 #set to 5
+        print self.qlimit
         self.byte_size    = 0
         self.packets_drop = 0
         

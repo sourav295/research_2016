@@ -76,7 +76,9 @@ class Core_Office(object):
                     
         '''Make routers/ linecards aware of their surrounding'''
         for linecard in all_linecards:
+            
             for link in linecard.links:
+                
                 local_port  = link.this_port #this router's switch port 
                 remote_port = link.remote_port #could be the remote  switch_port, sink or host(packet generator)
                 
@@ -156,6 +158,7 @@ class Topology(object):
     isHost     = functools.partial(isInstOf, type=router_module.Host)
     isSink     = functools.partial(isInstOf, type=router_module.Sink)
     isMux      = functools.partial(isInstOf, type=router_module.Muxponder)
+    isInf      = functools.partial(isInstOf, type=router_module.Interface)
     
     isOpticalCore = functools.partial(isInstOf, type=Optical_Core)
     isCoreOffice  = functools.partial(isInstOf, type=Core_Office)
@@ -213,6 +216,10 @@ class Topology(object):
                 topology_logger.info("||||=========================================||||")
                 topology_logger.info("{}".format(border_roadms))
                 topology_logger.info("{}".format(border_roadms.LFIB))
+        for muxpon in routing.Network_Components.muxs:
+            topology_logger.info("||||=========================================~~~~~~")
+            topology_logger.info("{}".format(muxpon))
+            topology_logger.info("{}".format(muxpon.muxponder_processor.outPort_nextHop_map))
     
     def getStats(self):#nOfPktdropped, nOfPktGenerated, mean end to end delay
         return routing.Network_Components.getStats(), Packet.getStats(), Packet.mean_end_to_end_delay()
@@ -220,9 +227,12 @@ class Topology(object):
 class NFV_SDN(object):
     sdn_list = []
     nfv_list = []
+    ethernet_switch_list = [] #done hastily
     
     def distribute_information(self):
         for sdn in self.sdn_list:
             sdn.set_as_SDN()
         for nfv in self.nfv_list:
             nfv.set_as_NFV()
+        for switch in self.ethernet_switch_list:
+            switch.set_as_ethernet_switch()

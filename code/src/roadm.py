@@ -221,8 +221,15 @@ class Roadm(object):
     @staticmethod
     def expel_inner_roadms_from_path(explicit_path):
         #if first condition is false, then only it evals the second condition assuming it is a roadm (short circuiting)
-        return [net_comp for net_comp in explicit_path if not isinstance(net_comp,Roadm) or net_comp.is_border == True]
         
+        border =  [net_comp for net_comp in explicit_path if isinstance(net_comp,Roadm) and net_comp.is_border == True]
+        
+        ingress_egress = []
+        if len(border) > 0:
+            ingress_egress = [border[0],border[-1]]
+        
+        return [net_comp for net_comp in explicit_path if (not isinstance(net_comp,Roadm)) or net_comp in ingress_egress]
+    
     def __repr__(self):
         return "{}".format(self.id)
         #construct map {incoming port, incoming lambda} -> {outgoing port, outport lambda}

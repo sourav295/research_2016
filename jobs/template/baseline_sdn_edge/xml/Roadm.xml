@@ -7,346 +7,378 @@
 	<object id="optcl_net"  class="network.Optical_Core" >
 		<property name="all_roadms">
 			<list>
-				<!--		R1 _ R2 _ R3
-						\    /\    /
-						  R4 __ R5
-
-				-->
-
-
-				<!--====== NOT CONNECTED TO ANY OTHER RING =========-->
-			    	<ref object="R1_1"/>
-				<ref object="R1_2"/>
-				<ref object="R2_1"/>
-				<ref object="R2_2"/>
-				<ref object="R3_1"/>
-				<ref object="R3_2"/>
-				<ref object="R4_1"/>
-				<ref object="R4_2"/>
-				<ref object="R5_1"/>
-				<ref object="R5_2"/>
-				<!--====== INTERMEDIATE AMONGST R1/R2/R3 =========-->
-				<ref object="R1_R2_1"/>
-				<ref object="R1_R2_2"/>
-
-				<ref object="R2_R3_1"/>
-				<ref object="R2_R3_2"/>
-				<!--====== INTERMEDIATE AMONGST R1-R4 | R2-R4 | R2-R5 | R3-R5 =========-->
-				<ref object="R1_R4_1"/>
-				<ref object="R1_R4_2"/>
-				
-				<ref object="R2_R4_1"/>
-				<ref object="R2_R4_2"/>
-				
-				<ref object="R2_R5_1"/>
-				<ref object="R2_R5_2"/>
-				
-				<ref object="R3_R5_1"/>
-				<ref object="R3_R5_2"/>
-				<!--====== INTERMEDIATE AMONGST R4-R5 =========-->				
-				<ref object="R4_R5_1"/>
-				<ref object="R4_R5_2"/>
+				<!--WEST COAST 1:8 -->
+				 <ref object="R1"/>
+				 <ref object="R2"/>
+				 <ref object="R3"/>
+				 <ref object="R4"/>
+				 <ref object="R5"/>
+				 <ref object="R6"/>
+				 <ref object="R7"/>
+				 <ref object="R8"/>
+				 <!--SOUTH 9:15 -->
+				 <ref object="R9"/>
+				 <ref object="R10"/>
+				 <ref object="R11"/>
+				 <ref object="R12"/>
+				 <ref object="R13"/>
+				 <ref object="R14"/>
+				 <ref object="R15"/>
+				 <!--EAST COAST 16:24 -->
+				 <ref object="R16"/>
+				 <ref object="R17"/>
+				 <ref object="R18"/>
+				 <ref object="R19"/>
+				 <ref object="R20"/>
+				 <ref object="R21"/>
+				 <ref object="R22"/>
+				 <ref object="R23"/>
+				 <ref object="R24"/>
+				 <!--SOUTH EAST 25:30 -->
+				 <ref object="R25"/>
+				 <ref object="R26"/>
+				 <ref object="R27"/>
+				 <ref object="R28"/>
+				 <ref object="R29"/>
+				 <ref object="R30"/>
 			</list>
    		</property>
 		<property name="connections">
 			<list>
-				<!--	R1	-->
-			    	<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_2"/>		</constructor-arg>
+
+				<!-- WEST COAST 1:8 -->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R1"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R2"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_R4_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R1"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R3"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_R4_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_R4_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R3"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R2"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_R4_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_R2_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R2"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R4"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_R2_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_R2_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R4"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R5"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_R2_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R5"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R7"/>		</constructor-arg>
+				</object>
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R8"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R7"/>		</constructor-arg>
+				</object>
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R3"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R6"/>		</constructor-arg>
+				</object>
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R6"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R8"/>		</constructor-arg>
 				</object>
 
-				<!--	R2	-->
-			    	<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_R2_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R4_1"/>		</constructor-arg>
+				<!--WEST - SOUTH-->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R3"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R9"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R4_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R4_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R8"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R10"/>		</constructor-arg>
 				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R4_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R5_1"/>		</constructor-arg>
-				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R5_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R5_2"/>		</constructor-arg>
-				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R5_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R3_1"/>		</constructor-arg>
-				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R3_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R3_2"/>		</constructor-arg>
-				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R3_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_1"/>		</constructor-arg>
-				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_2"/>		</constructor-arg>
-				</object>
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_R2_2"/>		</constructor-arg>
-				</object>
-				
 
-				<!--	R3	-->
-			    	<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R3_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R3_R5_1"/>		</constructor-arg>
+				<!--SOUTH 9:15-->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R9"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R10"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R9"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R11"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R11"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R12"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R12"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R14"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R10"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R13"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R14"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R13"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R3_R5_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R3_R5_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R11"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R15"/>		</constructor-arg>
+				</object>
+				<!--SOUTH EAST COAST-->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R15"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R24"/>		</constructor-arg>
+				</object>
+
+				<!--EAST COAST 16:24-->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R16"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R17"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R17"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R18"/>		</constructor-arg>
+				</object>
+
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R18"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R19"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R3_R5_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R3_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R19"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R20"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R3_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R3_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R20"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R21"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R3_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R3_2"/>		</constructor-arg>
-				</object>
-				<!--	R4	-->
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R1_R4_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R4_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R21"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R22"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R4_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R4_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R22"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R23"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R4_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R4_R5_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R23"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R24"/>		</constructor-arg>
+				</object>
+				<!--SOUTH EAST 25:30-->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R25"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R26"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R4_R5_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R4_R5_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R25"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R30"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R4_R5_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R4_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R28"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R27"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R2_R4_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R1_R4_2"/>		</constructor-arg>
-				</object>
-				<!--	R5	-->
-				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R4_R5_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R5_1"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R28"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R29"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R5_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R5_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R29"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R30"/>		</constructor-arg>
+				</object>
+				<!--SOUTH SOUTH_EAST -->
+				<object  class="roadm.Optical_Link" >
+					<constructor-arg name="frm">	<ref object="R26"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R14"/>		</constructor-arg>
 				</object>
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R5_2"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R3_R5_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R27"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R14"/>		</constructor-arg>
 				</object>
+				<!--EAST_COAST SOUTH_EAST-->
 				<object  class="roadm.Optical_Link" >
-					<constructor-arg name="frm">	<ref object="R3_R5_1"/>		</constructor-arg>
-					<constructor-arg name="to">	<ref object="R2_R5_2"/>		</constructor-arg>
+					<constructor-arg name="frm">	<ref object="R22"/>		</constructor-arg>
+					<constructor-arg name="to">		<ref object="R25"/>		</constructor-arg>
 				</object>
+
 				
 			</list>
    		</property>
 	</object>
 	
-				<!--====== NOT CONNECTED TO ANY OTHER RING =========-->
+				<!--====== ROADMS =========-->
 
-	<!--Ring 1-->
-	<object id="R1_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R1_1</value>		</constructor-arg>
+	<!--WEST COAST 1:8-->
+	<object id="R1"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R1</value>		</constructor-arg>
 		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<object id="R1_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R1_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+	<object id="R2"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R2</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<!--Ring 2-->
-	<object id="R2_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+	<object id="R3"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R3</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>4</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<object id="R2_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_2</value>		</constructor-arg>
+	<object id="R4"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R4</value>		</constructor-arg>
 		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<!--Ring 3-->
-	<object id="R3_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R3_1</value>		</constructor-arg>
+	<object id="R5"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R5</value>		</constructor-arg>
 		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<object id="R3_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R3_2</value>		</constructor-arg>
+	<object id="R6"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R6</value>		</constructor-arg>
 		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<!--Ring 4-->
-	<object id="R4_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R4_1</value>		</constructor-arg>
+	<object id="R7"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R7</value>		</constructor-arg>
 		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<object id="R4_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R4_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+	<object id="R8"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R8</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<!--SOUTH 9:15-->
+	<object id="R9"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R9</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<!--Ring 5-->
-	<object id="R5_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R5_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>True</value>		</constructor-arg>
+	<object id="R10"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R10</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 
-	<object id="R5_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R5_2</value>		</constructor-arg>
+	<object id="R11"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R11</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+
+	<object id="R12"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R12</value>		</constructor-arg>
 		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+
+	<object id="R13"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R13</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+
+	<object id="R14"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R14</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>4</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+
+	<object id="R15"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R15</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+
+	<!--EAST COAST 16:24-->
+	<object id="R16"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R16</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R17"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R17</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R18"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R18</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R19"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R19</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R20"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R20</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R21"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R21</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R22"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R22</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R23"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R23</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R24"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R24</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<!--SOUTH EAST 25:30-->
+	<object id="R25"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R25</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R26"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R26</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R27"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R27</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R28"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R28</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R29"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R29</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
+	</object>
+	<object id="R30"  class="roadm.Roadm" >
+		<constructor-arg name="hostname">		<value>R30</value>		</constructor-arg>
+		<constructor-arg name="n_of_degrees">	<value>2</value>		</constructor-arg>
+		<constructor-arg name="is_border">		<value>True</value>		</constructor-arg>
 	</object>
 	
-				<!--====== INTERMEDIATE AMONGST R1/R2/R3 =========-->
-	
-	<!--Ring 1 - Ring 2-->
-	<object id="R1_R2_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R1_R2_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R1_R2_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R1_R2_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<!--Ring 2 - Ring 3-->
-	<object id="R2_R3_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_R3_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R2_R3_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_R3_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-	
-			<!--====== INTERMEDIATE AMONGST R1-R4 | R2-R4 | R2-R5 | R3-R5 =========-->
-	
-	<!--Ring 1 - Ring 4-->
-	<object id="R1_R4_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R1_R4_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R1_R4_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R1_R4_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<!--Ring 2 - Ring 4-->
-	<object id="R2_R4_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_R4_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R2_R4_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_R4_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<!--Ring 2 - Ring 5-->
-	<object id="R2_R5_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_R5_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R2_R5_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R2_R5_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<!--Ring 3 - Ring 5-->
-	<object id="R3_R5_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R3_R5_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R3_R5_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R3_R5_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-			<!--====== INTERMEDIATE AMONGST R4 - R5 =========-->
-	
-	<!--Ring 4 - Ring 5-->
-	<object id="R4_R5_1"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R4_R5_1</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-	<object id="R4_R5_2"  class="roadm.Roadm" >
-		<constructor-arg name="hostname">	<value>R4_R5_2</value>		</constructor-arg>
-		<constructor-arg name="n_of_degrees">	<value>3</value>		</constructor-arg>
-		<constructor-arg name="is_border">	<value>False</value>		</constructor-arg>
-	</object>
-
-
-
 </objects>

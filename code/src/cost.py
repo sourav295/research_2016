@@ -8,7 +8,7 @@ from springpython.context import ApplicationContext
 class CostMap(object):
     
     
-    def __init__(self):
+    def __init__(self, sdn_cost_benefit, nfv_cost_benefit):
             
         #====== COST CONFIGURATION ======================
         
@@ -17,8 +17,8 @@ class CostMap(object):
         self.capex_server_cost     = 1
         
         #COST REDUCTIONS - amended cost = traditional cost / cost reduction
-        self.capex_cost_reduction_fact_SDN = 1.5              #REDUCTION ON SDN
-        self.capex_cost_reduction_fact_NFV = 2                #REDUCTION ON NFV
+        self.capex_cost_reduction_fact_SDN = sdn_cost_benefit        #REDUCTION ON SDN
+        self.capex_cost_reduction_fact_NFV = nfv_cost_benefit        #REDUCTION ON NFV
         
         
         #line rate vs cost
@@ -35,8 +35,8 @@ class CostMap(object):
         self.opex_server_cost     = 50
         
         #COST REDUCTIONS - amended cost = traditional cost / cost reduction
-        self.opex_cost_reduction_fact_SDN = 1.5              #REDUCTION ON SDN
-        self.opex_cost_reduction_fact_NFV = 2                #REDUCTION ON NFV
+        self.opex_cost_reduction_fact_SDN = sdn_cost_benefit    #REDUCTION ON SDN
+        self.opex_cost_reduction_fact_NFV = nfv_cost_benefit    #REDUCTION ON NFV
         
         
         #line rate vs cost
@@ -47,6 +47,10 @@ class CostMap(object):
         self.opex_linecard_cost_map[ context.get_object("1GE")  ] = 200
         self.opex_linecard_cost_map[ context.get_object("10GE") ] = 300
         self.opex_linecard_cost_map[ context.get_object("100GE")] = 500
+        
+        #explicit cost
+        self.ip_router_chassis = 800
+        self.ethernet_switch   = 300
         
         #================================================                        
         
@@ -69,6 +73,8 @@ class CostMap(object):
             
             capex += self.calculate_muxponder_cost(self.capex_muxponder_cost)
             opex  += self.calculate_muxponder_cost(self.opex_muxponder_cost )
+            
+            opex  += self.calculate_explicit_router_switch_cost(self.ip_router_chassis, self.ethernet_switch)
             
             return capex, opex
         
@@ -108,4 +114,14 @@ class CostMap(object):
     def calculate_muxponder_cost(self, muxponder_cost):
         noOfMuxponders = len(  Network_Components.muxs  )
         return  noOfMuxponders * muxponder_cost
+    
+    def calculate_explicit_router_switch_cost(self, ip_router_cost, ethernet_switch_cost):
+        temp_cost = 0
+        for router_or_switch in Network_Components.routers:
+            if not router_or_switch.is_ethernet_switch:
+                temp_cost += ip_router_cost
+            else:
+                temp_cost += ethernet_switch_cost
+        return temp_cost
+
         

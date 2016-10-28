@@ -4,6 +4,7 @@ from springpython.context import ApplicationContext
 import simpy
 import logging
 import os
+import numpy
 
 class GlobalConfiguration(object):
     
@@ -25,16 +26,33 @@ class GlobalConfiguration(object):
     N_Channels      = 192              # on optical fibre
     nPrioLevels     = 8                 # no of priority levels
     
-    start_rate      = 8                  # first pkt generation rate
-    end_rate        = 15                  # last  pkt generation rate
-    rate_increments = 0.25                # increments
+    start_rate      = 10#100                  # first pkt generation rate
+    end_rate        = 14#104                  # last  pkt generation rate
+    rate_increments = 1# increments
     
-    delay_fact_SDN  = 1.25
-    delay_fact_NFV  = 1.25
+    '''COST BENEFIT'''
+    cost_benefit_SDN_list = [1.5]#list(numpy.arange(1, 5, 0.1))
+    cost_benefit_NFV_list = []
+
+    '''DELAY DETRIMENT'''
+    delay_detriment_SDN_list = [1.5]#list(numpy.arange(1, 5.5, 1))
+    delay_detriment_NFV_list = []
     
-    simulation_until= 10               # Simulation time
+    simulation_until= 2#10               # Simulation time
     
-    nOfRuns = 15
+    nOfRuns = 1
+    
+    #logspace
+    buffer_factor_start = 1#10^1
+    buffer_factor_end   = 3#10^3
+    buffer_factor_count = 5#5 values
+    
+    #MTU
+    MTU = 1500 #Bytes
+    
+    buffer_factor = 5
+    
+    nOfPortPerLC = 5 #what ever no. you put, you'll have the twice number of ports except for 1
     
     test_run        = False              # runs the code only for the start_rate, information logged
     
@@ -47,14 +65,35 @@ class GlobalConfiguration(object):
     result_log      = None
     job_id          = None
     job_stat_log    = None
+    arrival_rates   = None
+    delay_fact_SDN  = None
+    delay_fact_NFV  = None
     
     #Not configurable
     mean_arrv_rate  = None        # 1/arrival_time
     topology        = None
-    to_log          = True
+    to_log          = False
     simpyEnv        = simpy.Environment()
     SDN_list        = []
     NFV_list        = []
+    
+    @staticmethod
+    def init():
+        if GlobalConfiguration.test_run:
+            GlobalConfiguration.end_rate        = GlobalConfiguration.start_rate + 1
+            GlobalConfiguration.rate_increments = 2
+            GlobalConfiguration.to_log          = True
+        else:
+            GlobalConfiguration.to_log          = False
+            
+        #set arrival rate
+        GlobalConfiguration.arrival_rates = numpy.arange(GlobalConfiguration.start_rate, GlobalConfiguration.end_rate, GlobalConfiguration.rate_increments)
+        
+        dummy_value = 10    #just to ensure itertools.product does not become [] for one empty value
+        for conf_list in GlobalConfiguration.cost_benefit_SDN_list, GlobalConfiguration.cost_benefit_NFV_list, GlobalConfiguration.delay_detriment_SDN_list,GlobalConfiguration.delay_detriment_NFV_list:
+            if not conf_list:
+                conf_list.append(dummy_value)
+    
     
     @staticmethod
     def configure():

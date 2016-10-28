@@ -11,6 +11,33 @@
 				<ref object="C1"/>
 				<ref object="C2"/>
 				<ref object="C3"/>
+				<ref object="C4"/>
+				<ref object="C5"/>
+				<ref object="C6"/>
+				<ref object="C7"/>
+				<ref object="C8"/>
+				<ref object="C9"/>
+				<ref object="C10"/>
+				<ref object="C11"/>
+				<ref object="C12"/>
+				<ref object="C13"/>
+				<ref object="C14"/>
+				<ref object="C15"/>
+				<ref object="C16"/>
+				<ref object="C17"/>
+				<ref object="C18"/>
+				<ref object="C19"/>
+				<ref object="C20"/>
+				<ref object="C21"/>
+				<ref object="C22"/>
+				<ref object="C23"/>
+				<ref object="C24"/>
+				<ref object="C25"/>
+				<ref object="C26"/>
+				<ref object="C27"/>
+				<ref object="C28"/>
+				<ref object="C29"/>
+				<ref object="C30"/>
 				<ref object="optcl_net"/>
 			</list>
    		</property>
@@ -29,13 +56,191 @@
 				<ref object="C3_PE1"/>
 				<ref object="C3_PE2"/>
 				<ref object="C3_PE3"/>
-		
+				<ref object="C4_PE1"/>
+				<ref object="C4_PE2"/>
+				<ref object="C4_PE3"/>
+				<ref object="C5_PE1"/>
+				<ref object="C5_PE2"/>
+				<ref object="C5_PE3"/>
+				<ref object="C6_PE1"/>
+				<ref object="C6_PE2"/>
+				<ref object="C6_PE3"/>
+				<ref object="C7_PE1"/>
+				<ref object="C7_PE2"/>
+				<ref object="C7_PE3"/>
+				<ref object="C8_PE1"/>
+				<ref object="C8_PE2"/>
+				<ref object="C8_PE3"/>
+				<ref object="C9_PE1"/>
+				<ref object="C9_PE2"/>
+				<ref object="C9_PE3"/>
+				<ref object="C10_PE1"/>
+				<ref object="C10_PE2"/>
+				<ref object="C10_PE3"/>
+
+				<ref object="C11_PE1"/>
+				<ref object="C11_PE2"/>
+				<ref object="C11_PE3"/>
+				<ref object="C12_PE1"/>
+				<ref object="C12_PE2"/>
+				<ref object="C12_PE3"/>
+				<ref object="C13_PE1"/>
+				<ref object="C13_PE2"/>
+				<ref object="C13_PE3"/>
+				<ref object="C14_PE1"/>
+				<ref object="C14_PE2"/>
+				<ref object="C14_PE3"/>
+				<ref object="C15_PE1"/>
+				<ref object="C15_PE2"/>
+				<ref object="C15_PE3"/>
+				<ref object="C16_PE1"/>
+				<ref object="C16_PE2"/>
+				<ref object="C16_PE3"/>
+				<ref object="C17_PE1"/>
+				<ref object="C17_PE2"/>
+				<ref object="C17_PE3"/>
+				<ref object="C18_PE1"/>
+				<ref object="C18_PE2"/>
+				<ref object="C18_PE3"/>
+				<ref object="C19_PE1"/>
+				<ref object="C19_PE2"/>
+				<ref object="C19_PE3"/>
+				<ref object="C20_PE1"/>
+				<ref object="C20_PE2"/>
+				<ref object="C20_PE3"/>
+
+				<ref object="C21_PE1"/>
+				<ref object="C21_PE2"/>
+				<ref object="C21_PE3"/>
+				<ref object="C22_PE1"/>
+				<ref object="C22_PE2"/>
+				<ref object="C22_PE3"/>
+				<ref object="C23_PE1"/>
+				<ref object="C23_PE2"/>
+				<ref object="C23_PE3"/>
+				<ref object="C24_PE1"/>
+				<ref object="C24_PE2"/>
+				<ref object="C24_PE3"/>
+				<ref object="C25_PE1"/>
+				<ref object="C25_PE2"/>
+				<ref object="C25_PE3"/>
+				<ref object="C26_PE1"/>
+				<ref object="C26_PE2"/>
+				<ref object="C26_PE3"/>
+				<ref object="C27_PE1"/>
+				<ref object="C27_PE2"/>
+				<ref object="C27_PE3"/>
+				<ref object="C28_PE1"/>
+				<ref object="C28_PE2"/>
+				<ref object="C28_PE3"/>
+				<ref object="C29_PE1"/>
+				<ref object="C29_PE2"/>
+				<ref object="C29_PE3"/>
+				<ref object="C30_PE1"/>
+				<ref object="C30_PE2"/>
+				<ref object="C30_PE3"/>
 			</list>
    		</property>
 		<property name="nfv_list">
 			<!--<list>
 				<ref object="C2_AGG1"/>
 			</list>-->
+   		</property>
+		<property name="ethernet_switch_list">
+			<list>
+				<ref object="C1_PE1"/>
+				<ref object="C1_PE2"/>
+				<ref object="C1_PE3"/>
+				<ref object="C2_PE1"/>
+				<ref object="C2_PE2"/>
+				<ref object="C2_PE3"/>
+				<ref object="C3_PE1"/>
+				<ref object="C3_PE2"/>
+				<ref object="C3_PE3"/>
+				<ref object="C4_PE1"/>
+				<ref object="C4_PE2"/>
+				<ref object="C4_PE3"/>
+				<ref object="C5_PE1"/>
+				<ref object="C5_PE2"/>
+				<ref object="C5_PE3"/>
+				<ref object="C6_PE1"/>
+				<ref object="C6_PE2"/>
+				<ref object="C6_PE3"/>
+				<ref object="C7_PE1"/>
+				<ref object="C7_PE2"/>
+				<ref object="C7_PE3"/>
+				<ref object="C8_PE1"/>
+				<ref object="C8_PE2"/>
+				<ref object="C8_PE3"/>
+				<ref object="C9_PE1"/>
+				<ref object="C9_PE2"/>
+				<ref object="C9_PE3"/>
+				<ref object="C10_PE1"/>
+				<ref object="C10_PE2"/>
+				<ref object="C10_PE3"/>
+
+				<ref object="C11_PE1"/>
+				<ref object="C11_PE2"/>
+				<ref object="C11_PE3"/>
+				<ref object="C12_PE1"/>
+				<ref object="C12_PE2"/>
+				<ref object="C12_PE3"/>
+				<ref object="C13_PE1"/>
+				<ref object="C13_PE2"/>
+				<ref object="C13_PE3"/>
+				<ref object="C14_PE1"/>
+				<ref object="C14_PE2"/>
+				<ref object="C14_PE3"/>
+				<ref object="C15_PE1"/>
+				<ref object="C15_PE2"/>
+				<ref object="C15_PE3"/>
+				<ref object="C16_PE1"/>
+				<ref object="C16_PE2"/>
+				<ref object="C16_PE3"/>
+				<ref object="C17_PE1"/>
+				<ref object="C17_PE2"/>
+				<ref object="C17_PE3"/>
+				<ref object="C18_PE1"/>
+				<ref object="C18_PE2"/>
+				<ref object="C18_PE3"/>
+				<ref object="C19_PE1"/>
+				<ref object="C19_PE2"/>
+				<ref object="C19_PE3"/>
+				<ref object="C20_PE1"/>
+				<ref object="C20_PE2"/>
+				<ref object="C20_PE3"/>
+
+				<ref object="C21_PE1"/>
+				<ref object="C21_PE2"/>
+				<ref object="C21_PE3"/>
+				<ref object="C22_PE1"/>
+				<ref object="C22_PE2"/>
+				<ref object="C22_PE3"/>
+				<ref object="C23_PE1"/>
+				<ref object="C23_PE2"/>
+				<ref object="C23_PE3"/>
+				<ref object="C24_PE1"/>
+				<ref object="C24_PE2"/>
+				<ref object="C24_PE3"/>
+				<ref object="C25_PE1"/>
+				<ref object="C25_PE2"/>
+				<ref object="C25_PE3"/>
+				<ref object="C26_PE1"/>
+				<ref object="C26_PE2"/>
+				<ref object="C26_PE3"/>
+				<ref object="C27_PE1"/>
+				<ref object="C27_PE2"/>
+				<ref object="C27_PE3"/>
+				<ref object="C28_PE1"/>
+				<ref object="C28_PE2"/>
+				<ref object="C28_PE3"/>
+				<ref object="C29_PE1"/>
+				<ref object="C29_PE2"/>
+				<ref object="C29_PE3"/>
+				<ref object="C30_PE1"/>
+				<ref object="C30_PE2"/>
+				<ref object="C30_PE3"/>
+			</list>
    		</property>
 	</object>
 
@@ -79,6 +284,388 @@
 				<ref object="C3_P1"/>
 				
 				<ref object="C3_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+
+	<object id="C4" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C4_PE1"/>
+				<ref object="C4_PE2"/>
+				<ref object="C4_PE3"/>
+		
+				<ref object="C4_P1"/>
+				
+				<ref object="C4_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+
+	<object id="C5" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C5_PE1"/>
+				<ref object="C5_PE2"/>
+				<ref object="C5_PE3"/>
+		
+				<ref object="C5_P1"/>
+				
+				<ref object="C5_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+
+	<object id="C6" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C6_PE1"/>
+				<ref object="C6_PE2"/>
+				<ref object="C6_PE3"/>
+		
+				<ref object="C6_P1"/>
+				
+				<ref object="C6_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+
+	<object id="C7" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C7_PE1"/>
+				<ref object="C7_PE2"/>
+				<ref object="C7_PE3"/>
+		
+				<ref object="C7_P1"/>
+				
+				<ref object="C7_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C8" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C8_PE1"/>
+				<ref object="C8_PE2"/>
+				<ref object="C8_PE3"/>
+		
+				<ref object="C8_P1"/>
+				
+				<ref object="C8_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C9" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C9_PE1"/>
+				<ref object="C9_PE2"/>
+				<ref object="C9_PE3"/>
+		
+				<ref object="C9_P1"/>
+				
+				<ref object="C9_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C10" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C10_PE1"/>
+				<ref object="C10_PE2"/>
+				<ref object="C10_PE3"/>
+		
+				<ref object="C10_P1"/>
+				
+				<ref object="C10_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C11" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C11_PE1"/>
+				<ref object="C11_PE2"/>
+				<ref object="C11_PE3"/>
+		
+				<ref object="C11_P1"/>
+				
+				<ref object="C11_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C12" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C12_PE1"/>
+				<ref object="C12_PE2"/>
+				<ref object="C12_PE3"/>
+		
+				<ref object="C12_P1"/>
+				
+				<ref object="C12_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C13" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C13_PE1"/>
+				<ref object="C13_PE2"/>
+				<ref object="C13_PE3"/>
+		
+				<ref object="C13_P1"/>
+				
+				<ref object="C13_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C14" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C14_PE1"/>
+				<ref object="C14_PE2"/>
+				<ref object="C14_PE3"/>
+		
+				<ref object="C14_P1"/>
+				
+				<ref object="C14_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C15" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C15_PE1"/>
+				<ref object="C15_PE2"/>
+				<ref object="C15_PE3"/>
+		
+				<ref object="C15_P1"/>
+				
+				<ref object="C15_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C16" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C16_PE1"/>
+				<ref object="C16_PE2"/>
+				<ref object="C16_PE3"/>
+		
+				<ref object="C16_P1"/>
+				
+				<ref object="C16_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C17" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C17_PE1"/>
+				<ref object="C17_PE2"/>
+				<ref object="C17_PE3"/>
+		
+				<ref object="C17_P1"/>
+				
+				<ref object="C17_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C18" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C18_PE1"/>
+				<ref object="C18_PE2"/>
+				<ref object="C18_PE3"/>
+		
+				<ref object="C18_P1"/>
+				
+				<ref object="C18_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C19" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C19_PE1"/>
+				<ref object="C19_PE2"/>
+				<ref object="C19_PE3"/>
+		
+				<ref object="C19_P1"/>
+				
+				<ref object="C19_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C20" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C20_PE1"/>
+				<ref object="C20_PE2"/>
+				<ref object="C20_PE3"/>
+		
+				<ref object="C20_P1"/>
+				
+				<ref object="C20_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C21" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C21_PE1"/>
+				<ref object="C21_PE2"/>
+				<ref object="C21_PE3"/>
+		
+				<ref object="C21_P1"/>
+				
+				<ref object="C21_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C22" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C22_PE1"/>
+				<ref object="C22_PE2"/>
+				<ref object="C22_PE3"/>
+		
+				<ref object="C22_P1"/>
+				
+				<ref object="C22_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C23" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C23_PE1"/>
+				<ref object="C23_PE2"/>
+				<ref object="C23_PE3"/>
+		
+				<ref object="C23_P1"/>
+				
+				<ref object="C23_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C24" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C24_PE1"/>
+				<ref object="C24_PE2"/>
+				<ref object="C24_PE3"/>
+		
+				<ref object="C24_P1"/>
+				
+				<ref object="C24_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C25" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C25_PE1"/>
+				<ref object="C25_PE2"/>
+				<ref object="C25_PE3"/>
+		
+				<ref object="C25_P1"/>
+				
+				<ref object="C25_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C26" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C26_PE1"/>
+				<ref object="C26_PE2"/>
+				<ref object="C26_PE3"/>
+		
+				<ref object="C26_P1"/>
+				
+				<ref object="C26_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C27" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C27_PE1"/>
+				<ref object="C27_PE2"/>
+				<ref object="C27_PE3"/>
+		
+				<ref object="C27_P1"/>
+				
+				<ref object="C27_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C28" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C28_PE1"/>
+				<ref object="C28_PE2"/>
+				<ref object="C28_PE3"/>
+		
+				<ref object="C28_P1"/>
+				
+				<ref object="C28_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C29" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C29_PE1"/>
+				<ref object="C29_PE2"/>
+				<ref object="C29_PE3"/>
+		
+				<ref object="C29_P1"/>
+				
+				<ref object="C29_Mux"/>
+
+			</list>
+   		</constructor-arg>
+	</object>
+	<object id="C30" class="network.Core_Office">
+		<constructor-arg name="network_components">		
+			<list>
+			    	<ref object="C30_PE1"/>
+				<ref object="C30_PE2"/>
+				<ref object="C30_PE3"/>
+		
+				<ref object="C30_P1"/>
+				
+				<ref object="C30_Mux"/>
 
 			</list>
    		</constructor-arg>

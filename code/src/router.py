@@ -34,6 +34,8 @@ class Router(object):
             self.linecards[i].config_routing_processor()
             
         self.backplane.wire_linecards()
+        
+        self.is_ethernet_switch = False
             
     def set_as_SDN(self):
         self.is_SDN = True
@@ -42,7 +44,9 @@ class Router(object):
     def set_as_NFV(self):
         self.is_NFV = True
         for linecard in self.linecards:
-            linecard.set_as_NFV()        
+            linecard.set_as_NFV()
+    def set_as_ethernet_switch(self):
+        self.is_ethernet_switch = True
             
     def __repr__(self):
         return "{}".format(self.hostname)
@@ -62,7 +66,6 @@ class Linecard(object):
         self.connected_servers = connected_servers
         
         
-        
     def config_routing_processor(self):
         
         local_ports = [l.this_port for l in self.links]
@@ -75,6 +78,21 @@ class Linecard(object):
             if local_port.rate != self.bandwidth:
                 raise ValueError("Configuration error - the linecard rate doesnt match the port rate")
             
+    def multiply(self, link, remote_line_card):
+        n_port_lc = GlobalConfiguration.nOfPortPerLC
+        if n_port_lc > 1:
+            for i in range(n_port_lc): 
+                copy_this_port, copy_this_link, copy_remote_port, copy_remote_link  = link.copy1()
+                
+                copy_this_port.set_routing_processor(self.routing_processor)
+                copy_remote_port.set_routing_processor(remote_line_card.routing_processor)
+                #amendments
+                self.links.append(copy_this_link)
+                remote_line_card.links.append(copy_remote_link)
+                
+                self.routing_processor.local_ports.append(copy_this_port)
+                remote_line_card.routing_processor.local_ports.append(copy_remote_port)
+                
     def connect_servers(self):
         if self.connected_servers != None:
             host_bandwidth = self.connected_servers.bandwidth
@@ -94,8 +112,7 @@ class Linecard(object):
         
                 self.links.append(  link_h  )
                 self.links.append(  link_s  )
-            
-            
+                
     
     def set_as_SDN(self):
         #check if it not set as NFV
@@ -158,6 +175,7 @@ class Muxponder(object):
         
         for link in self.links:
             local_port  = link.this_port
+            #local_port.id += " "+hostname 
             local_port.set_muxponding_processor(self.muxponder_processor)
     
     def __repr__(self):
@@ -171,6 +189,14 @@ class Link(object):
         
         if self.delay == None:
             self.delay = GlobalConfiguration.delay_over_IP
+            
+    def copy1(self):#remote port has to be a router interface
+        copy_this_port  = self.this_port.copy1()
+        copy_remote_port= self.remote_port.copy1()
+        copy_this_link  = Link(copy_this_port,  copy_remote_port, self.delay)
+        copy_remote_link= Link(copy_remote_port,copy_this_port,   self.delay)
+        
+        return copy_this_port, copy_this_link, copy_remote_port, copy_remote_link 
         
     def __eq__(self, other):
         return (isinstance(other, self.__class__) and self.this_port == other.this_port and self.remote_port == other.remote_port)
@@ -226,6 +252,8 @@ class Interface(SwitchPort):
                     return True
         return False
                 
+    def copy1(self):
+        return Interface(self.bandwidth)
 
     def __repr__(self):
         return "(Inf){}".format(self.id)
